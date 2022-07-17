@@ -1,13 +1,40 @@
 <resources>
-    <string name="app_name">application</string>
-    <string name="action_settings">Settings</string>
-    <string name="interstitial_ad_sample">Interstitial Ad Sample</string>
-    <string name="start_level">Level 1</string>
-    <string name="next_level">Next Level</string>
-    <string name="level_text">Level %1$d</string>
-    <!-- -
-    This is an ad unit ID for an interstitial test ad. Replace with your own interstitial ad unit id.
-    For more information, see https://support.google.com/admob/answer/3052638
-<!- -->
-    <string name="interstitial_ad_unit_id">YOUR_INTERSTITIAL_AD_UNIT_ID</string>
+    <string name="app_name">D-BUGGING</string>
+    <string name="main_title">:D - BUGGING</string>
+    <string name="input_content">내용을 입력해주세요</string>
+    <string name="register_completed">가입하기</string>
+    <string name="frequently_seen_recently">여름에 자주 보여요</string>
+    <string name="chosen_best_pest_3">방역 업체 선정 해충 TOP 3</string>
+    <string name="go_pest_explanation_string">벌레 도감 바로 가기</string>
+    <string name="sign_in_string">로그인</string>
+    <string name="sign_up_string">회원가입</string>
+    <string name="post_address">우편번호</string>
+    <string name="address">도로명 주소</string>
+    <string name="detail_address">상세 주소</string>
+    <string name="my_page">마이페이지</string>
+    <string name="bug_survey">해충 식별 설문</string>
+    <string name="company_connection">전문 업체 연결</string>
+    <string name="self_kill_explanation">셀프 퇴치 설명서</string>
+    <string name="chosen_bug_by_companies_top3">방역 업체 선정 해충 TOP3</string>
+    <string name="bug_explanation">벌레 도감</string>
+    <string name="log_out">로그아웃</string>
+    <string name="sign_out">회원탈퇴</string>
+    <string name="divider">|</string>
+    <string name="d_bugging">:D-BUGGING</string>
+    <string name="company_title">전문 업체 연결</string>
+    <string name="company_intro">벌레 퇴치 전문가와 상담해보세요</string>
+    <string name="filter_icon_desc">filter icon</string>
+    <string name="filter_near">#가까운 순</string>
+    <string name="filter_popular">#인기순</string>
+    <string name="filter_review">#리뷰 많은 순</string>
+    <string name="filter_grade">#평점 높은 순</string>
+    <string name="filter_response">#빠른 응답순</string>
+    <string name="filter_alphabetical">#가나다 순</string>
+    <string name="filter_bookmark">#찜 많은 순</string>
+    <string name="company_list_title">내 주변에 있는 업체</string>
+    <string name="list_not_found">목록을 불러올 수 없습니다.</string>
+    <string name="please_enter_queries">검색어를 입력해 주세요</string>
+    <string name="cancel_search">검색 취소</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

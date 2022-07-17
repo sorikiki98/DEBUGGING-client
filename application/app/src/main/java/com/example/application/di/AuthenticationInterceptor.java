@@ -30,7 +30,6 @@ public class AuthenticationInterceptor implements Interceptor {
         if (token != null) {
             requestBuilder.addHeader("Authorization", "Bearer ".concat(token));
         }
-        Log.d("Interceptor", token);
         return chain.proceed(requestBuilder.build());
     }
 }

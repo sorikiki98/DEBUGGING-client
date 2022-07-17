@@ -1,7 +1,6 @@
 package com.example.application.di;
 
 import com.example.application.DebuggingApplication;
-import com.example.application.MainActivity;
 
 import javax.inject.Singleton;
 

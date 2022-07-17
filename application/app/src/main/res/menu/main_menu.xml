@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/myPageActivity"
+        android:title="@string/my_page" />
+
+    <item
+        android:id="@+id/surveyActivity"
+        android:title="@string/bug_survey" />
+
+    <item
+        android:id="@+id/companyActivity"
+        android:title="@string/company_connection" />
+
+    <item
+        android:id="@+id/productActivity"
+        android:title="@string/self_kill_explanation" />
+
+    <item
+        android:id="@+id/bugActivity"
+        android:title="@string/bug_explanation" />
+</menu>

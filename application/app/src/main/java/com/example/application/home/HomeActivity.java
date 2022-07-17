@@ -1,11 +1,13 @@
-package com.example.application;
+package com.example.application.home;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.example.application.R;
 import com.example.application.data.api.BugsService;
 import com.example.application.data.api.UsersService;
 import com.example.application.data.request.UserLogIn;
@@ -22,7 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
     @Inject
     BugsService bugsApi;
 
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
 
         usersApi.logIn(new UserLogIn("김예솔", "abc1234")).enqueue(new Callback<UserAuthentication>() {
             @Override
@@ -47,8 +49,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<List<Bug>> call, Response<List<Bug>> response) {
                             if (response.isSuccessful()) {
-                                Log.d("MainActivity", response.body().toString());
-                                ((TextView) findViewById(R.id.testTextView)).setText(response.body().toString());
+
                             }
                         }
 

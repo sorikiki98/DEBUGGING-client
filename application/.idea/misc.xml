@@ -3,8 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/drawable/bug_bg.xml" value="0.1" />
+        <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/drawable/home_main_menu_bg.xml" value="0.1" />
+        <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/drawable/menu.xml" value="0.109" />
+        <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/drawable/user.xml" value="0.109" />
+        <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/activity_home.xml" value="0.13229166666666667" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/activity_main.xml" value="0.13229166666666667" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_ad_mob.xml" value="0.11770833333333333" />
+        <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_home2.xml" value="0.1" />
+        <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/menu/main_menu.xml" value="0.13229166666666667" />
       </map>
     </option>
   </component>
