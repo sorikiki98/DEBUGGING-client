@@ -40,32 +40,6 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        usersApi.logIn(new UserLogIn("김예솔", "abc1234")).enqueue(new Callback<UserAuthentication>() {
-            @Override
-            public void onResponse(Call<UserAuthentication> call, Response<UserAuthentication> response) {
-                if (response.isSuccessful()) {
-                    preferencesManager.saveAuthToken(response.body().getToken());
-                    bugsApi.getBugs().enqueue(new Callback<List<Bug>>() {
-                        @Override
-                        public void onResponse(Call<List<Bug>> call, Response<List<Bug>> response) {
-                            if (response.isSuccessful()) {
 
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<List<Bug>> call, Throwable t) {
-                            Log.d("MainActivity", t.toString());
-                        }
-                    });
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<UserAuthentication> call, Throwable t) {
-
-            }
-        });
     }
 }
