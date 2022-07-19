@@ -214,7 +214,7 @@
                             android:layout_marginBottom="4dp"
                             android:src="@drawable/ic_mosquito"
                             android:padding="14dp"
-                            android:background="@drawable/bug_bg" />
+                            android:background="@drawable/bug_img_bg" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -241,7 +241,7 @@
                             android:layout_marginBottom="4dp"
                             android:src="@drawable/ic_cockroach"
                             android:padding="16dp"
-                            android:background="@drawable/bug_bg" />
+                            android:background="@drawable/bug_img_bg" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -268,7 +268,7 @@
                             android:layout_marginBottom="4dp"
                             android:src="@drawable/ic_dust"
                             android:padding="12dp"
-                            android:background="@drawable/bug_bg" />
+                            android:background="@drawable/bug_img_bg" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -316,7 +316,7 @@
                             android:layout_marginBottom="4dp"
                             android:src="@drawable/ic_cockroach"
                             android:padding="16dp"
-                            android:background="@drawable/bug_bg" />
+                            android:background="@drawable/bug_img_bg" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -343,7 +343,7 @@
                             android:layout_marginBottom="4dp"
                             android:src="@drawable/ic_mosquito"
                             android:padding="14dp"
-                            android:background="@drawable/bug_bg" />
+                            android:background="@drawable/bug_img_bg" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -370,7 +370,7 @@
                             android:layout_marginBottom="4dp"
                             android:src="@drawable/ic_silverfish"
                             android:padding="10dp"
-                            android:background="@drawable/bug_bg" />
+                            android:background="@drawable/bug_img_bg" />
 
                         <TextView
                             android:layout_width="wrap_content"

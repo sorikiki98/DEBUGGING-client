@@ -1,6 +1,6 @@
-package com.example.application.data.api;
+package com.example.application.data.remote.api;
 
-import com.example.application.data.response.Bug;
+import com.example.application.data.remote.response.Bug;
 
 import java.util.List;
 

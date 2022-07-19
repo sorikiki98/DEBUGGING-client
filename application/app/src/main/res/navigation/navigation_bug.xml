@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_bug"
+    app:startDestination="@id/bugListFragment">
+
+    <fragment
+        android:id="@+id/bugListFragment"
+        android:name="com.example.application.bug.BugsListFragment">
+        <action
+            android:id="@+id/action_bugListFragment_to_bugItemFragment"
+            app:destination="@id/bugItemFragment" />
+        <action
+            android:id="@+id/action_bugListFragment_to_bugSearchFragment"
+            app:destination="@id/bugSearchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bugItemFragment"
+        android:name="com.example.application.bug.BugsItemFragment" >
+        <action
+            android:id="@+id/action_bugItemFragment_to_bugListFragment"
+            app:destination="@id/bugListFragment"
+            app:popUpTo="@id/bugItemFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/bugSearchFragment"
+        android:name="com.example.application.bug.BugsSearchFragment">
+        <action
+            android:id="@+id/action_bugSearchFragment_to_bugItemFragment"
+            app:destination="@id/bugItemFragment" />
+    </fragment>
+</navigation>

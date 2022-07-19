@@ -1,7 +1,9 @@
 package com.example.application.di;
 
-import com.example.application.data.api.BugsService;
-import com.example.application.data.api.UsersService;
+import com.example.application.AuthenticationInterceptor;
+import com.example.application.PreferencesManager;
+import com.example.application.data.remote.api.BugsService;
+import com.example.application.data.remote.api.UsersService;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

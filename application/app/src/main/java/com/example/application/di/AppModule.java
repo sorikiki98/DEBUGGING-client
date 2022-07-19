@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.example.application.DebuggingApplication;
+import com.example.application.PreferencesManager;
 
 import javax.inject.Singleton;
 

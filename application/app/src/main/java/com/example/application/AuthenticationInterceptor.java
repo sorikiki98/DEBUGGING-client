@@ -1,6 +1,4 @@
-package com.example.application.di;
-
-import android.util.Log;
+package com.example.application;
 
 import androidx.annotation.NonNull;
 
@@ -18,7 +16,7 @@ public class AuthenticationInterceptor implements Interceptor {
     private final PreferencesManager preferencesManager;
 
     @Inject
-    AuthenticationInterceptor(PreferencesManager preferencesManager) {
+    public AuthenticationInterceptor(PreferencesManager preferencesManager) {
         this.preferencesManager = preferencesManager;
     }
 

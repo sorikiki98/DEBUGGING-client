@@ -1,7 +1,7 @@
-package com.example.application.data.api;
+package com.example.application.data.remote.api;
 
-import com.example.application.data.request.UserLogIn;
-import com.example.application.data.response.UserAuthentication;
+import com.example.application.data.remote.request.UserLogIn;
+import com.example.application.data.remote.response.UserAuthentication;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

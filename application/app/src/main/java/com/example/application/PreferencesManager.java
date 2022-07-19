@@ -1,4 +1,4 @@
-package com.example.application.di;
+package com.example.application;
 
 import android.content.SharedPreferences;
 
@@ -10,7 +10,7 @@ public class PreferencesManager {
     private final SharedPreferences sharedPreferences;
 
     @Inject
-    PreferencesManager(SharedPreferences sharedPreferences) {
+    public PreferencesManager(SharedPreferences sharedPreferences) {
         this.sharedPreferences = sharedPreferences;
     }
 
