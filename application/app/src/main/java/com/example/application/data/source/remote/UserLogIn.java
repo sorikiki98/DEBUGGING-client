@@ -1,4 +1,4 @@
-package com.example.application.data.remote.request;
+package com.example.application.data.source.remote;
 
 import com.google.gson.annotations.SerializedName;
 

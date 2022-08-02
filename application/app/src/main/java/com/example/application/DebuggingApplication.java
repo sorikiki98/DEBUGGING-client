@@ -3,6 +3,8 @@ package com.example.application;
 import android.app.Application;
 
 import com.example.application.di.DaggerAppComponent;
+import com.example.application.di.NetworkModule;
+import com.example.application.di.StoragesModule;
 
 import javax.inject.Inject;
 
@@ -21,6 +23,7 @@ public class DebuggingApplication extends Application implements HasAndroidInjec
         DaggerAppComponent
                 .builder()
                 .application(this)
+                .storagesModule(new StoragesModule(this))
                 .build()
                 .inject(this);
     }

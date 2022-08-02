@@ -65,10 +65,9 @@
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:maxWidth="200dp"
         app:itemTextAppearance="@style/menu_text_style"
         app:itemTextColor="@color/brown_grey"
         app:menu="@menu/main_menu">

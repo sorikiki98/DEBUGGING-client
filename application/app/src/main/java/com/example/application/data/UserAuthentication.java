@@ -1,4 +1,4 @@
-package com.example.application.data.remote.response;
+package com.example.application.data;
 
 public final class UserAuthentication {
     private final String userName;

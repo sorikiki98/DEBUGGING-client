@@ -18,8 +18,20 @@ public class PreferencesManager {
         sharedPreferences.edit().putString("token", token).apply();
     }
 
+    public void saveUserName(String userName) {
+        sharedPreferences.edit().putString("user_name", userName).apply();
+    }
+
     public String fetchAuthToken() {
         return sharedPreferences.getString("token", null);
+    }
+
+    public String fetchUserName() {
+        return sharedPreferences.getString("user_name", null);
+    }
+
+    public void clearAuthToken() {
+        sharedPreferences.edit().clear().apply();
     }
 }
 
