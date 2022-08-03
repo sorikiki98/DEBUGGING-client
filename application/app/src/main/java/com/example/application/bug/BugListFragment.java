@@ -3,7 +3,6 @@ package com.example.application.bug;
 import android.content.Context;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,16 +25,16 @@ import javax.inject.Inject;
 
 import dagger.android.support.AndroidSupportInjection;
 
-public class BugsListFragment extends Fragment implements BugsListContract.View {
+public class BugsListFragment extends Fragment implements BugListContract.View {
     private FragmentBugListBinding binding;
 
-    private BugsListAdapter adapter = new BugsListAdapter(new BugsDiffCallback(), (bugId) -> {
+    private BugListAdapter adapter = new BugListAdapter(new BugDiffCallback(), (bugId) -> {
         navigate(bugId);
         return null;
     });
 
     @Inject
-    BugsListContract.Presenter presenter;
+    BugListContract.Presenter presenter;
 
     @Override
     public void onAttach(@NonNull Context context) {

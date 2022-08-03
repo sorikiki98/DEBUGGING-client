@@ -1,39 +1,28 @@
 package com.example.application.bug;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.application.R;
 import com.example.application.data.Bug;
 import com.example.application.databinding.FragmentBugItemBinding;
-import com.example.application.databinding.FragmentBugListBinding;
-
-import java.util.List;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
-import dagger.android.AndroidInjection;
-import dagger.android.AndroidInjector;
 import dagger.android.support.AndroidSupportInjection;
 
-public class BugsItemFragment extends Fragment implements BugsItemContract.View{
+public class BugItemFragment extends Fragment implements BugItemContract.View{
     private FragmentBugItemBinding binding;
 
     @Inject
-    BugsItemContract.Presenter presenter;
+    BugItemContract.Presenter presenter;
 
     @Inject
     Context context;

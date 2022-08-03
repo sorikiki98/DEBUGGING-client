@@ -5,15 +5,15 @@ import com.example.application.data.source.repository.BugsRepository;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-public class BugsSearchPresenter implements BugsListContract.Presenter {
+public class BugSearchPresenter implements BugListContract.Presenter {
     @Named("bug_search")
     @Inject
-    BugsListContract.View view;
+    BugListContract.View view;
 
     private final BugsRepository bugsRepository;
 
     @Inject
-    BugsSearchPresenter(BugsRepository bugsRepository) {
+    BugSearchPresenter(BugsRepository bugsRepository) {
         this.bugsRepository = bugsRepository;
     }
 

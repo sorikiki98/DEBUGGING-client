@@ -8,16 +8,15 @@ import org.reactivestreams.Subscription;
 import java.util.Optional;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.FlowableSubscriber;
 import io.reactivex.rxjava3.core.Scheduler;
 
-public class BugsItemPresenter implements BugsItemContract.Presenter {
+public class BugItemPresenter implements BugItemContract.Presenter {
     private final BugsRepository bugsRepository;
 
-    private final BugsItemContract.View view;
+    private final BugItemContract.View view;
 
     private final Scheduler mainScheduler;
 
@@ -26,7 +25,7 @@ public class BugsItemPresenter implements BugsItemContract.Presenter {
     private Subscription subscription;
 
     @Inject
-    BugsItemPresenter(BugsRepository bugsRepository, BugsItemContract.View view, Scheduler scheduler) {
+    BugItemPresenter(BugsRepository bugsRepository, BugItemContract.View view, Scheduler scheduler) {
         this.bugsRepository = bugsRepository;
         this.view = view;
         this.mainScheduler = scheduler;

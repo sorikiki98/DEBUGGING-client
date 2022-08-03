@@ -14,20 +14,18 @@ import javax.inject.Inject;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.FlowableSubscriber;
 import io.reactivex.rxjava3.core.Scheduler;
-import io.reactivex.rxjava3.disposables.CompositeDisposable;
-import io.reactivex.rxjava3.disposables.Disposable;
 
-public class BugsListPresenter implements BugsListContract.Presenter {
+public class BugListPresenter implements BugListContract.Presenter {
     private final BugsRepository bugsRepository;
 
-    private final BugsListContract.View view;
+    private final BugListContract.View view;
 
     private final Scheduler mainScheduler;
 
     private Subscription subscription;
 
     @Inject
-    BugsListPresenter(BugsRepository bugsRepository, BugsListContract.View view, Scheduler scheduler) {
+    BugListPresenter(BugsRepository bugsRepository, BugListContract.View view, Scheduler scheduler) {
         this.bugsRepository = bugsRepository;
         this.view = view;
         this.mainScheduler = scheduler;

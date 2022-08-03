@@ -7,11 +7,10 @@ import com.example.application.data.Bug;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
-public class BugsSearchFragment extends Fragment implements BugsListContract.View {
+public class BugSearchFragment extends Fragment implements BugListContract.View {
     @Inject
-    BugsListContract.Presenter presenter;
+    BugListContract.Presenter presenter;
 
 
     @Override

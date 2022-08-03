@@ -26,7 +26,7 @@ import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasAndroidInjector;
 
-public class BugsActivity extends AppCompatActivity implements HasAndroidInjector {
+public class BugActivity extends AppCompatActivity implements HasAndroidInjector {
     @Inject
     DispatchingAndroidInjector<Object> androidInjector;
 

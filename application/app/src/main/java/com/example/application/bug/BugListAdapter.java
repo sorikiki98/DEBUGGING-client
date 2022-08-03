@@ -4,7 +4,6 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,10 +12,10 @@ import com.example.application.databinding.ItemBugBinding;
 
 import java.util.function.Function;
 
-public class BugsListAdapter extends ListAdapter<Bug, BugsListAdapter.ViewHolder> {
+public class BugListAdapter extends ListAdapter<Bug, BugListAdapter.ViewHolder> {
     private final Function<Integer, Void> itemClickCallback;
 
-    protected BugsListAdapter(@NonNull BugsDiffCallback diffCallback, @NonNull Function<Integer, Void> itemClickCallback) {
+    protected BugListAdapter(@NonNull BugDiffCallback diffCallback, @NonNull Function<Integer, Void> itemClickCallback) {
         super(diffCallback);
         this.itemClickCallback = itemClickCallback;
     }

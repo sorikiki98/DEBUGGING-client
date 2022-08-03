@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/bugItemFragment"
-        android:name="com.example.application.bug.BugsItemFragment" >
+        android:name="com.example.application.bug.BugItemFragment" >
         <action
             android:id="@+id/action_bugItemFragment_to_bugListFragment"
             app:destination="@id/bugListFragment"
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/bugSearchFragment"
-        android:name="com.example.application.bug.BugsSearchFragment">
+        android:name="com.example.application.bug.BugSearchFragment">
         <action
             android:id="@+id/action_bugSearchFragment_to_bugItemFragment"
             app:destination="@id/bugItemFragment" />

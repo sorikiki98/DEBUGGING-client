@@ -6,15 +6,20 @@ import com.example.application.data.Bug;
 
 import java.util.List;
 
-public interface BugsItemContract {
+import io.reactivex.rxjava3.disposables.Disposable;
+
+public interface BugListContract {
     interface Presenter extends BasePresenter {
-        void setBugId(int bugId);
-        void loadBugWithId(int bugId);
+        void loadBugs();
+
+        void loadBugWithId();
+
+        void survey();
     }
 
     interface View extends BaseView {
 
-        void showBug(Bug bug);
+        void showBugs(List<Bug> bugs);
 
         void showErrorMessage(String message);
     }
