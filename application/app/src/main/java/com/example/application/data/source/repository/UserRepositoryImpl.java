@@ -57,8 +57,9 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void logout() {
-        clearUserInfo();
+    public Completable logout() {
+        return Completable.complete()
+                .doOnComplete(this::clearUserInfo);
     }
 
     private void clearUserInfo() {
@@ -74,5 +75,20 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public void refreshCache(User userInfo) {
         cachedUserInfo = userInfo;
+    }
+
+    @Override
+    public String getUserName() {
+        return preferencesManager.fetchUserName();
+    }
+
+    @Override
+    public Maybe<Integer> getAccumulatedNumOfUsages() {
+        return loadUserInformation().flatMap((User user) -> Maybe.just(user.getAccumulatedNumOfUsages()));
+    }
+
+    @Override
+    public String getAuthToken() {
+        return "Bearer " + preferencesManager.fetchAuthToken();
     }
 }

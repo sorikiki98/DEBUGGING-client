@@ -1,5 +1,8 @@
 package com.example.application.data.source.remote;
 
+import androidx.work.impl.model.Preference;
+
+import com.example.application.PreferencesManager;
 import com.example.application.data.User;
 import com.example.application.data.UserAuthentication;
 import com.example.application.data.source.UserDataSource;
@@ -15,10 +18,13 @@ public class UserRemoteDataSource implements UserDataSource {
 
     private final Scheduler ioScheduler;
 
+    private final PreferencesManager preferencesManager;
+
     @Inject
-    public UserRemoteDataSource(UsersService usersService, Scheduler scheduler) {
+    public UserRemoteDataSource(UsersService usersService, Scheduler scheduler, PreferencesManager preferencesManager) {
         this.usersService = usersService;
         this.ioScheduler = scheduler;
+        this.preferencesManager = preferencesManager;
     }
 
     @Override
@@ -29,13 +35,17 @@ public class UserRemoteDataSource implements UserDataSource {
 
     @Override
     public Completable delete() {
-        return usersService.delete()
+        return usersService.delete(getAuthToken())
                 .subscribeOn(ioScheduler);
     }
 
     @Override
     public Maybe<User> getUserInformation() {
-        return usersService.getUserInformation()
+        return usersService.getUserInformation(getAuthToken())
                 .subscribeOn(ioScheduler);
+    }
+
+    private String getAuthToken() {
+        return "Bearer " + this.preferencesManager.fetchAuthToken();
     }
 }

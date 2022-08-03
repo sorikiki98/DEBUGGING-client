@@ -14,9 +14,15 @@ public interface UserRepository {
 
     Completable delete();
 
-    void logout();
+    Completable logout();
 
     void refreshMyPage();
 
     void refreshCache(User userInfo);
+
+    String getUserName();
+
+    Maybe<Integer> getAccumulatedNumOfUsages();
+
+    String getAuthToken();
 }

@@ -9,12 +9,16 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +31,10 @@ import com.example.application.data.source.remote.BugsService;
 import com.example.application.data.source.remote.UsersService;
 import com.example.application.PreferencesManager;
 import com.example.application.databinding.ActivityHomeBinding;
+import com.example.application.login.LoginActivity;
 import com.google.android.material.navigation.NavigationView;
+
+import java.lang.ref.WeakReference;
 
 import javax.inject.Inject;
 
@@ -45,6 +52,9 @@ public class HomeActivity extends AppCompatActivity implements HasAndroidInjecto
     @Inject
     Context context;
 
+    @Inject
+    HomeContract.Presenter presenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AndroidInjection.inject(this);
@@ -59,8 +69,8 @@ public class HomeActivity extends AppCompatActivity implements HasAndroidInjecto
     private void initViews() {
         setNavController();
         setNavigationDrawer();
+        setUserInfo();
     }
-
 
 
     private void setNavController() {
@@ -82,33 +92,66 @@ public class HomeActivity extends AppCompatActivity implements HasAndroidInjecto
         binding.navView.getHeaderView(0).setLayoutParams(params);
     }
 
+    private void setUserInfo() {
+        presenter.setUserName();
+        presenter.setAccumulatedNumberOfUsages();
+    }
+
     private void bindViews() {
-        binding.navView.setNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case (R.id.bugActivity):
-                    Intent intent = new Intent(context, BugsActivity.class);
-                    startActivity(intent);
-                    finish();
-                    return true;
-                default:
-                    return false;
-            }
-        });
+        binding.navView.setNavigationItemSelectedListener(this::handleMenuItemClick);
+        binding.tvLogOut.setOnClickListener((view) -> popUpLogOutWindow());
+        binding.tvSignOut.setOnClickListener((view) -> presenter.signOut());
     }
 
     @Override
-    public void navigate(int id) {
+    public void navigate(int id) {}
 
-    }
-
+    @SuppressLint("SetTextI18n")
     @Override
     public void showUserName(String userName) {
+        TextView userNameTextView = binding.navView.getHeaderView(0).findViewById(R.id.tv_profile_name);
+        userNameTextView.setText(userName + " 님");
+    }
 
+    @SuppressLint("SetTextI18n")
+    @Override
+    public void showAccumulatedNumberOfUsages(int total) {
+        TextView usagesTextView = binding.navView.getHeaderView(0).findViewById(R.id.tv_num_of_acccumulated_usages);
+        usagesTextView.setText("누적 업체 이용 " + total + "건");
+    }
+
+    private boolean handleMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case (R.id.bugActivity):
+                Intent intent = new Intent(context, BugsActivity.class);
+                startActivity(intent);
+                finish();
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    private void popUpLogOutWindow() {
+        binding.navView.setVisibility(View.INVISIBLE);
+        if (!HomeActivity.this.isFinishing()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                    .setTitle("로그아웃")
+                    .setMessage("로그아웃 하시겠습니까?")
+                    .setPositiveButton("네", (dialogInterface, i) -> presenter.logout())
+                    .setNegativeButton("아니오", (dialogInterface, i) -> {
+                        binding.navView.setVisibility(View.VISIBLE);
+                    });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
     }
 
     @Override
-    public void showAccumulatedNumberOfUsages(String total) {
-
+    public void goBackToHomeScreen() {
+        Intent intent = new Intent(context, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override

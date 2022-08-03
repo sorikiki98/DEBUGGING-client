@@ -79,4 +79,8 @@ public class User {
         this.reservationList = reservationList;
     }
 
+    public int getAccumulatedNumOfUsages() {
+        return this.accumulatedNumOfUsages;
+    }
+
 }

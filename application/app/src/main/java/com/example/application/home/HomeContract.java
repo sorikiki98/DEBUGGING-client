@@ -8,15 +8,21 @@ import java.util.List;
 
 public interface HomeContract {
     interface Presenter extends BasePresenter {
-        void getUserName();
+        void setUserName();
 
-        void getAccumulatedNumberOfUsages();
+        void setAccumulatedNumberOfUsages();
+
+        void logout();
+
+        void signOut();
     }
 
     interface View extends BaseView {
 
         void showUserName(String userName);
 
-        void showAccumulatedNumberOfUsages(String total);
+        void showAccumulatedNumberOfUsages(int total);
+
+        void goBackToHomeScreen();
     }
 }

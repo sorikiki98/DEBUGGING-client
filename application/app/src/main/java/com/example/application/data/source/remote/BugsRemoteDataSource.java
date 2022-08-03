@@ -2,6 +2,7 @@ package com.example.application.data.source.remote;
 
 import android.util.Log;
 
+import com.example.application.PreferencesManager;
 import com.example.application.data.Bug;
 import com.example.application.data.source.BugsDataSource;
 
@@ -21,21 +22,24 @@ public class BugsRemoteDataSource implements BugsDataSource {
 
     private final Scheduler ioScheduler;
 
+    private final PreferencesManager preferencesManager;
+
     @Inject
-    public BugsRemoteDataSource(BugsService bugsService, Scheduler scheduler) {
+    public BugsRemoteDataSource(BugsService bugsService, Scheduler scheduler, PreferencesManager preferencesManager) {
         this.bugsApi = bugsService;
         this.ioScheduler = scheduler;
+        this.preferencesManager = preferencesManager;
     }
 
     @Override
     public Flowable<List<Bug>> getBugs() {
-        return bugsApi.getBugs()
+        return bugsApi.getBugs(getAuthToken())
                 .subscribeOn(ioScheduler);
     }
 
     @Override
     public Flowable<Optional<Bug>> getBug(int bugId) {
-        return bugsApi.getBug(bugId)
+        return bugsApi.getBug(bugId, getAuthToken())
                 .subscribeOn(ioScheduler);
     }
 
@@ -49,4 +53,7 @@ public class BugsRemoteDataSource implements BugsDataSource {
 
     }
 
+    private String getAuthToken() {
+        return "Bearer " + this.preferencesManager.fetchAuthToken();
+    }
 }

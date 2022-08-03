@@ -9,6 +9,7 @@ import io.reactivex.rxjava3.core.Single;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface UsersService {
@@ -16,8 +17,8 @@ public interface UsersService {
     Maybe<UserAuthentication> logIn(@Body UserLogIn userLogIn);
 
     @DELETE("user")
-    Completable delete();
+    Completable delete(@Header("Authorization") String token);
 
     @GET("user/mypage")
-    Maybe<User> getUserInformation();
+    Maybe<User> getUserInformation(@Header("Authorization") String token);
 }

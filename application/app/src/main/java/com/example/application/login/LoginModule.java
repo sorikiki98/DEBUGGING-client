@@ -12,14 +12,6 @@ import dagger.Provides;
 
 @Module
 public abstract class LoginModule {
-    @Provides
-    static UserRemoteDataSource provideUserRemoteDataSource(UsersService usersService, SchedulersFacade scheduler) {
-        return new UserRemoteDataSource(usersService, scheduler.io());
-    }
-
-    @Binds
-    abstract UserRepository bindUserRepository(UserRepositoryImpl userRepository);
-
     @Binds
     abstract LoginContract.View bindLoginActivity(LoginActivity loginActivity);
 
