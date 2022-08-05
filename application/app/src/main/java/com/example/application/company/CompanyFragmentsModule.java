@@ -9,4 +9,7 @@ import dagger.android.ContributesAndroidInjector;
 public abstract class CompanyFragmentsModule {
     @ContributesAndroidInjector(modules = CompanyListModule.class)
     abstract CompanyListFragment contributeBugsListFragment();
+
+    @ContributesAndroidInjector(modules = CompanyItemModule.class)
+    abstract CompanyItemFragment contributeBugsItemFragment();
 }

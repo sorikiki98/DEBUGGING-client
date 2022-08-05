@@ -51,12 +51,12 @@ public class BugItemFragment extends Fragment implements BugItemContract.View{
 
     private void setBugId() {
         presenter.setBugId(getArguments().getInt("bugId"));
-        presenter.subscribe();
     }
 
     private void initViews() {
         binding.errorMessage.setVisibility(View.GONE);
         binding.progressBar.setVisibility(View.VISIBLE);
+        presenter.subscribe();
     }
 
     @Override

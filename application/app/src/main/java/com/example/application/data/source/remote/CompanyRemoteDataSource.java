@@ -5,6 +5,7 @@ import com.example.application.data.Company;
 import com.example.application.data.source.CompanyDataSource;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.inject.Inject;
 
@@ -28,6 +29,11 @@ public class CompanyRemoteDataSource implements CompanyDataSource {
     public Flowable<List<Company>> getCompanies() {
         return companyService.getCompanies(getAuthToken())
                 .subscribeOn(ioScheduler);
+    }
+
+    @Override
+    public Flowable<Optional<Company>> getCompanyWithId(int companyId) {
+        return null;
     }
 
     @Override

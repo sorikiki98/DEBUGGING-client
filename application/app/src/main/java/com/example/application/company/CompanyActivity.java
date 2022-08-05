@@ -1,5 +1,7 @@
 package com.example.application.company;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -12,6 +14,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.application.R;
 import com.example.application.databinding.ActivityCompanyBinding;
+import com.example.application.home.HomeActivity;
 
 import javax.inject.Inject;
 
@@ -24,6 +27,9 @@ public class CompanyActivity extends AppCompatActivity implements HasAndroidInje
     @Inject
     DispatchingAndroidInjector<Object> androidInjector;
 
+    @Inject
+    Context context;
+
     private ActivityCompanyBinding binding;
 
     @Override
@@ -34,10 +40,18 @@ public class CompanyActivity extends AppCompatActivity implements HasAndroidInje
         setContentView(binding.getRoot());
 
         initViews();
+        bindViews();
     }
 
     private void initViews() {
         setNavController();
+    }
+
+    private void bindViews() {
+        binding.toolBarHomeIcon.setOnClickListener(view -> {
+            startActivity(new Intent(context, HomeActivity.class));
+            finish();
+        });
     }
 
     private void setNavController() {

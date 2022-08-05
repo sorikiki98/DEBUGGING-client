@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import javax.inject.Inject;
 
@@ -55,6 +56,16 @@ public class CompanyRepositoryImpl implements CompanyRepository {
                     isCacheDirty = false;
                     return Flowable.just(companies);
                 });
+    }
+
+    @Override
+    public Flowable<Optional<Company>> getCompanyWithId(int companyId) {
+        if (!isCacheDirty && !cachedCompanies.isEmpty()) {
+            Optional<Company> company = Optional.ofNullable(cachedCompanies.get(companyId));
+            return Flowable.just(company);
+        }
+
+        return companyLocalDataSource.getCompanyWithId(companyId);
     }
 
     @Override

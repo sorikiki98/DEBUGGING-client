@@ -9,6 +9,7 @@ import com.example.application.data.Bug;
 import com.example.application.data.Company;
 
 import java.util.List;
+import java.util.Optional;
 
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
@@ -20,6 +21,9 @@ public interface CompanyDao {
 
     @Query("SELECT * FROM companies")
     public Flowable<List<Company>> getCompanies();
+
+    @Query("SELECT * FROM companies WHERE id=:companyId")
+    public Flowable<Optional<Company>> getCompany(int companyId);
 
     @Query("UPDATE companies SET isCompanyInterested=1, numOfInterestedUsers=numOfInterestedUsers+1 WHERE id=:companyId")
     public Completable addCompanyInterest(int companyId);

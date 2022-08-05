@@ -6,6 +6,7 @@ import com.example.application.data.Company;
 import com.example.application.data.source.CompanyDataSource;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.inject.Inject;
 
@@ -29,6 +30,12 @@ public class CompanyLocalDataSource implements CompanyDataSource {
     @Override
     public Flowable<List<Company>> getCompanies() {
         return companyDao.getCompanies()
+                .subscribeOn(ioScheduler);
+    }
+
+    @Override
+    public Flowable<Optional<Company>> getCompanyWithId(int companyId) {
+        return companyDao.getCompany(companyId)
                 .subscribeOn(ioScheduler);
     }
 
