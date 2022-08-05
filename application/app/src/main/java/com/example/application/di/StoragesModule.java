@@ -8,7 +8,8 @@ import androidx.room.Room;
 import com.example.application.DebuggingApplication;
 import com.example.application.PreferencesManager;
 import com.example.application.data.source.local.AppDatabase;
-import com.example.application.data.source.local.BugsDao;
+import com.example.application.data.source.local.BugDao;
+import com.example.application.data.source.local.CompanyDao;
 
 import javax.inject.Singleton;
 
@@ -49,7 +50,11 @@ public class StoragesModule {
 
     @Singleton
     @Provides
-    BugsDao provideBugsDao(AppDatabase appDatabase) {
+    BugDao provideBugsDao(AppDatabase appDatabase) {
         return appDatabase.bugsDao();
     }
+
+    @Singleton
+    @Provides
+    CompanyDao provideCompanyDao(AppDatabase appDatabase) { return appDatabase.companyDao(); }
 }

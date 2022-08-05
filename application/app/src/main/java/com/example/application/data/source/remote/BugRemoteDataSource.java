@@ -1,32 +1,27 @@
 package com.example.application.data.source.remote;
 
-import android.util.Log;
-
 import com.example.application.PreferencesManager;
 import com.example.application.data.Bug;
-import com.example.application.data.source.BugsDataSource;
+import com.example.application.data.source.BugDataSource;
 
 import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Scheduler;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public class BugsRemoteDataSource implements BugsDataSource {
-    private final BugsService bugsApi;
+public class BugRemoteDataSource implements BugDataSource {
+    private final BugService bugsApi;
 
     private final Scheduler ioScheduler;
 
     private final PreferencesManager preferencesManager;
 
     @Inject
-    public BugsRemoteDataSource(BugsService bugsService, Scheduler scheduler, PreferencesManager preferencesManager) {
-        this.bugsApi = bugsService;
+    public BugRemoteDataSource(BugService bugService, Scheduler scheduler, PreferencesManager preferencesManager) {
+        this.bugsApi = bugService;
         this.ioScheduler = scheduler;
         this.preferencesManager = preferencesManager;
     }

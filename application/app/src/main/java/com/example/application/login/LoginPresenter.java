@@ -37,6 +37,7 @@ public class LoginPresenter implements LoginContract.Presenter {
     @Override
     public void unsubscribe() { compositeDisposable.clear();}
 
+    // todo 로그인 실패시 4xx 인지, 5xx 인지
     @Override
     public void login(UserLogIn userInput) {
        userRepository.login(userInput)

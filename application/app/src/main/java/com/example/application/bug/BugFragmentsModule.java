@@ -6,7 +6,7 @@ import dagger.android.ContributesAndroidInjector;
 @Module
 public abstract class BugFragmentsModule {
     @ContributesAndroidInjector(modules = BugListModule.class)
-    abstract BugsListFragment contributeBugsListFragment();
+    abstract BugListFragment contributeBugsListFragment();
 
     @ContributesAndroidInjector(modules = BugItemModule.class)
     abstract BugItemFragment contributeBugsItemFragment();

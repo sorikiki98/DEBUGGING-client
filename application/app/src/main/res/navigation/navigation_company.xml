@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_company"
+    app:startDestination="@id/companyListFragment">
+
+    <fragment
+        android:id="@+id/companyListFragment"
+        android:name="com.example.application.company.CompanyListFragment">
+        <action
+            android:id="@+id/action_companyListFragment_to_companyItemFragment"
+            app:destination="@id/companyItemFragment" />
+        <action
+            android:id="@+id/action_companyListFragment_to_companySearchFragment"
+            app:destination="@id/companySearchFragment"
+            app:popUpTo="@id/companyListFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/companyItemFragment"
+        android:name="com.example.application.company.CompanyItemFragment">
+        <action
+            android:id="@+id/action_companyItemFragment_to_companyReservationFragment"
+            app:destination="@id/companyReservationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/companyReservationFragment"
+        android:name="com.example.application.company.CompanyReservationFragment">
+        <action
+            android:id="@+id/action_companyReservationFragment_to_companyReservationCheckFragment"
+            app:destination="@id/companyReservationCheckFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/companyReservationCheckFragment"
+        android:name="com.example.application.company.CompanyReservationCheckFragment">
+        <action
+            android:id="@+id/action_companyReservationCheckFragment_to_companyReservationCompletedFragment"
+            app:destination="@id/companyReservationCompletedFragment"
+            app:popUpTo="@id/companyReservationCheckFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/companyReservationCompletedFragment"
+        android:name="com.example.application.company.CompanyReservationCompletedFragment">
+        <action
+            android:id="@+id/action_companyReservationCompletedFragment_to_companyItemFragment"
+            app:destination="@id/companyItemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/companySearchFragment"
+        android:name="com.example.application.company.CompanySearchFragment" >
+        <action
+            android:id="@+id/action_companySearchFragment_to_companyItemFragment"
+            app:destination="@id/companyItemFragment" />
+    </fragment>
+</navigation>

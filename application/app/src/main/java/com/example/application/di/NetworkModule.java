@@ -2,9 +2,9 @@ package com.example.application.di;
 
 import com.example.application.AuthenticationInterceptor;
 import com.example.application.PreferencesManager;
-import com.example.application.data.source.remote.BugsService;
-import com.example.application.data.source.remote.UsersService;
-import com.google.gson.FieldNamingPolicy;
+import com.example.application.data.source.remote.BugService;
+import com.example.application.data.source.remote.CompanyService;
+import com.example.application.data.source.remote.UserService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -17,7 +17,6 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.HTTP;
 
 @Module
 public class NetworkModule {
@@ -38,7 +37,7 @@ public class NetworkModule {
     @Provides
     @Singleton
     HttpLoggingInterceptor provideHttpLoggingInterceptor() {
-        HttpLoggingInterceptor logging =  new HttpLoggingInterceptor();
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
         return logging;
     }
@@ -65,13 +64,20 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    BugsService provideBugsService(Retrofit retrofit) {
-        return retrofit.create(BugsService.class);
+    BugService provideBugsService(Retrofit retrofit) {
+        return retrofit.create(BugService.class);
     }
 
     @Provides
     @Singleton
-    UsersService provideUsersService(Retrofit retrofit) {
-        return retrofit.create(UsersService.class);
+    UserService provideUsersService(Retrofit retrofit) {
+        return retrofit.create(UserService.class);
     }
+
+    @Provides
+    @Singleton
+    CompanyService provideCompanyService(Retrofit retrofit) {
+        return retrofit.create(CompanyService.class);
+    }
+
 }

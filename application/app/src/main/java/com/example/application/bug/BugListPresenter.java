@@ -3,7 +3,7 @@ package com.example.application.bug;
 import android.util.Log;
 
 import com.example.application.data.Bug;
-import com.example.application.data.source.repository.BugsRepository;
+import com.example.application.data.source.repository.BugRepository;
 
 import org.reactivestreams.Subscription;
 
@@ -16,7 +16,7 @@ import io.reactivex.rxjava3.core.FlowableSubscriber;
 import io.reactivex.rxjava3.core.Scheduler;
 
 public class BugListPresenter implements BugListContract.Presenter {
-    private final BugsRepository bugsRepository;
+    private final BugRepository bugsRepository;
 
     private final BugListContract.View view;
 
@@ -25,7 +25,7 @@ public class BugListPresenter implements BugListContract.Presenter {
     private Subscription subscription;
 
     @Inject
-    BugListPresenter(BugsRepository bugsRepository, BugListContract.View view, Scheduler scheduler) {
+    BugListPresenter(BugRepository bugsRepository, BugListContract.View view, Scheduler scheduler) {
         this.bugsRepository = bugsRepository;
         this.view = view;
         this.mainScheduler = scheduler;

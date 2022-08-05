@@ -7,7 +7,7 @@ import java.util.Optional;
 
 import io.reactivex.rxjava3.core.Flowable;
 
-public interface BugsRepository {
+public interface BugRepository {
     Flowable<List<Bug>> getBugs();
 
     Flowable<Optional<Bug>> getBug(int bugId);

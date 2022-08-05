@@ -1,6 +1,7 @@
 package com.example.application.bug;
 
-import com.example.application.data.source.repository.BugsRepository;
+
+import com.example.application.data.source.repository.BugRepository;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -10,11 +11,11 @@ public class BugSearchPresenter implements BugListContract.Presenter {
     @Inject
     BugListContract.View view;
 
-    private final BugsRepository bugsRepository;
+    private final BugRepository bugRepository;
 
     @Inject
-    BugSearchPresenter(BugsRepository bugsRepository) {
-        this.bugsRepository = bugsRepository;
+    BugSearchPresenter(BugRepository bugRepository) {
+        this.bugRepository = bugRepository;
     }
 
 

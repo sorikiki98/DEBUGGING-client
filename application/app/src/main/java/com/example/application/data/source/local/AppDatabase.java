@@ -4,8 +4,10 @@ import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
 import com.example.application.data.Bug;
+import com.example.application.data.Company;
 
-@Database(entities = {Bug.class}, version = 1)
+@Database(entities = {Bug.class, Company.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
-    public abstract BugsDao bugsDao();
+    public abstract BugDao bugsDao();
+    public abstract CompanyDao companyDao();
 }

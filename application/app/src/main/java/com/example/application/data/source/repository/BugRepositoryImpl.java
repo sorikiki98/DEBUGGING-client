@@ -1,14 +1,8 @@
 package com.example.application.data.source.repository;
 
-import android.util.Log;
-
 import com.example.application.data.Bug;
-import com.example.application.data.source.BugsDataSource;
-import com.example.application.data.source.local.BugsLocalDataSource;
-import com.example.application.data.source.remote.BugsRemoteDataSource;
-
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
+import com.example.application.data.source.local.BugLocalDataSource;
+import com.example.application.data.source.remote.BugRemoteDataSource;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,30 +11,22 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
-import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Flowable;
-import io.reactivex.rxjava3.core.FlowableEmitter;
-import io.reactivex.rxjava3.core.FlowableOnSubscribe;
-import io.reactivex.rxjava3.core.FlowableSubscriber;
-import io.reactivex.rxjava3.core.Scheduler;
-import io.reactivex.rxjava3.core.Single;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public class BugsRepositoryImpl implements BugsRepository {
+public class BugRepositoryImpl implements BugRepository {
     private HashMap<Integer, Bug> cachedBugs = new LinkedHashMap<>();
 
     private boolean isCacheDirty = false;
 
-    private final BugsRemoteDataSource bugsRemoteDataSource;
+    private final BugRemoteDataSource bugsRemoteDataSource;
 
-    private final BugsLocalDataSource bugsLocalDataSource;
+    private final BugLocalDataSource bugLocalDataSource;
 
     @Inject
-    BugsRepositoryImpl(BugsRemoteDataSource bugsRemoteDataSource, BugsLocalDataSource bugsLocalDataSource) {
+    BugRepositoryImpl(BugRemoteDataSource bugsRemoteDataSource, BugLocalDataSource bugLocalDataSource) {
         this.bugsRemoteDataSource = bugsRemoteDataSource;
-        this.bugsLocalDataSource = bugsLocalDataSource;
+        this.bugLocalDataSource = bugLocalDataSource;
     }
 
 
@@ -55,7 +41,7 @@ public class BugsRepositoryImpl implements BugsRepository {
             return getBugsFromRemoteDataSource();
         }
 
-        return bugsLocalDataSource.getBugs()
+        return bugLocalDataSource.getBugs()
                 .flatMap((List<Bug> bugs) -> {
                             if (bugs.isEmpty()) {
                                 return getBugsFromRemoteDataSource();
@@ -77,7 +63,7 @@ public class BugsRepositoryImpl implements BugsRepository {
             return bugsRemoteDataSource.getBug(bugId);
         }
 
-        return bugsLocalDataSource.getBug(bugId)
+        return bugLocalDataSource.getBug(bugId)
                 .flatMap((Optional<Bug> bug) -> {
                     if (!bug.isPresent()) {
                         return bugsRemoteDataSource.getBug(bugId);
@@ -101,7 +87,7 @@ public class BugsRepositoryImpl implements BugsRepository {
 
     @Override
     public void refreshLocalDataSource(List<Bug> bugs) {
-        bugsLocalDataSource.insertBugs(bugs);
+        bugLocalDataSource.insertBugs(bugs);
     }
 
     @Override

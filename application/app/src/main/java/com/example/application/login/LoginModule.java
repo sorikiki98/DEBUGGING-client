@@ -1,10 +1,7 @@
 package com.example.application.login;
 
 import com.example.application.SchedulersFacade;
-import com.example.application.data.source.remote.UserRemoteDataSource;
-import com.example.application.data.source.remote.UsersService;
 import com.example.application.data.source.repository.UserRepository;
-import com.example.application.data.source.repository.UserRepositoryImpl;
 
 import dagger.Binds;
 import dagger.Module;

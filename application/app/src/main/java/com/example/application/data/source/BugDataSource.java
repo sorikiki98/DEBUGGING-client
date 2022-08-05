@@ -8,7 +8,7 @@ import java.util.Optional;
 import io.reactivex.rxjava3.core.Flowable;
 
 
-public interface BugsDataSource {
+public interface BugDataSource {
     public Flowable<List<Bug>> getBugs();
 
     public Flowable<Optional<Bug>> getBug(int bugId);

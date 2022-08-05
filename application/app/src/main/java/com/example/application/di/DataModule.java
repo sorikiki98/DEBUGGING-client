@@ -2,14 +2,20 @@ package com.example.application.di;
 
 import com.example.application.PreferencesManager;
 import com.example.application.SchedulersFacade;
-import com.example.application.data.source.local.BugsDao;
-import com.example.application.data.source.local.BugsLocalDataSource;
-import com.example.application.data.source.remote.BugsRemoteDataSource;
-import com.example.application.data.source.remote.BugsService;
+import com.example.application.data.source.local.BugDao;
+import com.example.application.data.source.local.BugLocalDataSource;
+import com.example.application.data.source.local.CompanyDao;
+import com.example.application.data.source.local.CompanyLocalDataSource;
+import com.example.application.data.source.remote.BugRemoteDataSource;
+import com.example.application.data.source.remote.BugService;
+import com.example.application.data.source.remote.CompanyRemoteDataSource;
+import com.example.application.data.source.remote.CompanyService;
 import com.example.application.data.source.remote.UserRemoteDataSource;
-import com.example.application.data.source.remote.UsersService;
-import com.example.application.data.source.repository.BugsRepository;
-import com.example.application.data.source.repository.BugsRepositoryImpl;
+import com.example.application.data.source.remote.UserService;
+import com.example.application.data.source.repository.BugRepository;
+import com.example.application.data.source.repository.BugRepositoryImpl;
+import com.example.application.data.source.repository.CompanyRepository;
+import com.example.application.data.source.repository.CompanyRepositoryImpl;
 import com.example.application.data.source.repository.UserRepository;
 import com.example.application.data.source.repository.UserRepositoryImpl;
 
@@ -21,25 +27,39 @@ import dagger.Provides;
 public abstract class DataModule {
     // bug
     @Provides
-    static BugsRemoteDataSource providesBugsRemoteDataSource(BugsService bugsService, SchedulersFacade scheduler, PreferencesManager preferencesManager) {
-        return new BugsRemoteDataSource(bugsService, scheduler.io(), preferencesManager);
+    static BugRemoteDataSource providesBugsRemoteDataSource(BugService bugService, SchedulersFacade scheduler, PreferencesManager preferencesManager) {
+        return new BugRemoteDataSource(bugService, scheduler.io(), preferencesManager);
     }
 
     @Provides
-    static BugsLocalDataSource providesBugsLocalDataSource(BugsDao bugsDao, SchedulersFacade scheduler) {
-        return new BugsLocalDataSource(bugsDao, scheduler.io());
+    static BugLocalDataSource providesBugsLocalDataSource(BugDao bugDao, SchedulersFacade scheduler) {
+        return new BugLocalDataSource(bugDao, scheduler.io());
     }
 
     @Binds
-    abstract BugsRepository bindBugsRepository(BugsRepositoryImpl repository);
+    abstract BugRepository bindBugsRepository(BugRepositoryImpl repository);
 
     // user
     @Provides
-    static UserRemoteDataSource provideUserRemoteDataSource(UsersService usersService, SchedulersFacade scheduler, PreferencesManager preferencesManager) {
-        return new UserRemoteDataSource(usersService, scheduler.io(), preferencesManager);
+    static UserRemoteDataSource provideUserRemoteDataSource(UserService userService, SchedulersFacade scheduler, PreferencesManager preferencesManager) {
+        return new UserRemoteDataSource(userService, scheduler.io(), preferencesManager);
     }
 
     @Binds
     abstract UserRepository bindUserRepository(UserRepositoryImpl userRepository);
+
+    // company
+    @Provides
+    static CompanyRemoteDataSource provideCompanyRemoteDataSource(CompanyService companyService, SchedulersFacade scheduler, PreferencesManager preferencesManager) {
+        return new CompanyRemoteDataSource(companyService, scheduler.io(), preferencesManager);
+    }
+
+    @Provides
+    static CompanyLocalDataSource provideCompanyLocalDataSource(CompanyDao companyDao, SchedulersFacade scheduler) {
+        return new CompanyLocalDataSource(companyDao, scheduler.io());
+    }
+
+    @Binds
+    abstract CompanyRepository bindCompanyRepository(CompanyRepositoryImpl companyRepository);
 }
 

@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp">
+
+            <ImageView
+                android:id="@+id/bt_prev"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_navigate_before"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/pinkish_grey" />
+
+            <ImageView
+                android:id="@+id/iv_company_thumb"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/bt_next"
+                app:layout_constraintStart_toEndOf="@id/bt_prev"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/bt_next"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_next"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/pinkish_grey" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginHorizontal="10dp"
+            android:background="@color/pinkish_grey" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="18dp"
+            android:paddingVertical="24dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+
+                <TextView
+                    android:id="@+id/tv_company_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/brown_grey"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="해충 마스터" />
+
+                <TextView
+                    android:id="@+id/tv_num_of_reviews"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="리뷰 99+"
+                    android:textColor="@color/shamrock"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_company_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_company_name" />
+
+                <ImageView
+                    android:id="@+id/iv_stars"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_stars"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_company_name"
+                    app:layout_constraintTop_toBottomOf="@id/tv_company_name" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tv_intro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="회사소개"
+                android:textColor="@color/brown_grey"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="24dp"
+                android:ellipsize="end"
+                android:maxLines="10"
+                android:textColor="@color/brown_grey"
+                android:textSize="15sp"
+                tools:text="해충마스터는 우리 인간에게 유해한 해충을 진단, 퇴치하는 \n 친환경 그린 치료소입니다. 모든 상황에 맞추어 식약 허가 \n해충 퇴치제를 보다 강력하고, 안전하며, 친환경적인 제품으로\n 맞추어 개발, 사용하고 있습니다." />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_available_areas_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="출장 가능 지역"
+                    android:textColor="@color/brown_grey"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_available_areas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:textColor="@color/brown_grey"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_available_areas_title"
+                    app:layout_constraintStart_toEndOf="@id/tv_available_areas_title"
+                    app:layout_constraintTop_toTopOf="@id/tv_available_areas_title"
+                    tools:text="서울, 경기, 인천, 충청북도" />
+
+                <TextView
+                    android:id="@+id/tv_available_counsel_time_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="전화 상담 시간"
+                    android:textColor="@color/brown_grey"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/tv_available_areas_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_available_areas_title" />
+
+                <TextView
+                    android:id="@+id/tv_available_counsel_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:textColor="@color/brown_grey"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_available_counsel_time_title"
+                    app:layout_constraintStart_toEndOf="@id/tv_available_areas_title"
+                    app:layout_constraintTop_toTopOf="@id/tv_available_counsel_time_title"
+                    tools:text="24시간 고객센터 상담 가능" />
+
+                <TextView
+                    android:id="@+id/tv_contact_numbers_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="대표번호"
+                    android:textColor="@color/brown_grey"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/tv_available_counsel_time_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_available_counsel_time_title" />
+
+                <TextView
+                    android:id="@+id/tv_contact_numbers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:textColor="@color/brown_grey"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_contact_numbers_title"
+                    app:layout_constraintStart_toEndOf="@id/tv_available_areas_title"
+                    app:layout_constraintTop_toTopOf="@id/tv_contact_numbers_title"
+                    tools:text="1800-3055" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/pinkish_grey" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="18dp"
+            android:paddingVertical="24dp">
+
+            <TextView
+                android:id="@+id/tv_killable_bugs_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="퇴치 가능 해충"
+                android:textColor="@color/brown_grey"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/killable_bugs_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/tv_killable_bugs_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_killable_bugs_title">
+
+                <LinearLayout
+                    android:id="@+id/killable_bug1_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:orientation="vertical"
+                    android:paddingVertical="14dp"
+                    app:layout_constraintEnd_toStartOf="@id/killable_bug2_container"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:src="@drawable/oval_img_bg"
+                        app:tint="@color/marigold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="모기"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/killable_bug2_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:paddingVertical="14dp"
+                    app:layout_constraintEnd_toStartOf="@id/killable_bug3_container"
+                    app:layout_constraintStart_toEndOf="@id/killable_bug1_container"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:src="@drawable/oval_img_bg"
+                        app:tint="@color/marigold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="바퀴벌레"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/killable_bug3_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:paddingVertical="14dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/killable_bug2_container"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:src="@drawable/oval_img_bg"
+                        app:tint="@color/marigold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="먼지다듬이"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/bt_reservation"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="12dp"
+            android:background="@drawable/rectangle_r10"
+            android:backgroundTint="@color/turquoise_green"
+            android:gravity="center"
+            android:text="디버깅으로 예약하기"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/bt_call"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginVertical="12dp"
+            android:background="@drawable/rectangle_r10"
+            android:backgroundTint="@color/pinkish_grey"
+            android:gravity="center"
+            android:text="전화 상담 하기"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+</ScrollView>

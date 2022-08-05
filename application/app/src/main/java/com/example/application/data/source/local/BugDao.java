@@ -10,10 +10,11 @@ import com.example.application.data.Bug;
 import java.util.List;
 import java.util.Optional;
 
+import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
 
 @Dao
-public interface BugsDao {
+public interface BugDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void insertBugs(List<Bug> bugs);
 

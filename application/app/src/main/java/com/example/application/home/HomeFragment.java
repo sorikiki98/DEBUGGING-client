@@ -11,12 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.application.bug.BugsActivity;
+import com.example.application.bug.BugActivity;
 import com.example.application.databinding.FragmentHomeBinding;
 
 import javax.inject.Inject;
 
-import dagger.android.AndroidInjection;
 import dagger.android.support.AndroidSupportInjection;
 
 public class HomeFragment extends Fragment {
@@ -46,7 +45,7 @@ public class HomeFragment extends Fragment {
 
     private void bindViews() {
         binding.bugMenuButton.setOnClickListener(view -> {
-            Intent intent = new Intent(context, BugsActivity.class);
+            Intent intent = new Intent(context, BugActivity.class);
             startActivity(intent);
         });
     }

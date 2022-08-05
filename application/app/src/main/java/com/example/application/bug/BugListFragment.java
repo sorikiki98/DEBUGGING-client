@@ -25,7 +25,7 @@ import javax.inject.Inject;
 
 import dagger.android.support.AndroidSupportInjection;
 
-public class BugsListFragment extends Fragment implements BugListContract.View {
+public class BugListFragment extends Fragment implements BugListContract.View {
     private FragmentBugListBinding binding;
 
     private BugListAdapter adapter = new BugListAdapter(new BugDiffCallback(), (bugId) -> {

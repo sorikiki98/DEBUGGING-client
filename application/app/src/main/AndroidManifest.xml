@@ -46,9 +46,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".bug.BugsActivity" />
+        <activity android:name=".bug.BugActivity" />
 
         <activity android:name=".home.HomeActivity" />
+        <activity android:name=".company.CompanyActivity"/>
     </application>
 
 </manifest>

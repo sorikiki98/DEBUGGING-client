@@ -3,13 +3,11 @@ package com.example.application.home;
 import android.content.Context;
 
 import com.example.application.SchedulersFacade;
-import com.example.application.bug.BugsListFragment;
 import com.example.application.data.source.repository.UserRepository;
 
 import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
-import io.reactivex.rxjava3.core.Scheduler;
 
 @Module
 public abstract class HomeModule {

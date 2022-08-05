@@ -12,7 +12,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 
-public interface UsersService {
+public interface UserService {
     @POST("user/login")
     Maybe<UserAuthentication> logIn(@Body UserLogIn userLogIn);
 

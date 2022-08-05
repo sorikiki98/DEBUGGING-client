@@ -1,24 +1,17 @@
 package com.example.application.home;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,15 +19,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.application.R;
-import com.example.application.bug.BugsActivity;
-import com.example.application.data.source.remote.BugsService;
-import com.example.application.data.source.remote.UsersService;
-import com.example.application.PreferencesManager;
+import com.example.application.bug.BugActivity;
+import com.example.application.company.CompanyActivity;
 import com.example.application.databinding.ActivityHomeBinding;
 import com.example.application.login.LoginActivity;
 import com.google.android.material.navigation.NavigationView;
-
-import java.lang.ref.WeakReference;
 
 import javax.inject.Inject;
 
@@ -123,10 +112,12 @@ public class HomeActivity extends AppCompatActivity implements HasAndroidInjecto
     private boolean handleMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case (R.id.bugActivity):
-                Intent intent = new Intent(context, BugsActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(context, BugActivity.class));
                 finish();
                 return true;
+            case (R.id.companyActivity):
+                startActivity(new Intent(context, CompanyActivity.class));
+                finish();
             default:
                 return false;
         }

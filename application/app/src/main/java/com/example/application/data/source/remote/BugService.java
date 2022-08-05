@@ -11,7 +11,7 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
-public interface BugsService {
+public interface BugService {
     @GET("bugs")
     Flowable<List<Bug>> getBugs(@Header("Authorization") String token);
 
