@@ -10,6 +10,7 @@ import com.example.application.PreferencesManager;
 import com.example.application.data.source.local.AppDatabase;
 import com.example.application.data.source.local.BugDao;
 import com.example.application.data.source.local.CompanyDao;
+import com.example.application.data.source.local.ProductDao;
 
 import javax.inject.Singleton;
 
@@ -57,4 +58,8 @@ public class StoragesModule {
     @Singleton
     @Provides
     CompanyDao provideCompanyDao(AppDatabase appDatabase) { return appDatabase.companyDao(); }
+
+    @Singleton
+    @Provides
+    ProductDao provideProductDao(AppDatabase appDatabase) { return appDatabase.productDao(); }
 }

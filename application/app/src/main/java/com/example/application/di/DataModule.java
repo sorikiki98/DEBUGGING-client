@@ -6,16 +6,22 @@ import com.example.application.data.source.local.BugDao;
 import com.example.application.data.source.local.BugLocalDataSource;
 import com.example.application.data.source.local.CompanyDao;
 import com.example.application.data.source.local.CompanyLocalDataSource;
+import com.example.application.data.source.local.ProductDao;
+import com.example.application.data.source.local.ProductLocalDataSource;
 import com.example.application.data.source.remote.BugRemoteDataSource;
 import com.example.application.data.source.remote.BugService;
 import com.example.application.data.source.remote.CompanyRemoteDataSource;
 import com.example.application.data.source.remote.CompanyService;
+import com.example.application.data.source.remote.ProductRemoteDataSource;
+import com.example.application.data.source.remote.ProductService;
 import com.example.application.data.source.remote.UserRemoteDataSource;
 import com.example.application.data.source.remote.UserService;
 import com.example.application.data.source.repository.BugRepository;
 import com.example.application.data.source.repository.BugRepositoryImpl;
 import com.example.application.data.source.repository.CompanyRepository;
 import com.example.application.data.source.repository.CompanyRepositoryImpl;
+import com.example.application.data.source.repository.ProductRepository;
+import com.example.application.data.source.repository.ProductRepositoryImpl;
 import com.example.application.data.source.repository.UserRepository;
 import com.example.application.data.source.repository.UserRepositoryImpl;
 
@@ -71,5 +77,22 @@ public abstract class DataModule {
     @Singleton
     @Binds
     abstract CompanyRepository bindCompanyRepository(CompanyRepositoryImpl companyRepository);
+
+    // product
+    @Singleton
+    @Provides
+    static ProductRemoteDataSource provideProductRemoteDataSource(ProductService productService, SchedulersFacade scheduler, PreferencesManager preferencesManager) {
+        return new ProductRemoteDataSource(productService, scheduler.io(), preferencesManager);
+    }
+
+    @Singleton
+    @Provides
+    static ProductLocalDataSource provideProductLocalDataSource(ProductDao productDao,SchedulersFacade scheduler) {
+        return new ProductLocalDataSource(productDao, scheduler.io());
+    }
+
+    @Singleton
+    @Binds
+    abstract ProductRepository bindProductRepository(ProductRepositoryImpl productRepository);
 }
 

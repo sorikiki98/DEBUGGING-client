@@ -30,6 +30,7 @@
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/activity_login.xml" value="0.12083333333333333" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/activity_main.xml" value="0.13229166666666667" />
+        <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/activity_product.xml" value="0.1" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_ad_mob.xml" value="0.11770833333333333" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_bug_item.xml" value="0.1" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_bug_list.xml" value="0.10520833333333333" />
@@ -42,9 +43,11 @@
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_company_search.xml" value="0.1" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_home2.xml" value="0.1" />
+        <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_product_item.xml" value="0.1142857142857143" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/item_bug.xml" value="0.10520833333333333" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/item_bug_search.xml" value="0.10520833333333333" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/item_company.xml" value="0.1" />
+        <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/item_product.xml" value="0.1" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/main_menu_header.xml" value="0.12083333333333333" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/menu/main_menu.xml" value="0.13229166666666667" />
       </map>

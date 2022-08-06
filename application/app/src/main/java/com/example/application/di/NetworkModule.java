@@ -4,6 +4,7 @@ import com.example.application.AuthenticationInterceptor;
 import com.example.application.PreferencesManager;
 import com.example.application.data.source.remote.BugService;
 import com.example.application.data.source.remote.CompanyService;
+import com.example.application.data.source.remote.ProductService;
 import com.example.application.data.source.remote.UserService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -80,4 +81,9 @@ public class NetworkModule {
         return retrofit.create(CompanyService.class);
     }
 
+    @Provides
+    @Singleton
+    ProductService provideProductService(Retrofit retrofit) {
+        return retrofit.create(ProductService.class);
+    }
 }

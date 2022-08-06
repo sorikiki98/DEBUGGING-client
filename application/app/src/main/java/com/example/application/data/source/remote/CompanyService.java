@@ -31,7 +31,4 @@ public interface CompanyService {
 
     @GET("companies/reservation/{reservation_id}")
     Maybe<Reservation> getReservationInformation(@Path("reservation_id") int reservationId, @Header("Authorization") String token);
-
-    @GET("companies/reservation/{reservation_id}")
-    void checkReservation(@Path("reservation_id") int reservationId, @Header("Authorization") String token);
 }

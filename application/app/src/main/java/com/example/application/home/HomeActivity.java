@@ -23,6 +23,7 @@ import com.example.application.bug.BugActivity;
 import com.example.application.company.CompanyActivity;
 import com.example.application.databinding.ActivityHomeBinding;
 import com.example.application.login.LoginActivity;
+import com.example.application.product.ProductActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import javax.inject.Inject;
@@ -118,6 +119,11 @@ public class HomeActivity extends AppCompatActivity implements HasAndroidInjecto
             case (R.id.companyActivity):
                 startActivity(new Intent(context, CompanyActivity.class));
                 finish();
+                return true;
+            case(R.id.productActivity):
+                startActivity(new Intent(context, ProductActivity.class));
+                finish();
+                return true;
             default:
                 return false;
         }

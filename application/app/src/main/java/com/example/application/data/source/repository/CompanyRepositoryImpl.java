@@ -38,7 +38,7 @@ public class CompanyRepositoryImpl implements CompanyRepository {
 
 
     @Inject
-    CompanyRepositoryImpl(CompanyRemoteDataSource companyRemoteDataSource, CompanyLocalDataSource companyLocalDataSource, UserRepository userRepository) {
+    CompanyRepositoryImpl(CompanyRemoteDataSource companyRemoteDataSource, CompanyLocalDataSource companyLocalDataSource) {
         this.companyRemoteDataSource = companyRemoteDataSource;
         this.companyLocalDataSource = companyLocalDataSource;
     }
@@ -139,7 +139,6 @@ public class CompanyRepositoryImpl implements CompanyRepository {
     }
 
     private Flowable<List<Company>> getCompaniesFromRemoteDataSource() {
-        Log.d("CompanyRepository", "remote");
         return companyRemoteDataSource.getCompanies()
                 .flatMap((List<Company> companies) -> {
                     refreshLocalDataSource(companies);
