@@ -146,6 +146,12 @@ public class HomeActivity extends AppCompatActivity implements HasAndroidInjecto
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.unsubscribe();
+    }
+
+    @Override
     public AndroidInjector<Object> androidInjector() {
         return androidInjector;
     }

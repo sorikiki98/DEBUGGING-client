@@ -99,5 +99,12 @@ public class CompanyListFragment extends Fragment implements CompanyListContract
         binding.errorMessage.setText(message);
         binding.progressBar.setVisibility(View.GONE);
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+        presenter.unsubscribe();
+    }
 }
 

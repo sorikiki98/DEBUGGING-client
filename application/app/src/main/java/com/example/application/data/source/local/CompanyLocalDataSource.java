@@ -3,6 +3,8 @@ package com.example.application.data.source.local;
 import android.util.Log;
 
 import com.example.application.data.Company;
+import com.example.application.data.Reservation;
+import com.example.application.data.ReservationForm;
 import com.example.application.data.source.CompanyDataSource;
 
 import java.util.List;
@@ -10,12 +12,10 @@ import java.util.Optional;
 
 import javax.inject.Inject;
 
-import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Completable;
-import io.reactivex.rxjava3.core.CompletableObserver;
 import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.core.Scheduler;
-import io.reactivex.rxjava3.disposables.Disposable;
 
 public class CompanyLocalDataSource implements CompanyDataSource {
     private final CompanyDao companyDao;
@@ -55,6 +55,16 @@ public class CompanyLocalDataSource implements CompanyDataSource {
                 .doOnComplete(() -> {
                     Log.d("CompanyLocalDataSource", "complete!");
                 });
+    }
+
+    @Override
+    public Maybe<Integer> reserveCompany(int companyId, ReservationForm reservationForm) {
+        return null;
+    }
+
+    @Override
+    public Maybe<Reservation> getReservationInformation(int reservationId) {
+        return null;
     }
 
     @Override

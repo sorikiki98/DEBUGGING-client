@@ -58,7 +58,7 @@ public class CompanyActivity extends AppCompatActivity implements HasAndroidInje
         Toolbar toolBar = binding.toolBar;
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_container);
         NavController navController = navHostFragment.getNavController();
-        AppBarConfiguration configuration = new AppBarConfiguration.Builder(navController.getGraph())
+        AppBarConfiguration configuration = new AppBarConfiguration.Builder(R.id.companyListFragment, R.id.companyReservationCompletedFragment)
                 .setFallbackOnNavigateUpListener(this::onSupportNavigateUp)
                 .build();
         NavigationUI.setupWithNavController(toolBar, navController, configuration);

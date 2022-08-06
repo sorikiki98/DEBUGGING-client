@@ -1,8 +1,8 @@
 package com.example.application.data.source.remote;
 
 import com.example.application.data.Company;
-import com.example.application.data.User;
-import com.example.application.data.UserAuthentication;
+import com.example.application.data.Reservation;
+import com.example.application.data.ReservationForm;
 
 import java.util.List;
 
@@ -21,14 +21,17 @@ public interface CompanyService {
     Flowable<List<Company>> getCompanies(@Header("Authorization") String token);
 
     @POST("companies/interest/{company_id}")
-    Completable addCompanyInterest(@Path("company_id")int companyId, @Header("Authorization")String token);
+    Completable addCompanyInterest(@Path("company_id") int companyId, @Header("Authorization") String token);
 
     @DELETE("companies/interest/{company_id}")
-    Completable removeCompanyInterest(@Path("company_id")int companyId, @Header("Authorization")String token);
-    
+    Completable removeCompanyInterest(@Path("company_id") int companyId, @Header("Authorization") String token);
+
     @POST("companies/reservation/{company_id}")
-    Completable reserveCompany(@Path("company_id")int companyId, @Header("Authorization")String token);
+    Maybe<Integer> reserveCompany(@Path("company_id") int companyId, @Body ReservationForm reservationForm, @Header("Authorization") String token);
 
     @GET("companies/reservation/{reservation_id}")
-    void checkReservation(@Path("reservation_id")int reservationId, @Header("Authorization")String token);
+    Maybe<Reservation> getReservationInformation(@Path("reservation_id") int reservationId, @Header("Authorization") String token);
+
+    @GET("companies/reservation/{reservation_id}")
+    void checkReservation(@Path("reservation_id") int reservationId, @Header("Authorization") String token);
 }

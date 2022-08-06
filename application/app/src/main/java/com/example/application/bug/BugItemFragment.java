@@ -98,5 +98,6 @@ public class BugItemFragment extends Fragment implements BugItemContract.View{
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+        presenter.unsubscribe();
     }
 }

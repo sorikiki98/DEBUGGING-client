@@ -38,6 +38,9 @@
             app:destination="@id/companyReservationCompletedFragment"
             app:popUpTo="@id/companyReservationCheckFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_companyReservationCheckFragment_to_companyReservationFragment"
+            app:destination="@id/companyReservationFragment" />
     </fragment>
     <fragment
         android:id="@+id/companyReservationCompletedFragment"

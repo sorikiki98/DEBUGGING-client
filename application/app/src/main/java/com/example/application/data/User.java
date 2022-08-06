@@ -6,46 +6,46 @@ import java.util.List;
 
 public class User {
     @SerializedName("id")
-    private final int id;
+    public final int id;
 
-    @SerializedName("username")
-    private final String userName;
+    @SerializedName("userName")
+    public final String userName;
 
     @SerializedName("password")
-    private final String password;
+    public final String password;
 
     @SerializedName("name")
-    private final String name;
+    public final String name;
 
     @SerializedName("contactNumbers")
-    private final String contactNumbers;
+    public final String contactNumbers;
 
     @SerializedName("email")
-    private final String email;
+    public final String email;
 
     @SerializedName("address")
-    private final String address;
+    public final String address;
 
     @SerializedName("sizeOfHouse")
-    private final Double sizeOfHouse;
+    public final Double sizeOfHouse;
 
     @SerializedName("numOfRooms")
-    private final int numOfRooms;
+    public final int numOfRooms;
 
     @SerializedName("accumulatedNumOfUsages")
-    private final int accumulatedNumOfUsages;
+    public final int accumulatedNumOfUsages;
 
     @SerializedName("numOfInterestedCompanies")
-    private final int numOfInterestedCompanies;
+    public final int numOfInterestedCompanies;
 
     @SerializedName("surveyList")
-    private final List<MySurvey> surveyList;
+    public final List<MySurvey> surveyList;
 
     @SerializedName("productList")
-    private final List<MyProduct> productList;
+    public final List<MyProduct> productList;
 
     @SerializedName("reservationList")
-    private final List<MyReservation> reservationList;
+    public final List<MyReservation> reservationList;
 
     public User(
             int id,
@@ -78,9 +78,4 @@ public class User {
         this.productList = productList;
         this.reservationList = reservationList;
     }
-
-    public int getAccumulatedNumOfUsages() {
-        return this.accumulatedNumOfUsages;
-    }
-
 }

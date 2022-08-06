@@ -84,7 +84,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public Maybe<Integer> getAccumulatedNumOfUsages() {
-        return loadUserInformation().flatMap((User user) -> Maybe.just(user.getAccumulatedNumOfUsages()));
+        return loadUserInformation().flatMap((User user) -> Maybe.just(user.accumulatedNumOfUsages));
     }
 
     @Override

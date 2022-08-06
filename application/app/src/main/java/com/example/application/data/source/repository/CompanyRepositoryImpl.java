@@ -2,8 +2,9 @@ package com.example.application.data.source.repository;
 
 import android.util.Log;
 
-import com.example.application.data.Bug;
 import com.example.application.data.Company;
+import com.example.application.data.Reservation;
+import com.example.application.data.ReservationForm;
 import com.example.application.data.source.local.CompanyLocalDataSource;
 import com.example.application.data.source.remote.CompanyRemoteDataSource;
 
@@ -15,12 +16,17 @@ import java.util.Objects;
 import java.util.Optional;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Maybe;
 
+@Singleton
 public class CompanyRepositoryImpl implements CompanyRepository {
     private HashMap<Integer, Company> cachedCompanies = new LinkedHashMap<>();
+
+    private ReservationForm reservationForm;
 
     private boolean isCacheDirty = false;
 
@@ -30,8 +36,9 @@ public class CompanyRepositoryImpl implements CompanyRepository {
 
     private final CompanyLocalDataSource companyLocalDataSource;
 
+
     @Inject
-    CompanyRepositoryImpl(CompanyRemoteDataSource companyRemoteDataSource, CompanyLocalDataSource companyLocalDataSource) {
+    CompanyRepositoryImpl(CompanyRemoteDataSource companyRemoteDataSource, CompanyLocalDataSource companyLocalDataSource, UserRepository userRepository) {
         this.companyRemoteDataSource = companyRemoteDataSource;
         this.companyLocalDataSource = companyLocalDataSource;
     }
@@ -81,12 +88,34 @@ public class CompanyRepositoryImpl implements CompanyRepository {
     }
 
     @Override
+    public Maybe<Integer> reserveCompany(int companyId) {
+        return companyRemoteDataSource.reserveCompany(companyId, reservationForm)
+                .doAfterSuccess((reservationId) -> reservationForm = null);
+    }
+
+    @Override
+    public Maybe<Reservation> getReservationInformation(int reservationId) {
+        return companyRemoteDataSource.getReservationInformation(reservationId);
+    }
+
+    @Override
+    public ReservationForm getReservationForm() {
+        return this.reservationForm;
+    }
+
+    @Override
     public boolean isCompanyInterested(int companyId) {
         if (cachedCompanies != null && cachedCompanies.get(companyId) != null) {
             int isCompanyInterested = Objects.requireNonNull(cachedCompanies.get(companyId)).isCompanyInterested;
             return isCompanyInterested == 1;
         }
         return false;
+    }
+
+    @Override
+    public void keepReservationForm(ReservationForm reservationForm) {
+        Log.d("keepReservationForm", reservationForm.toString());
+        this.reservationForm = reservationForm;
     }
 
     @Override

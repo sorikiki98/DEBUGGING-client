@@ -8,8 +8,14 @@ import dagger.android.ContributesAndroidInjector;
 @Module
 public abstract class CompanyFragmentsModule {
     @ContributesAndroidInjector(modules = CompanyListModule.class)
-    abstract CompanyListFragment contributeBugsListFragment();
+    abstract CompanyListFragment contributeCompanyListFragment();
 
     @ContributesAndroidInjector(modules = CompanyItemModule.class)
-    abstract CompanyItemFragment contributeBugsItemFragment();
+    abstract CompanyItemFragment contributeCompanyItemFragment();
+
+    @ContributesAndroidInjector(modules = CompanyReservationModule.class)
+    abstract CompanyReservationFragment contributeCompanyReservationFragment();
+
+    @ContributesAndroidInjector(modules = CompanyReservationCheckModule.class)
+    abstract CompanyReservationCheckFragment contributeCompanyReservationCheckFragment();
 }

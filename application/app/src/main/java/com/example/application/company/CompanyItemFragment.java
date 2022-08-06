@@ -95,5 +95,12 @@ public class CompanyItemFragment extends Fragment implements CompanyItemContract
     public void showErrorMessage(String message) {
 
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+        presenter.unsubscribe();
+    }
 }
 

@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
     @Override
-    protected void onStop() {
+    protected void onDestroy() {
         super.onStop();
         presenter.unsubscribe();
     }
