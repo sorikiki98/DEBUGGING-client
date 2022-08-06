@@ -10,7 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.application.R;
 import com.example.application.data.Bug;
 import com.example.application.databinding.FragmentBugItemBinding;
 
@@ -47,6 +50,7 @@ public class BugItemFragment extends Fragment implements BugItemContract.View{
 
         setBugId();
         initViews();
+        bindViews();
     }
 
     private void setBugId() {
@@ -57,6 +61,13 @@ public class BugItemFragment extends Fragment implements BugItemContract.View{
         binding.errorMessage.setVisibility(View.GONE);
         binding.progressBar.setVisibility(View.VISIBLE);
         presenter.subscribe();
+    }
+
+    private void bindViews() {
+        binding.closeBtn.setOnClickListener(view -> {
+            NavController navController = NavHostFragment.findNavController(this);
+            navController.navigate(R.id.action_bugItemFragment_to_bugListFragment);
+        });
     }
 
     @Override
