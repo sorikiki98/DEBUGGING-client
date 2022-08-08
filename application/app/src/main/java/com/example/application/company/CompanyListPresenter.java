@@ -78,7 +78,7 @@ public class CompanyListPresenter implements CompanyListContract.Presenter {
 
             @Override
             public void onComplete() {
-                Log.d("CompanyListPresenter", "remove finish");
+                subscribe();
             }
 
             @Override

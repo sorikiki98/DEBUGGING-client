@@ -40,6 +40,7 @@ public class ProductRepositoryImpl implements ProductRepository {
     @Override
     public Flowable<List<Product>> getProducts() {
         if (!isCacheDirty && !cachedProducts.isEmpty()) {
+            Log.d("ProductRepositoryImpl", "cache");
             return Flowable.just(new ArrayList<>(cachedProducts.values()));
         }
 
@@ -50,42 +51,29 @@ public class ProductRepositoryImpl implements ProductRepository {
         return productLocalDataSource.getProducts()
                 .flatMap((List<Product> products) -> {
                     if (products.isEmpty()) {
+                        Log.d("ProductRepositoryImpl", "remote");
                         return getProductsFromRemoteDataSource();
                     }
+                    Log.d("ProductRepositoryImpl", "local");
                     refreshCache(products);
                     isCacheDirty = false;
                     return Flowable.just(products);
                 });
     }
 
-    @Override
-    public Flowable<Optional<Product>> getProductWithId(int productId) {
-        if (!cachedProducts.isEmpty() && !isCacheDirty) {
-            Optional<Product> product = Optional.ofNullable(cachedProducts.get(productId));
-            return Flowable.just(product);
-        }
-
-        if (isCacheDirty) {
-            return productRemoteDataSource.getProductWithId(productId);
-        }
-
-        return productLocalDataSource.getProductWithId(productId)
-                .flatMap((Optional<Product> product) -> {
-                    if (!product.isPresent()) {
-                        return productRemoteDataSource.getProductWithId(productId);
-                    }
-                    return Flowable.just(product);
-                });
-    }
 
     @Override
     public Completable addProductInterest(int productId) {
+        isCacheDirty = true;
+        isFirstLoad = false;
         return productRemoteDataSource.addProductInterest(productId)
                 .andThen(productLocalDataSource.addProductInterest(productId));
     }
 
     @Override
     public Completable removeProductInterest(int productId) {
+        isCacheDirty = true;
+        isFirstLoad = false;
         return productRemoteDataSource.removeProductInterest(productId)
                 .andThen(productLocalDataSource.removeProductInterest(productId));
     }

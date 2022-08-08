@@ -1,9 +1,18 @@
 package com.example.application.data;
 
+import android.content.Context;
+import android.util.Log;
+import android.util.TypedValue;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.example.application.R;
 import com.google.gson.annotations.SerializedName;
 
 @Entity(tableName = "products")
@@ -50,4 +59,59 @@ public class Product {
         this.isProductInterested = isProductInterested;
         this.numOfInterestedUsers = numOfInterestedUsers;
     }
+
+    public AppCompatButton[] makeTagButton(Context context) {
+        String[] tagList = this.type.split(" \\+ ");
+        AppCompatButton[] buttons = new AppCompatButton[tagList.length];
+        int tagIndex = 0;
+        for (String tag: tagList) {
+            AppCompatButton button = new AppCompatButton(context);
+            button.setText(tag); //
+            button.setTextSize(14F); //
+            button.setTextColor(context.getResources().getColor(R.color.brown_grey, null)); //
+
+            int paddingHeight = convertDpToFx(context, 18F);
+            button.setPadding(0, paddingHeight, 0, paddingHeight); //
+
+            int buttonHeight = convertDpToFx(context, 34F);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, buttonHeight);
+
+            int margin = convertDpToFx(context, 12F);
+            params.setMargins(0, 0, margin, margin);
+            button.setLayoutParams(params); //
+
+            button.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.rectangle_r6_with_green_line, null)); //
+            buttons[tagIndex] = button;
+            tagIndex++;
+        }
+
+        return buttons;
+    }
+
+    public TextView[] makeTextView(Context context) {
+        String[] descriptionList = this.description.split(" \\+ ");
+        TextView[] textViews = new TextView[descriptionList.length];
+        int descriptionIndex = 0;
+        for (String description: descriptionList) {
+            TextView textView = new TextView(context);
+            textView.setText(description);
+            textView.setTextSize(16F);
+            textView.setTextColor(context.getResources().getColor(R.color.brown_grey, null));
+
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            textView.setLayoutParams(params);
+
+            int margin = convertDpToFx(context, 12F);
+            params.setMargins(0, 0, 0, margin);
+            textViews[descriptionIndex] = textView;
+            descriptionIndex++;
+        }
+        return textViews;
+    }
+
+    private int convertDpToFx(Context context, float dp) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
+    }
+
+
 }

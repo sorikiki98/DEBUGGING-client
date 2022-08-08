@@ -104,7 +104,6 @@ public class ProductListFragment extends Fragment implements ProductListContract
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
         presenter.unsubscribe();
     }
 }

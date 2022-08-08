@@ -1,5 +1,7 @@
 package com.example.application.data.source.local;
 
+import android.util.Log;
+
 import com.example.application.data.Product;
 import com.example.application.data.source.ProductDataSource;
 
@@ -36,14 +38,22 @@ public class ProductLocalDataSource implements ProductDataSource {
 
     @Override
     public Completable addProductInterest(int productId) {
+        Log.d("ProductRepositoryImpl", "add interest");
         return productDao.addProductInterest(productId)
-                .subscribeOn(ioScheduler);
+                .subscribeOn(ioScheduler)
+                .doOnComplete(() -> {
+                    Log.d("ProductLocalDataSource", "complete!");
+                });
     }
 
     @Override
     public Completable removeProductInterest(int productId) {
+        Log.d("ProductRepositoryImpl", "remove interest");
         return productDao.removeProductInterest(productId)
-                .subscribeOn(ioScheduler);
+                .subscribeOn(ioScheduler)
+                .doOnComplete(() -> {
+                    Log.d("ProductLocalDataSource", "complete!");
+                });
     }
 
     @Override

@@ -1,41 +1,46 @@
 package com.example.application.product;
 
-import android.util.Log;
-
-import com.example.application.data.Company;
 import com.example.application.data.Product;
 import com.example.application.data.source.repository.ProductRepository;
-import com.example.application.product.ProductListContract;
 
 import org.reactivestreams.Subscription;
 
 import java.util.List;
+import java.util.Optional;
+
+import javax.inject.Inject;
 
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.CompletableObserver;
+import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.FlowableSubscriber;
 import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
-public class ProductListPresenter implements ProductListContract.Presenter {
+public class ProductItemPresenter implements ProductItemContract.Presenter {
     private final ProductRepository productRepository;
-    private final ProductListContract.View view;
+    private final ProductItemContract.View view;
     private final Scheduler mainScheduler;
 
+    private int productId;
+
     private Subscription subscription;
+    private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
-    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
-
-    public ProductListPresenter(ProductRepository repository, ProductListContract.View view, Scheduler scheduler) {
-        this.productRepository = repository;
+    public ProductItemPresenter(
+            ProductRepository productRepository,
+            ProductItemContract.View view,
+            Scheduler scheduler
+    ) {
+        this.productRepository = productRepository;
         this.view = view;
         this.mainScheduler = scheduler;
     }
 
     @Override
     public void subscribe() {
-        loadProducts();
+        loadProduct();
     }
 
     @Override
@@ -45,7 +50,12 @@ public class ProductListPresenter implements ProductListContract.Presenter {
     }
 
     @Override
-    public void loadProducts() {
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    @Override
+    public void loadProduct() {
         productRepository.getProducts()
                 .observeOn(mainScheduler)
                 .subscribe(getProductListFlowableSubscriber());
@@ -61,16 +71,16 @@ public class ProductListPresenter implements ProductListContract.Presenter {
     private void addProductInterest(int productId) {
         productRepository.addProductInterest(productId)
                 .observeOn(mainScheduler)
-                .subscribe(getCompletableObserver());
+                .subscribe(getProductInterestCompletableObserver());
     }
 
     private void removeProductInterest(int productId) {
         productRepository.removeProductInterest(productId)
                 .observeOn(mainScheduler)
-                .subscribe(getCompletableObserver());
+                .subscribe(getProductInterestCompletableObserver());
     }
 
-    private CompletableObserver getCompletableObserver() {
+    private CompletableObserver getProductInterestCompletableObserver() {
         return new CompletableObserver() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
@@ -99,7 +109,11 @@ public class ProductListPresenter implements ProductListContract.Presenter {
 
             @Override
             public void onNext(List<Product> products) {
-                view.showProducts(products);
+                for (Product product: products) {
+                    if (product.id == productId) {
+                        view.showProduct(product);
+                    }
+                }
             }
 
             @Override

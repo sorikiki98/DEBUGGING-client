@@ -77,12 +77,17 @@ public class CompanyRepositoryImpl implements CompanyRepository {
 
     @Override
     public Completable addCompanyInterest(int companyId) {
+        isCacheDirty = true;
+        isFirstLoad = false;
         return companyRemoteDataSource.addCompanyInterest(companyId)
                 .andThen(companyLocalDataSource.addCompanyInterest(companyId));
+
     }
 
     @Override
     public Completable removeCompanyInterest(int companyId) {
+        isCacheDirty = true;
+        isFirstLoad = false;
         return companyRemoteDataSource.removeCompanyInterest(companyId)
                 .andThen(companyLocalDataSource.removeCompanyInterest(companyId));
     }

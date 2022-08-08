@@ -13,8 +13,6 @@ import io.reactivex.rxjava3.core.Maybe;
 public interface ProductRepository {
     Flowable<List<Product>> getProducts();
 
-    Flowable<Optional<Product>> getProductWithId(int productId);
-
     Completable addProductInterest(int productId);
 
     Completable removeProductInterest(int productId);
