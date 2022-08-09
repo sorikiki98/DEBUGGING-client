@@ -11,6 +11,8 @@ import com.example.application.home.HomeFragmentsModule;
 import com.example.application.login.LoginModule;
 import com.example.application.product.ProductActivity;
 import com.example.application.product.ProductFragmentsModule;
+import com.example.application.register.RegisterActivity;
+import com.example.application.register.RegisterFragmentsModule;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -31,4 +33,7 @@ public abstract class ActivitiesModule {
 
     @ContributesAndroidInjector(modules = {ProductFragmentsModule.class})
     abstract ProductActivity contributeProductActivityInjector();
+
+    @ContributesAndroidInjector(modules = {RegisterFragmentsModule.class})
+    abstract RegisterActivity contributeRegisterActivityInjector();
 }

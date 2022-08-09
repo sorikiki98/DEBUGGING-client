@@ -1,8 +1,10 @@
 package com.example.application.data.source.remote;
 
 import com.example.application.PreferencesManager;
+import com.example.application.data.RegistrationForm;
 import com.example.application.data.User;
 import com.example.application.data.UserAuthentication;
+import com.example.application.data.UserLogIn;
 import com.example.application.data.source.UserDataSource;
 
 import javax.inject.Inject;
@@ -28,6 +30,12 @@ public class UserRemoteDataSource implements UserDataSource {
     @Override
     public Maybe<UserAuthentication> login(UserLogIn userInput) {
         return userService.logIn(userInput)
+                .subscribeOn(ioScheduler);
+    }
+
+    @Override
+    public Maybe<UserAuthentication> signup(RegistrationForm registrationForm) {
+        return userService.signup(registrationForm)
                 .subscribeOn(ioScheduler);
     }
 

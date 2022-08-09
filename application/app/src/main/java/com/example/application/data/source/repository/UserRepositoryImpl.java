@@ -1,11 +1,10 @@
 package com.example.application.data.source.repository;
 
-import android.content.SharedPreferences;
-
 import com.example.application.PreferencesManager;
+import com.example.application.data.RegistrationForm;
 import com.example.application.data.User;
 import com.example.application.data.UserAuthentication;
-import com.example.application.data.source.remote.UserLogIn;
+import com.example.application.data.UserLogIn;
 import com.example.application.data.source.remote.UserRemoteDataSource;
 
 import javax.inject.Inject;
@@ -29,8 +28,18 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public Maybe<UserAuthentication> login(UserLogIn userInput) {
-        return userRemoteDataSource.login(userInput)
+        return setUserAuthentication(userRemoteDataSource.login(userInput));
+    }
+
+    @Override
+    public Maybe<UserAuthentication> signup(RegistrationForm registrationForm) {
+        return setUserAuthentication(userRemoteDataSource.signup(registrationForm));
+    }
+
+    private Maybe<UserAuthentication> setUserAuthentication(Maybe<UserAuthentication> authentication) {
+        return authentication
                 .flatMap((UserAuthentication userAuthentication) -> {
+                    preferencesManager.clearAuthToken();
                     preferencesManager.saveUserName(userAuthentication.getUserName());
                     preferencesManager.saveAuthToken(userAuthentication.getToken());
                     return Maybe.just(userAuthentication);

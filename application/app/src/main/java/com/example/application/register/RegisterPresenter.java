@@ -1,10 +1,10 @@
-package com.example.application.login;
+package com.example.application.register;
 
+import android.widget.Toast;
+
+import com.example.application.data.RegistrationForm;
 import com.example.application.data.UserAuthentication;
-import com.example.application.data.UserLogIn;
 import com.example.application.data.source.repository.UserRepository;
-
-import javax.inject.Inject;
 
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.MaybeObserver;
@@ -12,30 +12,33 @@ import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
-public class LoginPresenter implements LoginContract.Presenter {
+public class RegisterPresenter implements RegisterContract.Presenter {
     private final UserRepository userRepository;
-    private final LoginContract.View view;
+    private final RegisterContract.View view;
     private final Scheduler mainScheduler;
 
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
-    @Inject
-    public LoginPresenter(UserRepository userRepository, LoginContract.View view, Scheduler scheduler) {
+    public RegisterPresenter(UserRepository userRepository, RegisterContract.View view, Scheduler scheduler) {
         this.userRepository = userRepository;
         this.view = view;
         this.mainScheduler = scheduler;
     }
 
     @Override
-    public void subscribe() {}
+    public void subscribe() {
+
+    }
 
     @Override
-    public void unsubscribe() { compositeDisposable.clear();}
+    public void unsubscribe() {
+        compositeDisposable.clear();
+    }
 
-    // todo 로그인 실패시 4xx 인지, 5xx 인지
+
     @Override
-    public void login(UserLogIn userInput) {
-       userRepository.login(userInput)
+    public void register(RegistrationForm form) {
+        userRepository.signup(form)
                 .observeOn(mainScheduler)
                 .subscribe(new MaybeObserver<UserAuthentication>() {
                     @Override
@@ -45,12 +48,12 @@ public class LoginPresenter implements LoginContract.Presenter {
 
                     @Override
                     public void onSuccess(@NonNull UserAuthentication userAuthentication) {
-                        view.processLoginSuccess();
+                        view.navigate(0);
                     }
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-                        view.processLoginFail();
+                        view.toastErrorMessage("회원가입에 실패하였습니다.");
                     }
 
                     @Override
@@ -58,6 +61,5 @@ public class LoginPresenter implements LoginContract.Presenter {
 
                     }
                 });
-
     }
 }

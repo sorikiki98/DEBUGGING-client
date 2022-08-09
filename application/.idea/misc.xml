@@ -19,7 +19,12 @@
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/drawable/menu.xml" value="0.109" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/drawable/rectagle_r70_with_stroke.xml" value="0.1" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/drawable/rectangle_r10.xml" value="0.1" />
+        <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/drawable/rectangle_r5.xml" value="0.1195" />
+        <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/drawable/rectangle_r5_with_black_line.xml" value="0.1195" />
+        <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/drawable/rectangle_r5_with_green_fill.xml" value="0.1195" />
+        <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/drawable/rectangle_r5_with_grey_line.xml" value="0.1195" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/drawable/rectangle_r6.xml" value="0.1" />
+        <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/drawable/rectangle_r6_with_green_line.xml" value="0.1195" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/drawable/rectangle_r7.xml" value="0.1" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/drawable/rectangle_r70_with_black_line.xml" value="0.1" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/drawable/rectangle_r70_with_green_line.xml" value="0.1" />
@@ -32,6 +37,7 @@
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/activity_login.xml" value="0.12083333333333333" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/activity_main.xml" value="0.13229166666666667" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/activity_product.xml" value="0.1" />
+        <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/activity_register.xml" value="0.1" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_ad_mob.xml" value="0.11770833333333333" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_bug_item.xml" value="0.1" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_bug_list.xml" value="0.10520833333333333" />
@@ -45,11 +51,14 @@
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_home2.xml" value="0.1" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_product_item.xml" value="0.14285714285714285" />
+        <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_register.xml" value="0.12083333333333333" />
+        <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_register_completed.xml" value="0.12083333333333333" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/item_bug.xml" value="0.10520833333333333" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/item_bug_search.xml" value="0.10520833333333333" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/item_company.xml" value="0.1" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/item_product.xml" value="0.1" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/main_menu_header.xml" value="0.12083333333333333" />
+        <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/rectangle_r5_with_black_line.xml" value="0.11979166666666667" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/menu/main_menu.xml" value="0.13229166666666667" />
       </map>
     </option>

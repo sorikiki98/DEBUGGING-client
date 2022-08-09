@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="0dp"
+        android:fillViewport="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="유저명 *"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="25dp">
+
+                <EditText
+                    android:id="@+id/et_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1.7"
+                    android:background="@drawable/rectangle_r5_with_grey_line"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:hint="@string/input_content"
+                    android:paddingStart="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp" />
+
+                <Button
+                    android:id="@+id/btn_mul_confirm"
+                    android:layout_width="125dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0.3"
+                    android:background="@drawable/rectangle_r5_with_green_fill"
+                    android:text="중복 확인"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="닉네임 *"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="25dp"
+                android:background="@drawable/rectangle_r5_with_grey_line"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:hint="@string/input_content"
+                android:inputType="textPersonName"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp" />
+
+            <TextView
+                android:id="@+id/tv_pw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="비밀번호 *"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_pw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/rectangle_r5_with_grey_line"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:hint="@string/input_content"
+                android:inputType="textPassword"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="28dp"
+                android:text="영문 소문자, 대문자, 숫자, 특수문자 중 3가지 이상 사용/6자~12자 사이 *"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/tv_pw_check"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="비밀번호 확인 *"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_pw_check"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="25dp"
+                android:background="@drawable/rectangle_r5_with_grey_line"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:hint="@string/input_content"
+                android:inputType="textPassword"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp" />
+
+            <TextView
+                android:id="@+id/tv_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="연락처 *"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp">
+
+                <EditText
+                    android:id="@+id/et_contact_numbers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1.7"
+                    android:background="@drawable/rectangle_r5_with_grey_line"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:hint="@string/input_content"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp" />
+
+                <Button
+                    android:id="@+id/btn_send_confirm"
+                    android:layout_width="125dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0.3"
+                    android:background="@drawable/rectangle_r5_with_green_fill"
+                    android:text="인증번호 전송"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="30dp">
+
+                <EditText
+                    android:id="@+id/et_authentication_numbers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_gravity="left"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="25dp"
+                    android:layout_weight="1.7"
+                    android:background="@drawable/rectangle_r5_with_grey_line"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:hint="@string/input_content"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp" />
+
+                <Button
+                    android:id="@+id/btn_confirm"
+                    android:layout_width="125dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="right"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0.3"
+                    android:background="@drawable/rectangle_r5_with_green_fill"
+                    android:text="인증하기"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="이메일 *"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="25dp"
+                android:background="@drawable/rectangle_r5_with_grey_line"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:hint="@string/input_content"
+                android:inputType="textEmailAddress"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_address"
+                    android:layout_width="72dp"
+                    android:layout_height="wrap_content"
+                    android:text="집 주소"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="업체 방문 예약 서비스 이용 시 필요합니다"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/et_post_address"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rectangle_r5_with_grey_line"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:hint="@string/post_address"
+                    android:inputType="number"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="19999" />
+
+                <Button
+                    android:id="@+id/btn_address_search"
+                    android:layout_width="125dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rectangle_r5_with_green_fill"
+                    android:text="우편번호 검색"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/et_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rectangle_r5_with_grey_line"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:hint="@string/address"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="청파로 10" />
+
+            <EditText
+                android:id="@+id/et_detail_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rectangle_r5_with_grey_line"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:hint="@string/detail_address"
+                android:inputType="textPostalAddress"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp" />
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="간편케어 주소로 설정" />
+
+            <TextView
+                android:id="@+id/tv_space"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="집 평수"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_space"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="25dp"
+                android:background="@drawable/rectangle_r5_with_grey_line"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:hint="(예) 11.8"
+                android:inputType="numberDecimal"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp" />
+
+            <TextView
+                android:id="@+id/tv_room"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="방 개수"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_room"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/rectangle_r5_with_grey_line"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:hint="(예) 3"
+                android:inputType="number"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="방역업체 이용 경험"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_passthrough"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rectangle_r5_with_green_fill"
+                android:text="전혀 없음"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/btn_ifneed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rectangle_r5_with_green_fill"
+                android:text="필요시 종종 이용함"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/pinkish_grey" />
+
+            <Button
+                android:id="@+id/btn_regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rectangle_r5_with_green_fill"
+                android:text="건물 정기 소독만 이용"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/pinkish_grey" />
+
+            <Button
+                android:id="@+id/btn_never"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/rectangle_r5_with_green_fill"
+                android:text="단골 업체 없음"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/pinkish_grey" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="모두 동의합니다."
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp">
+
+                <TextView
+                    android:layout_width="313dp"
+                    android:layout_height="wrap_content"
+                    android:text="이용약관 (필수)"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_marginBottom="25dp"
+                    android:layout_weight="0"
+                    android:clickable="true"
+                    android:gravity="end" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="313dp"
+                    android:layout_height="wrap_content"
+                    android:text="개인정보처리방침 (필수)"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_marginBottom="25dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:gravity="end" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="313dp"
+                    android:layout_height="wrap_content"
+                    android:text="본인은 만14세 이상입니다. (필수)"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_marginBottom="25dp"
+                    android:layout_weight="0"
+                    android:clickable="true"
+                    android:gravity="end" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginBottom="60dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="313dp"
+                    android:layout_height="wrap_content"
+                    android:text="SMS/이메일을 통한 정보 수신 (선택)"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_marginBottom="25dp"
+                    android:layout_weight="0"
+                    android:clickable="true"
+                    android:gravity="end" />
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/btn_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/rectangle_r5_with_green_fill"
+                android:paddingVertical="20dp"
+                android:text="@string/register_completed"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

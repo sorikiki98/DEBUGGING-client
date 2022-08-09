@@ -89,6 +89,19 @@ public class ProductItemFragment extends Fragment implements ProductItemContract
                 .into(binding.ivProductThumb);
 
         binding.tvProductTitle.setText(product.name);
+
+        binding.tagContainer.removeAllViews();
+        AppCompatButton[] buttons = product.makeTagButton(context);
+        for (AppCompatButton button : buttons) {
+            binding.tagContainer.addView(button);
+        }
+
+        binding.productDescriptionContainer.removeAllViews();
+        TextView[] descriptions = product.makeTextView(context);
+        for (TextView description : descriptions) {
+            binding.productDescriptionContainer.addView(description);
+        }
+
         binding.tvInterest.setText(Integer.toString(product.numOfInterestedUsers));
 
         if (product.isProductInterested == 1) {
@@ -96,18 +109,7 @@ public class ProductItemFragment extends Fragment implements ProductItemContract
         } else {
             binding.ivInterest.setImageResource(R.drawable.ic_heart_line);
         }
-
-//        AppCompatButton[] buttons = product.makeTagButton(context);
-//        for (AppCompatButton button : buttons) {
-//            binding.tagContainer.addView(button);
-//        }
-
-        TextView[] descriptions = product.makeTextView(context);
-        for (TextView description : descriptions) {
-            binding.productDescriptionContainer.addView(description);
-        }
     }
-
 
     @Override
     public void showErrorMessage(String message) {
