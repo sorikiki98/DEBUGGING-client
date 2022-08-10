@@ -3,94 +3,94 @@ package com.example.application.data;
 import com.google.gson.annotations.SerializedName;
 
 public class Reservation {
-    @SerializedName("id")
+    @SerializedName("id") //
     public final int reservationId;
 
-    @SerializedName("userId")
+    @SerializedName("userId") //
     public final int userId;
 
-    @SerializedName("companyId")
+    @SerializedName("companyId") //
     public final int companyId;
 
-    @SerializedName("bugName")
+    @SerializedName("bugName") //
     public final String bugName;
 
-    @SerializedName("firstFoundDate")
+    @SerializedName("firstFoundDate") //
     public final String firstFoundDate;
 
-    @SerializedName("firstFoundPlace")
+    @SerializedName("firstFoundPlace") //
     public final String firstFoundPlace;
 
-    @SerializedName("wantedDate")
+    @SerializedName("wantedDate") //
     public final String wantedDate;
 
-    @SerializedName("wantedTime")
+    @SerializedName("wantedTime") //
     public final String wantedTime;
 
-    @SerializedName("hasBugBeenShown")
+    @SerializedName("hasBugBeenShown") //
     public final int hasBugBeenShown;
 
-    @SerializedName("reservationDateTime")
+    @SerializedName("reservationDateTime") //
     public final String reservationDateTime;
 
-    @SerializedName("extraMessage")
+    @SerializedName("extraMessage") //
     public final String extraMessage;
 
-    @SerializedName("processState")
+    @SerializedName("processState") //
     public final int processState;
 
-    @SerializedName("engineerName")
+    @SerializedName("engineerName") //
     public final String engineerName;
 
-    @SerializedName("engineerContactNumbers")
+    @SerializedName("engineerContactNumbers") //
     public final String engineerContactNumbers;
 
-    @SerializedName("expectedEstimate")
+    @SerializedName("expectedEstimate") //
     public final String expectedEstimate;
 
-    @SerializedName("visitDateTime")
+    @SerializedName("visitDateTime") //
     public final String visitDateTime;
 
-    @SerializedName("userName")
+    @SerializedName("userName") //
     public final String userName;
 
-    @SerializedName("userContactNumbers")
+    @SerializedName("userContactNumbers") //
     public final String userContactNumbers;
 
-    @SerializedName("userEmail")
+    @SerializedName("userEmail") //
     public final String userEmail;
 
-    @SerializedName("userAddress")
+    @SerializedName("userAddress") //
     public final String userAddress;
 
-    @SerializedName("sizeOfHouse")
+    @SerializedName("sizeOfHouse") //
     public final Double sizeOfHouse;
 
-    @SerializedName("numOfRooms")
+    @SerializedName("numOfRooms") //
     public final int numOfRooms;
 
-    @SerializedName("companyName")
+    @SerializedName("companyName") //
     public final String companyName;
 
-    @SerializedName("shortIntro")
+    @SerializedName("shortIntro") //
     public final String shortIntro;
 
-    @SerializedName("description")
+    @SerializedName("description") //
     public final String description;
 
-    @SerializedName("companyContactNumbers")
+    @SerializedName("companyContactNumbers") //
     public final String companyContactNumbers;
 
-    @SerializedName("killableBugs")
+    @SerializedName("killableBugs") //
     public final String killableBugs;
 
-    @SerializedName("availableArea")
+    @SerializedName("availableArea") //
     public final String availableArea;
 
-    @SerializedName("availableCounselTime")
+    @SerializedName("availableCounselTime") //
     public final String availableCounselTime;
 
-    @SerializedName("thumbnail")
+    @SerializedName("thumbnail") //
     public final String thumbnail;
 
     public Reservation(
@@ -155,5 +155,26 @@ public class Reservation {
         this.availableArea = availableArea;
         this.availableCounselTime = availableCounselTime;
         this.thumbnail = thumbnail;
+    }
+
+
+    public String getProcessState() {
+        switch (this.processState) {
+            case (3):
+                return "케어 종료";
+            case (2):
+                return "방문예약 접수완료";
+            case (1):
+                return "업체 확인중";
+            default:
+                return "사용자 예약접수";
+        }
+    }
+
+    public String getHasBugBeenShown() {
+        if (this.hasBugBeenShown == 1) {
+            return "있음";
+        }
+        else return "없음";
     }
 }

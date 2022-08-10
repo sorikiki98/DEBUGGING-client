@@ -11,7 +11,7 @@ public abstract class MyPageFragmentsModule {
     @ContributesAndroidInjector(modules = MyPageCompanyDetailListModule.class)
     abstract MyPageCompanyDetailListFragment contributeMyPageCompanyDetailListFragment();
 
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = MyPageCompanyDetailItemModule.class)
     abstract MyPageCompanyDetailItemFragment contributeMyPageCompanyDetailItemFragment();
 
     @ContributesAndroidInjector

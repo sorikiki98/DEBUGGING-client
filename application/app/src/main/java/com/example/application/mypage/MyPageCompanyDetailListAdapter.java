@@ -10,10 +10,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.application.R;
-import com.example.application.bug.BugDiffCallback;
-import com.example.application.data.Bug;
 import com.example.application.data.MyReservation;
-import com.example.application.databinding.ItemBugBinding;
 import com.example.application.databinding.ItemMypageReservationBinding;
 
 import java.util.function.Function;

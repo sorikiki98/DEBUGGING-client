@@ -32,6 +32,8 @@
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/drawable/oval_.xml" value="0.127" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/drawable/oval_img_bg.xml" value="0.127" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/drawable/oval_r12.xml" value="0.127" />
+        <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/drawable/oval_r12_green.xml" value="0.1" />
+        <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/drawable/oval_r12_grey.xml" value="0.1" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/drawable/oval_r500.xml" value="0.127" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/drawable/oval_r80.xml" value="0.127" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/drawable/rectagle_r70_with_stroke.xml" value="0.1" />
@@ -70,7 +72,7 @@
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_company_search.xml" value="0.1" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_home2.xml" value="0.1" />
-        <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_mypage_company_detail_item.xml" value="0.18857142857142858" />
+        <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_mypage_company_detail_item.xml" value="0.2857142857142857" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_mypage_company_detail_list.xml" value="0.12083333333333333" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_mypage_main.xml" value="0.18857142857142858" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_mypage_product_interest_list.xml" value="0.12083333333333333" />
