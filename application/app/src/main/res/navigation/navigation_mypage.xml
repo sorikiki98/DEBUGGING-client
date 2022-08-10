@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_mypage"
+    app:startDestination="@id/myPageMainFragment">
+
+    <fragment
+        android:id="@+id/myPageMainFragment"
+        android:name="com.example.application.mypage.MyPageMainFragment">
+        <action
+            android:id="@+id/action_myPageMainFragment_to_myPageProductInterestListFragment"
+            app:destination="@id/myPageProductInterestListFragment" />
+        <action
+            android:id="@+id/action_myPageMainFragment_to_myPageCompanyDetailListFragment"
+            app:destination="@id/myPageCompanyDetailListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myPageProductInterestListFragment"
+        android:name="com.example.application.mypage.MyPageProductInterestListFragment">
+        <action
+            android:id="@+id/action_myPageProductInterestListFragment_to_productItemFragment"
+            app:destination="@id/productItemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productItemFragment"
+        android:name="com.example.application.product.ProductItemFragment" />
+    <fragment
+        android:id="@+id/myPageCompanyDetailListFragment"
+        android:name="com.example.application.mypage.MyPageCompanyDetailListFragment">
+        <action
+            android:id="@+id/action_myPageCompanyDetailListFragment_to_myPageCompanyDetailItemFragment"
+            app:destination="@id/myPageCompanyDetailItemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myPageCompanyDetailItemFragment"
+        android:name="com.example.application.mypage.MyPageCompanyDetailItemFragment" />
+</navigation>

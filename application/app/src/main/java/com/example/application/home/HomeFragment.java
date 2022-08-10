@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.application.bug.BugActivity;
 import com.example.application.databinding.FragmentHomeBinding;
+import com.example.application.product.ProductActivity;
 
 import javax.inject.Inject;
 
@@ -46,6 +47,16 @@ public class HomeFragment extends Fragment {
     private void bindViews() {
         binding.bugMenuButton.setOnClickListener(view -> {
             Intent intent = new Intent(context, BugActivity.class);
+            startActivity(intent);
+        });
+
+        binding.productMenu.setOnClickListener(view -> {
+            Intent intent = new Intent(context, ProductActivity.class);
+            startActivity(intent);
+        });
+
+        binding.reservationMenu.setOnClickListener(view -> {
+            Intent intent = new Intent(context, ProductActivity.class);
             startActivity(intent);
         });
     }

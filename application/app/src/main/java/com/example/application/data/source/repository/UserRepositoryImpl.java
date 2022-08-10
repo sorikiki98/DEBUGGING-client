@@ -13,9 +13,6 @@ import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Maybe;
 
 public class UserRepositoryImpl implements UserRepository {
-    private User cachedUserInfo = null;
-    private boolean isCacheDirty = false;
-
     private final UserRemoteDataSource userRemoteDataSource;
 
     private final PreferencesManager preferencesManager;
@@ -48,15 +45,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public Maybe<User> loadUserInformation() {
-        if (cachedUserInfo != null && !isCacheDirty) {
-            return Maybe.just(cachedUserInfo);
-        }
-
-        return userRemoteDataSource.getUserInformation()
-                .flatMap((User userInfo) -> {
-                    refreshCache(userInfo);
-                    return Maybe.just(userInfo);
-                });
+        return userRemoteDataSource.getUserInformation();
     }
 
     @Override
@@ -73,17 +62,6 @@ public class UserRepositoryImpl implements UserRepository {
 
     private void clearUserInfo() {
         preferencesManager.clearAuthToken();
-        cachedUserInfo = null;
-    }
-
-    @Override
-    public void refreshMyPage() {
-        isCacheDirty = true;
-    }
-
-    @Override
-    public void refreshCache(User userInfo) {
-        cachedUserInfo = userInfo;
     }
 
     @Override

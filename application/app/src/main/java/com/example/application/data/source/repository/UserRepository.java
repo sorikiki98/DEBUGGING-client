@@ -19,10 +19,6 @@ public interface UserRepository {
 
     Completable logout();
 
-    void refreshMyPage();
-
-    void refreshCache(User userInfo);
-
     String getUserName();
 
     Maybe<Integer> getAccumulatedNumOfUsages();

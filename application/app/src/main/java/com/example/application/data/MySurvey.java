@@ -1,14 +1,14 @@
 package com.example.application.data;
 public class MySurvey {
-    private final int surveyId;
+    public final int surveyId;
 
-    private final int userId;
+    public final int userId;
 
-    private final String surveyDate;
+    public final String surveyDate;
 
-    private final int bugId;
+    public final int bugId;
 
-    private final String bugName;
+    public final String bugName;
 
     public MySurvey(
             int surveyId,

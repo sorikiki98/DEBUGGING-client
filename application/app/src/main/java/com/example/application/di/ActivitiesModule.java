@@ -9,6 +9,8 @@ import com.example.application.home.HomeModule;
 import com.example.application.login.LoginActivity;
 import com.example.application.home.HomeFragmentsModule;
 import com.example.application.login.LoginModule;
+import com.example.application.mypage.MyPageActivity;
+import com.example.application.mypage.MyPageFragmentsModule;
 import com.example.application.product.ProductActivity;
 import com.example.application.product.ProductFragmentsModule;
 import com.example.application.register.RegisterActivity;
@@ -36,4 +38,7 @@ public abstract class ActivitiesModule {
 
     @ContributesAndroidInjector(modules = {RegisterFragmentsModule.class})
     abstract RegisterActivity contributeRegisterActivityInjector();
+
+    @ContributesAndroidInjector(modules = {MyPageFragmentsModule.class})
+    abstract MyPageActivity contributeMyPageActivityInjector();
 }

@@ -23,6 +23,7 @@ import com.example.application.bug.BugActivity;
 import com.example.application.company.CompanyActivity;
 import com.example.application.databinding.ActivityHomeBinding;
 import com.example.application.login.LoginActivity;
+import com.example.application.mypage.MyPageActivity;
 import com.example.application.product.ProductActivity;
 import com.google.android.material.navigation.NavigationView;
 
@@ -91,10 +92,12 @@ public class HomeActivity extends AppCompatActivity implements HasAndroidInjecto
         binding.navView.setNavigationItemSelectedListener(this::handleMenuItemClick);
         binding.tvLogOut.setOnClickListener((view) -> popUpLogOutWindow());
         binding.tvSignOut.setOnClickListener((view) -> presenter.signOut());
+        binding.myPageIcon.setOnClickListener((view) -> startActivity(new Intent(context, MyPageActivity.class)));
     }
 
     @Override
-    public void navigate(int id) {}
+    public void navigate(int id) {
+    }
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -120,9 +123,12 @@ public class HomeActivity extends AppCompatActivity implements HasAndroidInjecto
                 startActivity(new Intent(context, CompanyActivity.class));
                 finish();
                 return true;
-            case(R.id.productActivity):
+            case (R.id.productActivity):
                 startActivity(new Intent(context, ProductActivity.class));
                 finish();
+                return true;
+            case (R.id.myPageActivity):
+                startActivity(new Intent(context, MyPageActivity.class));
                 return true;
             default:
                 return false;

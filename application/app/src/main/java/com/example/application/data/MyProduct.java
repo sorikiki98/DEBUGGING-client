@@ -1,13 +1,13 @@
 package com.example.application.data;
 
 public class MyProduct {
-    private final int productInterestId;
+    public final int productInterestId;
 
-    private final int productId;
+    public final int productId;
 
-    private final int userId;
+    public final int userId;
 
-    private final String productName;
+    public final String productName;
 
     MyProduct(
             int productInterestId,

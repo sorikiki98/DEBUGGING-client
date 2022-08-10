@@ -12,7 +12,7 @@ public class User {
     public final String userName;
 
     @SerializedName("password")
-    public final String password;
+    private final String password;
 
     @SerializedName("name")
     public final String name;
