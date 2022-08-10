@@ -1,11 +1,16 @@
 package com.example.application.data.source.repository;
 
 import com.example.application.PreferencesManager;
+import com.example.application.data.MyProduct;
+import com.example.application.data.MyReservation;
+import com.example.application.data.MySurvey;
 import com.example.application.data.RegistrationForm;
 import com.example.application.data.User;
 import com.example.application.data.UserAuthentication;
 import com.example.application.data.UserLogIn;
 import com.example.application.data.source.remote.UserRemoteDataSource;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -13,6 +18,9 @@ import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Maybe;
 
 public class UserRepositoryImpl implements UserRepository {
+    private User cachedUserInfo = null;
+    private boolean isCacheDirty = false;
+
     private final UserRemoteDataSource userRemoteDataSource;
 
     private final PreferencesManager preferencesManager;
@@ -45,7 +53,15 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public Maybe<User> loadUserInformation() {
-        return userRemoteDataSource.getUserInformation();
+        if (cachedUserInfo != null && !isCacheDirty) {
+            return Maybe.just(cachedUserInfo);
+        }
+
+        return userRemoteDataSource.getUserInformation()
+                .flatMap((User userInfo) -> {
+                    refreshCache(userInfo);
+                    return Maybe.just(userInfo);
+                });
     }
 
     @Override
@@ -62,6 +78,17 @@ public class UserRepositoryImpl implements UserRepository {
 
     private void clearUserInfo() {
         preferencesManager.clearAuthToken();
+        cachedUserInfo = null;
+    }
+
+    @Override
+    public void refreshMyPage() {
+        isCacheDirty = true;
+    }
+
+    @Override
+    public void refreshCache(User userInfo) {
+        cachedUserInfo = userInfo;
     }
 
     @Override
@@ -71,8 +98,25 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public Maybe<Integer> getAccumulatedNumOfUsages() {
+        isCacheDirty = true;
         return loadUserInformation().flatMap((User user) -> Maybe.just(user.accumulatedNumOfUsages));
     }
+
+    @Override
+    public Maybe<List<MySurvey>> getMySurveyList() {
+        return loadUserInformation().flatMap((User user) -> Maybe.just(user.surveyList));
+    }
+
+    @Override
+    public Maybe<List<MyReservation>> getMyReservationList() {
+        return loadUserInformation().flatMap((User user) -> Maybe.just(user.reservationList));
+    }
+
+    @Override
+    public Maybe<List<MyProduct>> getMyProductList() {
+        return loadUserInformation().flatMap((User user) -> Maybe.just(user.productList));
+    }
+
 
     @Override
     public String getAuthToken() {

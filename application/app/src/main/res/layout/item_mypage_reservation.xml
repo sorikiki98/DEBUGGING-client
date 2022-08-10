@@ -27,7 +27,6 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="24dp"
-        android:src="@drawable/ic_clipboard"
         app:layout_constraintBottom_toBottomOf="@id/title_container"
         app:layout_constraintStart_toStartOf="@id/title_container"
         app:layout_constraintTop_toTopOf="@id/title_container" />

@@ -10,7 +10,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.application.R;
 import com.example.application.data.MyProduct;
 import com.example.application.data.MySurvey;
 import com.example.application.data.User;
@@ -51,6 +54,7 @@ public class MyPageMainFragment extends Fragment implements MyPageMainContract.V
 
         presenter.subscribe();
         initViews();
+        bindViews();
     }
 
     private void initViews() {
@@ -66,6 +70,13 @@ public class MyPageMainFragment extends Fragment implements MyPageMainContract.V
         binding.reservationContainer.setVisibility(View.GONE);
         binding.companyContainer1.setVisibility(View.GONE);
         binding.companyContainer2.setVisibility(View.GONE);
+    }
+
+    private void bindViews() {
+        binding.tvMoreCompany.setOnClickListener(view -> {
+            NavController navController = NavHostFragment.findNavController(this);
+            navController.navigate(R.id.action_myPageMainFragment_to_myPageCompanyDetailListFragment);
+        });
     }
 
     @Override

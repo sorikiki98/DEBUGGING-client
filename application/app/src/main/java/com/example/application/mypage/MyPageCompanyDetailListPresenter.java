@@ -1,7 +1,9 @@
 package com.example.application.mypage;
 
-import com.example.application.data.User;
+import com.example.application.data.MyReservation;
 import com.example.application.data.source.repository.UserRepository;
+
+import java.util.List;
 
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.MaybeObserver;
@@ -9,16 +11,16 @@ import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
-public class MyPageMainPresenter implements MyPageMainContract.Presenter {
+public class MyPageCompanyDetailListPresenter implements MyPageCompanyDetailListContract.Presenter {
     private final UserRepository userRepository;
-    private final MyPageMainContract.View view;
+    private final MyPageCompanyDetailListContract.View view;
     private final Scheduler mainScheduler;
 
-    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
-    public MyPageMainPresenter(
+    public MyPageCompanyDetailListPresenter(
             UserRepository userRepository,
-            MyPageMainContract.View view,
+            MyPageCompanyDetailListContract.View view,
             Scheduler scheduler
     ) {
         this.userRepository = userRepository;
@@ -28,33 +30,33 @@ public class MyPageMainPresenter implements MyPageMainContract.Presenter {
 
     @Override
     public void subscribe() {
-        loadUserInfo();
+        loadReservedCompanies();
+        loadUserName();
     }
 
     @Override
     public void unsubscribe() {
-
+        compositeDisposable.clear();
     }
 
     @Override
-    public void loadUserInfo() {
-        userRepository.refreshMyPage();
-        userRepository.loadUserInformation()
+    public void loadReservedCompanies() {
+        userRepository.getMyReservationList()
                 .observeOn(mainScheduler)
-                .subscribe(new MaybeObserver<User>() {
+                .subscribe(new MaybeObserver<List<MyReservation>>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
                         compositeDisposable.add(d);
                     }
 
                     @Override
-                    public void onSuccess(@NonNull User user) {
-                        view.showUserInfo(user);
+                    public void onSuccess(@NonNull List<MyReservation> myReservations) {
+                        view.showReservedCompanies(myReservations);
                     }
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-                        view.showErrorMessage("정보를 불러올 수 없습니다.");
+                        view.showErrorMessage("목록을 불러올 수 없습니다.");
                     }
 
                     @Override
@@ -62,5 +64,10 @@ public class MyPageMainPresenter implements MyPageMainContract.Presenter {
 
                     }
                 });
+    }
+
+    @Override
+    public void loadUserName() {
+        view.showUserName(userRepository.getUserName());
     }
 }
