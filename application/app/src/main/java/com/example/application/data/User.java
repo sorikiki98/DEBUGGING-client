@@ -41,7 +41,7 @@ public class User {
     @SerializedName("surveyList")
     public final List<MySurvey> surveyList;
 
-    @SerializedName("productList")
+    @SerializedName("updatedProductList")
     public final List<MyProduct> productList;
 
     @SerializedName("reservationList")

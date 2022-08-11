@@ -1,5 +1,8 @@
 package com.example.application.mypage;
 
+import com.example.application.product.ProductItemFragment;
+import com.example.application.product.ProductItemModule;
+
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
@@ -14,6 +17,9 @@ public abstract class MyPageFragmentsModule {
     @ContributesAndroidInjector(modules = MyPageCompanyDetailItemModule.class)
     abstract MyPageCompanyDetailItemFragment contributeMyPageCompanyDetailItemFragment();
 
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = MyPageProductInterestListModule.class)
     abstract MyPageProductInterestListFragment contributeMyPageProductInterestListFragment();
+
+    @ContributesAndroidInjector(modules = ProductItemModule.class)
+    abstract ProductItemFragment contributeMyPageProductItemFragment();
 }

@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_myPageMainFragment_to_myPageCompanyDetailListFragment"
             app:destination="@id/myPageCompanyDetailListFragment" />
+        <action
+            android:id="@+id/action_myPageMainFragment_to_myPageCompanyDetailItemFragment"
+            app:destination="@id/myPageCompanyDetailItemFragment" />
     </fragment>
     <fragment
         android:id="@+id/myPageProductInterestListFragment"

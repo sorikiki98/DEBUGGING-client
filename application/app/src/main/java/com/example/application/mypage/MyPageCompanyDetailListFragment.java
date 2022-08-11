@@ -32,10 +32,7 @@ public class MyPageCompanyDetailListFragment extends Fragment implements MyPageC
     private FragmentMypageCompanyDetailListBinding binding;
 
     private MyPageCompanyDetailListAdapter adapter = new MyPageCompanyDetailListAdapter(new MyReservationDiffCallback(), (reservationId) -> {
-        NavController navController = NavHostFragment.findNavController(this);
-        Bundle bundle = new Bundle();
-        bundle.putInt("reservationId", reservationId);
-        navController.navigate(R.id.action_myPageCompanyDetailListFragment_to_myPageCompanyDetailItemFragment, bundle);
+        navigate(reservationId);
         return null;
     });
 
@@ -73,7 +70,10 @@ public class MyPageCompanyDetailListFragment extends Fragment implements MyPageC
 
     @Override
     public void navigate(int id) {
-
+        NavController navController = NavHostFragment.findNavController(this);
+        Bundle bundle = new Bundle();
+        bundle.putInt("reservationId", id);
+        navController.navigate(R.id.action_myPageCompanyDetailListFragment_to_myPageCompanyDetailItemFragment, bundle);
     }
 
     @Override

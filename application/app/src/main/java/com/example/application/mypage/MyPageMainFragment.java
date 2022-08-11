@@ -77,6 +77,11 @@ public class MyPageMainFragment extends Fragment implements MyPageMainContract.V
             NavController navController = NavHostFragment.findNavController(this);
             navController.navigate(R.id.action_myPageMainFragment_to_myPageCompanyDetailListFragment);
         });
+
+        binding.tvMoreProduct.setOnClickListener(view -> {
+            NavController navController = NavHostFragment.findNavController(this);
+            navController.navigate(R.id.action_myPageMainFragment_to_myPageProductInterestListFragment);
+        });
     }
 
     @Override
