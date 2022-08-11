@@ -47,6 +47,7 @@ public class BugRepositoryImpl implements BugRepository {
                                 return getBugsFromRemoteDataSource();
                             }
                             refreshCache(bugs);
+                            isCacheDirty = false;
                             return Flowable.just(bugs);
                         }
                 );

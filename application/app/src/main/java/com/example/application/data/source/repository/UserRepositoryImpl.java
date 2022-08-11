@@ -60,6 +60,7 @@ public class UserRepositoryImpl implements UserRepository {
         return userRemoteDataSource.getUserInformation()
                 .flatMap((User userInfo) -> {
                     refreshCache(userInfo);
+                    isCacheDirty = false;
                     return Maybe.just(userInfo);
                 });
     }

@@ -60,18 +60,23 @@ public class BugItemFragment extends Fragment implements BugItemContract.View{
     private void initViews() {
         binding.errorMessage.setVisibility(View.GONE);
         binding.progressBar.setVisibility(View.VISIBLE);
+        binding.contentContainer.setVisibility(View.GONE);
         presenter.subscribe();
     }
 
     private void bindViews() {
         binding.closeBtn.setOnClickListener(view -> {
             NavController navController = NavHostFragment.findNavController(this);
-            navController.navigate(R.id.action_bugItemFragment_to_bugListFragment);
+            navController.popBackStack();
         });
     }
 
     @Override
     public void showBug(Bug bug) {
+        binding.errorMessage.setVisibility(View.GONE);
+        binding.progressBar.setVisibility(View.GONE);
+        binding.contentContainer.setVisibility(View.VISIBLE);
+
         binding.tvBugName.setText(bug.getName());
         binding.tvBugAppearance.setText(bug.getAppearance());
         binding.tvBugColor.setText(bug.getColor());
@@ -93,6 +98,7 @@ public class BugItemFragment extends Fragment implements BugItemContract.View{
         binding.errorMessage.setVisibility(View.VISIBLE);
         binding.errorMessage.setText(message);
         binding.progressBar.setVisibility(View.GONE);
+        binding.contentContainer.setVisibility(View.GONE);
     }
 
 
@@ -108,7 +114,5 @@ public class BugItemFragment extends Fragment implements BugItemContract.View{
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
-        presenter.unsubscribe();
     }
 }

@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_myPageMainFragment_to_myPageCompanyDetailItemFragment"
             app:destination="@id/myPageCompanyDetailItemFragment" />
+        <action
+            android:id="@+id/action_myPageMainFragment_to_myPageSurveyDetailListFragment"
+            app:destination="@id/myPageSurveyDetailListFragment" />
     </fragment>
     <fragment
         android:id="@+id/myPageProductInterestListFragment"
@@ -37,4 +40,14 @@
     <fragment
         android:id="@+id/myPageCompanyDetailItemFragment"
         android:name="com.example.application.mypage.MyPageCompanyDetailItemFragment" />
+    <fragment
+        android:id="@+id/myPageSurveyDetailListFragment"
+        android:name="com.example.application.mypage.MyPageSurveyDetailListFragment">
+        <action
+            android:id="@+id/action_myPageSurveyDetailListFragment_to_bugItemFragment"
+            app:destination="@id/bugItemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bugItemFragment"
+        android:name="com.example.application.bug.BugItemFragment" />
 </navigation>

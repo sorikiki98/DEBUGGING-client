@@ -82,6 +82,11 @@ public class MyPageMainFragment extends Fragment implements MyPageMainContract.V
             NavController navController = NavHostFragment.findNavController(this);
             navController.navigate(R.id.action_myPageMainFragment_to_myPageProductInterestListFragment);
         });
+
+        binding.tvMoreSurvey.setOnClickListener(view -> {
+            NavController navController = NavHostFragment.findNavController(this);
+            navController.navigate(R.id.action_myPageMainFragment_to_myPageSurveyDetailListFragment);
+        });
     }
 
     @Override
@@ -104,15 +109,15 @@ public class MyPageMainFragment extends Fragment implements MyPageMainContract.V
 
         user.surveyList.sort((s1, s2) -> s2.surveyId - s1.surveyId);
         if (user.surveyList.get(0) != null) {
-            binding.surveyContainer.setVisibility(View.GONE);
+            binding.surveyContainer.setVisibility(View.VISIBLE);
             binding.bugContainer1.setVisibility(View.VISIBLE);
             binding.tvBugName1.setText(user.surveyList.get(0).bugName);
-            binding.tvDate1.setText(user.surveyList.get(0).surveyDate);
+            binding.tvDate1.setText(user.surveyList.get(0).surveyDate.substring(0, 10));
         }
         if (user.surveyList.get(1) != null) {
             binding.bugContainer2.setVisibility(View.VISIBLE);
             binding.tvBugName2.setText(user.surveyList.get(1).bugName);
-            binding.tvDate2.setText(user.surveyList.get(1).surveyDate);
+            binding.tvDate2.setText(user.surveyList.get(1).surveyDate.substring(0, 10));
         }
 
 

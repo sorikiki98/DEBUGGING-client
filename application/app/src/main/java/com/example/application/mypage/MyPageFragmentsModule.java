@@ -1,5 +1,7 @@
 package com.example.application.mypage;
 
+import com.example.application.bug.BugItemFragment;
+import com.example.application.bug.BugItemModule;
 import com.example.application.product.ProductItemFragment;
 import com.example.application.product.ProductItemModule;
 
@@ -22,4 +24,10 @@ public abstract class MyPageFragmentsModule {
 
     @ContributesAndroidInjector(modules = ProductItemModule.class)
     abstract ProductItemFragment contributeMyPageProductItemFragment();
+
+    @ContributesAndroidInjector(modules = MyPageSurveyDetailListModule.class)
+    abstract MyPageSurveyDetailListFragment contributeMyPageSurveyListFragment();
+
+    @ContributesAndroidInjector(modules = BugItemModule.class)
+    abstract BugItemFragment contributeBugItemFragment();
 }
