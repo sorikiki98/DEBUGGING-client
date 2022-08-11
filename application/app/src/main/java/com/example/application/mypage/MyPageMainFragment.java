@@ -34,10 +34,18 @@ public class MyPageMainFragment extends Fragment implements MyPageMainContract.V
 
     private FragmentMypageMainBinding binding;
 
+    private NavController navController;
+
     @Override
     public void onAttach(@NonNull Context context) {
         AndroidSupportInjection.inject(this);
         super.onAttach(context);
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        navController = NavHostFragment.findNavController(this);
     }
 
     @Nullable
@@ -74,17 +82,14 @@ public class MyPageMainFragment extends Fragment implements MyPageMainContract.V
 
     private void bindViews() {
         binding.tvMoreCompany.setOnClickListener(view -> {
-            NavController navController = NavHostFragment.findNavController(this);
             navController.navigate(R.id.action_myPageMainFragment_to_myPageCompanyDetailListFragment);
         });
 
         binding.tvMoreProduct.setOnClickListener(view -> {
-            NavController navController = NavHostFragment.findNavController(this);
             navController.navigate(R.id.action_myPageMainFragment_to_myPageProductInterestListFragment);
         });
 
         binding.tvMoreSurvey.setOnClickListener(view -> {
-            NavController navController = NavHostFragment.findNavController(this);
             navController.navigate(R.id.action_myPageMainFragment_to_myPageSurveyDetailListFragment);
         });
     }
@@ -108,28 +113,48 @@ public class MyPageMainFragment extends Fragment implements MyPageMainContract.V
         binding.tvCompany.setText(user.numOfInterestedCompanies + "개");
 
         user.surveyList.sort((s1, s2) -> s2.surveyId - s1.surveyId);
-        if (user.surveyList.get(0) != null) {
+        if (user.surveyList.size() >= 1) {
             binding.surveyContainer.setVisibility(View.VISIBLE);
             binding.bugContainer1.setVisibility(View.VISIBLE);
             binding.tvBugName1.setText(user.surveyList.get(0).bugName);
             binding.tvDate1.setText(user.surveyList.get(0).surveyDate.substring(0, 10));
+            binding.bugContainer1.setOnClickListener(view -> {
+                Bundle bundle = new Bundle();
+                bundle.putInt("bugId", user.surveyList.get(0).bugId);
+                navController.navigate(R.id.action_myPageMainFragment_to_bugItemFragment, bundle);
+            });
         }
-        if (user.surveyList.get(1) != null) {
+        if (user.surveyList.size() >= 2) {
             binding.bugContainer2.setVisibility(View.VISIBLE);
             binding.tvBugName2.setText(user.surveyList.get(1).bugName);
             binding.tvDate2.setText(user.surveyList.get(1).surveyDate.substring(0, 10));
+            binding.bugContainer2.setOnClickListener(view -> {
+                Bundle bundle = new Bundle();
+                bundle.putInt("bugId", user.surveyList.get(1).bugId);
+                navController.navigate(R.id.action_myPageMainFragment_to_bugItemFragment, bundle);
+            });
         }
 
 
         user.productList.sort((p1, p2) -> p2.productInterestId - p1.productInterestId);
-        if (user.productList.get(0) != null) {
+        if (user.productList.size() >= 1) {
             binding.productContainer.setVisibility(View.VISIBLE);
             binding.productContainer1.setVisibility(View.VISIBLE);
             binding.tvProductName1.setText(user.productList.get(0).productName);
+            binding.productContainer1.setOnClickListener(view -> {
+                Bundle bundle = new Bundle();
+                bundle.putInt("productId", user.productList.get(0).productId);
+                navController.navigate(R.id.action_myPageMainFragment_to_productItemFragment, bundle);
+            });
         }
-        if (user.productList.get(1) != null) {
+        if (user.productList.size() >= 2) {
             binding.productContainer2.setVisibility(View.VISIBLE);
             binding.tvProductName2.setText(user.productList.get(1).productName);
+            binding.productContainer2.setOnClickListener(view -> {
+                Bundle bundle = new Bundle();
+                bundle.putInt("productId", user.productList.get(1).productId);
+                navController.navigate(R.id.action_myPageMainFragment_to_productItemFragment, bundle);
+            });
         }
 
         user.reservationList.sort((r1, r2) -> r2.reservationId - r1.reservationId);
@@ -138,11 +163,21 @@ public class MyPageMainFragment extends Fragment implements MyPageMainContract.V
             binding.companyContainer1.setVisibility(View.VISIBLE);
             binding.tvCompanyName1.setText(user.reservationList.get(0).companyName);
             binding.tvProcessState1.setText(user.reservationList.get(0).getProcessState());
+            binding.companyContainer1.setOnClickListener(view -> {
+                Bundle bundle = new Bundle();
+                bundle.putInt("reservationId", user.reservationList.get(0).reservationId);
+                navController.navigate(R.id.action_myPageMainFragment_to_myPageCompanyDetailItemFragment, bundle);
+            });
         }
         if (user.reservationList.size() >= 2) {
             binding.companyContainer2.setVisibility(View.VISIBLE);
             binding.tvCompanyName2.setText(user.reservationList.get(1).companyName);
             binding.tvProcessState2.setText(user.reservationList.get(1).getProcessState());
+            binding.companyContainer2.setOnClickListener(view -> {
+                Bundle bundle = new Bundle();
+                bundle.putInt("reservationId", user.reservationList.get(1).reservationId);
+                navController.navigate(R.id.action_myPageMainFragment_to_myPageCompanyDetailItemFragment, bundle);
+            });
         }
     }
 

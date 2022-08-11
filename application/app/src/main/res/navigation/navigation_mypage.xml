@@ -19,6 +19,12 @@
         <action
             android:id="@+id/action_myPageMainFragment_to_myPageSurveyDetailListFragment"
             app:destination="@id/myPageSurveyDetailListFragment" />
+        <action
+            android:id="@+id/action_myPageMainFragment_to_productItemFragment"
+            app:destination="@id/productItemFragment" />
+        <action
+            android:id="@+id/action_myPageMainFragment_to_bugItemFragment"
+            app:destination="@id/bugItemFragment" />
     </fragment>
     <fragment
         android:id="@+id/myPageProductInterestListFragment"
