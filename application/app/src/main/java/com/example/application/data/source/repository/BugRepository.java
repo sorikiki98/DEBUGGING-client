@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import io.reactivex.rxjava3.core.Flowable;
+import retrofit2.Response;
 
 public interface BugRepository {
     Flowable<List<Bug>> getBugs(boolean isFirstLoad);

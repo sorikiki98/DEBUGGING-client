@@ -6,11 +6,14 @@ import com.example.application.data.RegistrationForm;
 import com.example.application.data.UserAuthentication;
 import com.example.application.data.source.repository.UserRepository;
 
+import java.net.SocketTimeoutException;
+
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.MaybeObserver;
 import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
+import retrofit2.HttpException;
 
 public class RegisterPresenter implements RegisterContract.Presenter {
     private final UserRepository userRepository;
@@ -53,7 +56,16 @@ public class RegisterPresenter implements RegisterContract.Presenter {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-                        view.toastErrorMessage("회원가입에 실패하였습니다.");
+                        if (e instanceof SocketTimeoutException) {
+                            view.toastErrorMessage("서버와 연결하는 데 실패했습니다.(Connection failed)");
+                        } else if (e instanceof HttpException) {
+                            if (((HttpException) e).code() == 409) {
+                                view.toastErrorMessage("이미 존재하는 유저명입니다.");
+                            } else {
+                                view.toastErrorMessage("서버 내부 오류(Internal server error)");
+                            }
+                        } else view.toastErrorMessage("알 수 없는 오류");
+
                     }
 
                     @Override

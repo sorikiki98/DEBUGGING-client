@@ -14,6 +14,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.application.GridLayoutSpacingDecoration;
 import com.example.application.R;
 import com.example.application.data.MyProduct;
 import com.example.application.databinding.FragmentMypageProductInterestListBinding;
@@ -103,16 +104,5 @@ public class MyPageProductInterestListFragment extends Fragment implements MyPag
     @Override
     public void undoRefreshLoading() {
         binding.swipeRefreshLayout.setRefreshing(false);
-    }
-}
-
-class GridLayoutSpacingDecoration extends RecyclerView.ItemDecoration {
-    private int halfSpace = 24;
-
-    @Override
-    public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-        super.getItemOffsets(outRect, view, parent, state);
-        parent.setClipToPadding(true);
-        outRect.set(halfSpace, halfSpace, halfSpace, halfSpace);
     }
 }

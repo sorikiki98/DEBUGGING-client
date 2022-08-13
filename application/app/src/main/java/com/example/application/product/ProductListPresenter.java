@@ -9,6 +9,7 @@ import com.example.application.product.ProductListContract;
 
 import org.reactivestreams.Subscription;
 
+import java.net.SocketTimeoutException;
 import java.util.List;
 
 import io.reactivex.rxjava3.annotations.NonNull;
@@ -19,6 +20,8 @@ import io.reactivex.rxjava3.core.FlowableSubscriber;
 import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
+import retrofit2.HttpException;
+import retrofit2.http.HTTP;
 
 public class ProductListPresenter implements ProductListContract.Presenter {
     private final ProductRepository productRepository;
@@ -87,7 +90,15 @@ public class ProductListPresenter implements ProductListContract.Presenter {
 
                             @Override
                             public void onError(@NonNull Throwable e) {
-
+                                if (e instanceof SocketTimeoutException) {
+                                    view.showErrorMessage("서버와 연결하는 데 실패했습니다.(Connection failed)");
+                                } else if (e instanceof HttpException) {
+                                    if (((HttpException) e).code() == 404) {
+                                        view.showErrorMessage("찜하기 해제 실패");
+                                    } else if (((HttpException) e).code() == 409) {
+                                        view.showErrorMessage("찜하기 실패");
+                                    } else view.showErrorMessage("서버 내부 오류(Internal Server Error)");
+                                } else view.showErrorMessage("알 수 없는 오류");
                             }
                         }
                 );

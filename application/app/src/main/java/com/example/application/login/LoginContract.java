@@ -12,6 +12,6 @@ public interface LoginContract {
     interface View extends BaseView {
         void processLoginSuccess();
 
-        void processLoginFail();
+        void processLoginFail(String message);
     }
 }

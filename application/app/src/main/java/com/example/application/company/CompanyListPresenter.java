@@ -1,12 +1,11 @@
 package com.example.application.company;
 
-import android.util.Log;
-
 import com.example.application.data.Company;
 import com.example.application.data.source.repository.CompanyRepository;
 
 import org.reactivestreams.Subscription;
 
+import java.net.SocketTimeoutException;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -18,6 +17,7 @@ import io.reactivex.rxjava3.core.FlowableSubscriber;
 import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
+import retrofit2.HttpException;
 
 public class CompanyListPresenter implements CompanyListContract.Presenter {
     private final CompanyRepository companyRepository;
@@ -87,7 +87,17 @@ public class CompanyListPresenter implements CompanyListContract.Presenter {
 
             @Override
             public void onError(@NonNull Throwable e) {
-
+                if (e instanceof SocketTimeoutException) {
+                    view.showErrorMessage("서버와 연결하는 데 실패했습니다.(Connection failed)");
+                }
+                else if (e instanceof HttpException) {
+                    if (((HttpException) e).code() == 404) {
+                        view.showErrorMessage("찜하기 해제 실패");
+                    } else {
+                        view.showErrorMessage("찜하기 실패");
+                    }
+                }
+                else view.showErrorMessage("알 수 없는 오류");
             }
         };
     }

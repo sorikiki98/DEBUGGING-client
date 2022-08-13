@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
             String password = binding.loginPw.getText().toString();
 
             if (userName.isEmpty() || password.isEmpty()) {
-                Toast.makeText(context, "정보를 모두 입력해주세요", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "정보를 모두 입력해주세요", Toast.LENGTH_SHORT).show();
             } else presenter.login(new UserLogIn(userName, password));
         });
 
@@ -55,8 +55,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
     @Override
-    public void processLoginFail() {
-        Toast.makeText(context, "잘못된 정보를 입력했습니다.", Toast.LENGTH_SHORT).show();
+    public void processLoginFail(String message) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     @Override
     protected void onDestroy() {
-        super.onStop();
+        super.onDestroy();
         presenter.unsubscribe();
     }
 }

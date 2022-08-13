@@ -11,6 +11,7 @@ import javax.inject.Inject;
 
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Scheduler;
+import retrofit2.HttpException;
 
 public class BugRemoteDataSource implements BugDataSource {
     private final BugService bugsApi;

@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.application.GridLayoutSpacingDecoration;
 import com.example.application.R;
 import com.example.application.data.MySurvey;
 import com.example.application.databinding.FragmentMypageSurveyDetailListBinding;

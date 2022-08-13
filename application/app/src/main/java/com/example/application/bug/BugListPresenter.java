@@ -1,7 +1,5 @@
 package com.example.application.bug;
 
-import android.util.Log;
-
 import com.example.application.data.Bug;
 import com.example.application.data.source.repository.BugRepository;
 
@@ -12,7 +10,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.rxjava3.annotations.NonNull;
-import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.FlowableSubscriber;
 import io.reactivex.rxjava3.core.Scheduler;
 

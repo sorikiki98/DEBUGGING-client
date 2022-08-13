@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.application.GridLayoutSpacingDecoration;
 import com.example.application.R;
 import com.example.application.data.Bug;
 import com.example.application.databinding.FragmentBugListBinding;
@@ -117,20 +118,5 @@ public class BugListFragment extends Fragment implements BugListContract.View {
         super.onDestroyView();
         binding = null;
         presenter.unsubscribe();
-    }
-}
-
-class GridLayoutSpacingDecoration extends RecyclerView.ItemDecoration {
-
-    @Override
-    public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-        super.getItemOffsets(outRect, view, parent, state);
-        parent.setClipToPadding(true);
-
-        int halfSpace = 24;
-        outRect.top = halfSpace;
-        outRect.bottom = halfSpace;
-        outRect.left = halfSpace;
-        outRect.right = halfSpace;
     }
 }

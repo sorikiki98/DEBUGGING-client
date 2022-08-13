@@ -16,6 +16,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.application.LinearLayoutSpacingDecoration;
 import com.example.application.R;
 import com.example.application.data.MyReservation;
 import com.example.application.databinding.FragmentMypageCompanyDetailListBinding;
@@ -113,16 +114,5 @@ public class MyPageCompanyDetailListFragment extends Fragment implements MyPageC
         super.onDestroyView();
         binding = null;
         presenter.unsubscribe();
-    }
-}
-
-class LinearLayoutSpacingDecoration extends RecyclerView.ItemDecoration {
-    private int halfSpace = 48;
-
-    @Override
-    public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-        super.getItemOffsets(outRect, view, parent, state);
-        parent.setClipToPadding(true);
-        outRect.set(0, 0, 0, halfSpace);
     }
 }

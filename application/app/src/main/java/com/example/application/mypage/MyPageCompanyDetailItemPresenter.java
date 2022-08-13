@@ -4,11 +4,14 @@ import com.example.application.data.Reservation;
 import com.example.application.data.source.repository.CompanyRepository;
 import com.example.application.data.source.repository.UserRepository;
 
+import java.net.SocketTimeoutException;
+
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.MaybeObserver;
 import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
+import retrofit2.HttpException;
 
 public class MyPageCompanyDetailItemPresenter implements MyPageCompanyDetailItemContract.Presenter {
     private final CompanyRepository companyRepository;
@@ -19,8 +22,8 @@ public class MyPageCompanyDetailItemPresenter implements MyPageCompanyDetailItem
 
     public MyPageCompanyDetailItemPresenter(
             CompanyRepository companyRepository,
-           MyPageCompanyDetailItemContract.View view,
-           Scheduler scheduler
+            MyPageCompanyDetailItemContract.View view,
+            Scheduler scheduler
     ) {
         this.companyRepository = companyRepository;
         this.view = view;
@@ -54,7 +57,13 @@ public class MyPageCompanyDetailItemPresenter implements MyPageCompanyDetailItem
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-                        view.showErrorMessage("정보를 불러올 수 없습니다.");
+                        if (e instanceof SocketTimeoutException) {
+                            view.showErrorMessage("서버와 연결하는 데 실패했습니다.(Connection failed)");
+                        } else if (e instanceof HttpException) {
+                            if (((HttpException) e).code() == 404) {
+                                view.showErrorMessage("존재하지 않는 정보입니다.");
+                            } else view.showErrorMessage("서버 내부 오류(Internal Server Error)");
+                        } else view.showErrorMessage("알 수 없는 오류");
                     }
 
                     @Override

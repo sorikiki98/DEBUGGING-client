@@ -17,6 +17,7 @@ import io.reactivex.rxjava3.core.FlowableSubscriber;
 import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
+import retrofit2.HttpException;
 
 public class ProductItemPresenter implements ProductItemContract.Presenter {
     private final ProductRepository productRepository;
@@ -94,7 +95,13 @@ public class ProductItemPresenter implements ProductItemContract.Presenter {
 
             @Override
             public void onError(@NonNull Throwable e) {
-
+                if (((HttpException) e).code() == 404) {
+                    view.showErrorMessage("찜하기 해제 실패");
+                }
+                else if (((HttpException) e).code() == 409) {
+                    view.showErrorMessage("찜하기 실패");
+                }
+                else view.showErrorMessage("알 수 없는 오류");
             }
         };
     }
