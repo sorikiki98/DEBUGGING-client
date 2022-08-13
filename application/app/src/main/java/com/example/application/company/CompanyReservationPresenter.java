@@ -50,7 +50,7 @@ public class CompanyReservationPresenter implements CompanyReservationContract.P
 
     @Override
     public void loadUserInformation() {
-        userRepository.loadUserInformation()
+        userRepository.loadUserInformation(true)
                 .observeOn(mainScheduler)
                 .subscribe(new MaybeObserver<User>() {
                     @Override

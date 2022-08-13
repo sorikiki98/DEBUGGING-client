@@ -31,13 +31,13 @@ public class BugRepositoryImpl implements BugRepository {
 
 
     @Override
-    public Flowable<List<Bug>> getBugs() {
-        if (!cachedBugs.isEmpty() && !isCacheDirty) {
+    public Flowable<List<Bug>> getBugs(boolean isFirstLoad) {
+        if (!cachedBugs.isEmpty() && !isCacheDirty && isFirstLoad) {
             List<Bug> bugs = new ArrayList<>(cachedBugs.values());
             return Flowable.just(bugs);
         }
 
-        if (isCacheDirty) {
+        if (!isFirstLoad) {
             return getBugsFromRemoteDataSource();
         }
 
@@ -71,11 +71,6 @@ public class BugRepositoryImpl implements BugRepository {
                     }
                     return Flowable.just(bug);
                 });
-    }
-
-    @Override
-    public void refreshBugs() {
-        isCacheDirty = true;
     }
 
     @Override

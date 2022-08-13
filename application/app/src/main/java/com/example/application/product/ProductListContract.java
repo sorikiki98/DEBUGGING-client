@@ -9,16 +9,18 @@ import java.util.List;
 
 public interface ProductListContract {
     interface Presenter extends BasePresenter {
-        void loadProducts();
+        void getProducts();
+
+        void refreshProducts();
 
         void toggleProductInterest(int productId);
     }
 
     interface View extends BaseView {
-
         void showProducts(List<Product> products);
 
         void showErrorMessage(String message);
 
+        void undoRefreshLoading();
     }
 }

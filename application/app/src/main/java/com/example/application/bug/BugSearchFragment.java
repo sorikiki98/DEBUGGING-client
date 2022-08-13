@@ -23,6 +23,11 @@ public class BugSearchFragment extends Fragment implements BugListContract.View 
 
     }
 
+    @Override
+    public void undoRefreshLoading() {
+
+    }
+
 
     @Override
     public void navigate(int id) {

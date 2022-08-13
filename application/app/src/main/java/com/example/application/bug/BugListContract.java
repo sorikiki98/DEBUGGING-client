@@ -10,17 +10,16 @@ import io.reactivex.rxjava3.disposables.Disposable;
 
 public interface BugListContract {
     interface Presenter extends BasePresenter {
-        void loadBugs();
+        void getBugs();
 
-        void loadBugWithId();
-
-        void survey();
+        void refreshBugs();
     }
 
     interface View extends BaseView {
-
         void showBugs(List<Bug> bugs);
 
         void showErrorMessage(String message);
+
+        void undoRefreshLoading();
     }
 }

@@ -12,7 +12,7 @@ import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Maybe;
 
 public interface CompanyRepository {
-    Flowable<List<Company>> getCompanies();
+    Flowable<List<Company>> getCompanies(boolean isFirstLoad);
 
     Flowable<Optional<Company>> getCompanyWithId(int companyId);
 
@@ -24,13 +24,11 @@ public interface CompanyRepository {
 
     Maybe<Reservation> getReservationInformation(int reservationId);
 
+    ReservationForm getReservationForm();
+
     boolean isCompanyInterested(int companyId);
 
     void keepReservationForm(ReservationForm reservationForm);
-
-    ReservationForm getReservationForm();
-
-    void refreshCompanies();
 
     void refreshCache(List<Company> companies);
 

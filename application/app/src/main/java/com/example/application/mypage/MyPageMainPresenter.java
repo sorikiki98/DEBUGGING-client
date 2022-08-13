@@ -1,9 +1,12 @@
 package com.example.application.mypage;
 
+import android.util.Log;
+
 import com.example.application.data.User;
 import com.example.application.data.source.repository.UserRepository;
 
 import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.core.MaybeObserver;
 import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -28,18 +31,26 @@ public class MyPageMainPresenter implements MyPageMainContract.Presenter {
 
     @Override
     public void subscribe() {
-        loadUserInfo();
+        getUserInfo();
     }
 
     @Override
     public void unsubscribe() {
-
+        compositeDisposable.clear();
     }
 
     @Override
-    public void loadUserInfo() {
-        userRepository.refreshMyPage();
-        userRepository.loadUserInformation()
+    public void getUserInfo() {
+        loadUserInfo(true);
+    }
+
+    @Override
+    public void refreshUserInfo() {
+        loadUserInfo(false);
+    }
+
+    private void loadUserInfo(boolean isFirstLoad) {
+        userRepository.loadUserInformation(isFirstLoad)
                 .observeOn(mainScheduler)
                 .subscribe(new MaybeObserver<User>() {
                     @Override
@@ -50,17 +61,20 @@ public class MyPageMainPresenter implements MyPageMainContract.Presenter {
                     @Override
                     public void onSuccess(@NonNull User user) {
                         view.showUserInfo(user);
+                        view.undoRefreshLoading();
                     }
 
                     @Override
                     public void onError(@NonNull Throwable e) {
                         view.showErrorMessage("정보를 불러올 수 없습니다.");
+                        view.undoRefreshLoading();
                     }
 
                     @Override
                     public void onComplete() {
-
+                        view.undoRefreshLoading();
                     }
                 });
     }
 }
+

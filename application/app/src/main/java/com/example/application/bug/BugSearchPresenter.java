@@ -30,17 +30,12 @@ public class BugSearchPresenter implements BugListContract.Presenter {
     }
 
     @Override
-    public void loadBugs() {
+    public void getBugs() {
 
     }
 
     @Override
-    public void loadBugWithId() {
-
-    }
-
-    @Override
-    public void survey() {
+    public void refreshBugs() {
 
     }
 }

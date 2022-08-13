@@ -30,8 +30,6 @@ public class CompanyRepositoryImpl implements CompanyRepository {
 
     private boolean isCacheDirty = false;
 
-    private boolean isFirstLoad = true;
-
     private final CompanyRemoteDataSource companyRemoteDataSource;
 
     private final CompanyLocalDataSource companyLocalDataSource;
@@ -45,12 +43,13 @@ public class CompanyRepositoryImpl implements CompanyRepository {
 
 
     @Override
-    public Flowable<List<Company>> getCompanies() {
-        if (!isCacheDirty && !cachedCompanies.isEmpty()) {
+    public Flowable<List<Company>> getCompanies(boolean isFirstLoad) {
+        if (!isCacheDirty && !cachedCompanies.isEmpty() && isFirstLoad) {
             return Flowable.just(new ArrayList<>(cachedCompanies.values()));
         }
 
-        if (isCacheDirty && isFirstLoad) {
+        // 새로고침
+        if (!isFirstLoad) {
             return getCompaniesFromRemoteDataSource();
         }
 
@@ -78,7 +77,6 @@ public class CompanyRepositoryImpl implements CompanyRepository {
     @Override
     public Completable addCompanyInterest(int companyId) {
         isCacheDirty = true;
-        isFirstLoad = false;
         return companyRemoteDataSource.addCompanyInterest(companyId)
                 .andThen(companyLocalDataSource.addCompanyInterest(companyId));
 
@@ -87,7 +85,6 @@ public class CompanyRepositoryImpl implements CompanyRepository {
     @Override
     public Completable removeCompanyInterest(int companyId) {
         isCacheDirty = true;
-        isFirstLoad = false;
         return companyRemoteDataSource.removeCompanyInterest(companyId)
                 .andThen(companyLocalDataSource.removeCompanyInterest(companyId));
     }
@@ -119,15 +116,7 @@ public class CompanyRepositoryImpl implements CompanyRepository {
 
     @Override
     public void keepReservationForm(ReservationForm reservationForm) {
-        Log.d("keepReservationForm", reservationForm.toString());
         this.reservationForm = reservationForm;
-    }
-
-    @Override
-    public void refreshCompanies() {
-        isCacheDirty = false;
-        isFirstLoad = true;
-        getCompanies();
     }
 
     @Override
@@ -149,7 +138,6 @@ public class CompanyRepositoryImpl implements CompanyRepository {
                     refreshLocalDataSource(companies);
                     refreshCache(companies);
                     isCacheDirty = false;
-                    isFirstLoad = false;
                     return Flowable.just(companies);
                 });
     }

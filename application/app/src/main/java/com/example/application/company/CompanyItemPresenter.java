@@ -40,7 +40,7 @@ public class CompanyItemPresenter implements CompanyItemContract.Presenter {
 
     @Override
     public void unsubscribe() {
-
+        subscription.cancel();
     }
 
     @Override

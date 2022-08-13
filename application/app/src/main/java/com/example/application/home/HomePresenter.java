@@ -53,7 +53,7 @@ public class HomePresenter implements HomeContract.Presenter {
 
     @Override
     public void setAccumulatedNumberOfUsages() {
-        userRepository.getAccumulatedNumOfUsages()
+        userRepository.getAccumulatedNumOfUsages(true)
                 .observeOn(mainScheduler)
                 .subscribe(new MaybeObserver<Integer>() {
                     @Override

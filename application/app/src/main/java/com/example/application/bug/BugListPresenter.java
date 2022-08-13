@@ -12,6 +12,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.FlowableSubscriber;
 import io.reactivex.rxjava3.core.Scheduler;
 
@@ -33,7 +34,7 @@ public class BugListPresenter implements BugListContract.Presenter {
 
     @Override
     public void subscribe() {
-        loadBugs();
+        getBugs();
     }
 
     @Override
@@ -42,8 +43,15 @@ public class BugListPresenter implements BugListContract.Presenter {
     }
 
     @Override
-    public void loadBugs() {
-        bugsRepository.getBugs()
+    public void getBugs() {
+        loadBugs(true);
+    }
+
+    @Override
+    public void refreshBugs() { loadBugs(false); }
+
+    private void loadBugs(boolean isFirstLoad) {
+        bugsRepository.getBugs(isFirstLoad)
                 .observeOn(mainScheduler)
                 .subscribe(new FlowableSubscriber<List<Bug>>() {
                     @Override
@@ -54,29 +62,20 @@ public class BugListPresenter implements BugListContract.Presenter {
 
                     @Override
                     public void onNext(List<Bug> bugs) {
-                        Log.d("BugsListPresenter", bugs.toString());
                         view.showBugs(bugs);
+                        view.undoRefreshLoading();
                     }
 
                     @Override
                     public void onError(Throwable t) {
                         view.showErrorMessage("목록을 불러올 수 없습니다.");
+                        view.undoRefreshLoading();
                     }
 
                     @Override
                     public void onComplete() {
-                        Log.d("BugsListPresenter", "complete");
+                        view.undoRefreshLoading();
                     }
                 });
-    }
-
-    @Override
-    public void loadBugWithId() {
-
-    }
-
-    @Override
-    public void survey() {
-
     }
 }

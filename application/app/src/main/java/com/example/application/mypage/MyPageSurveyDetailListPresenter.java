@@ -6,6 +6,7 @@ import com.example.application.data.source.repository.UserRepository;
 import java.util.List;
 
 import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.core.MaybeObserver;
 import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -30,8 +31,8 @@ public class MyPageSurveyDetailListPresenter implements MyPageSurveyDetailListCo
 
     @Override
     public void subscribe() {
-        loadMyPageSurveyList();
-        loadUserName();
+        getMyPageSurveyList();
+        getUserName();
     }
 
     @Override
@@ -40,8 +41,22 @@ public class MyPageSurveyDetailListPresenter implements MyPageSurveyDetailListCo
     }
 
     @Override
-    public void loadMyPageSurveyList() {
-        userRepository.getMySurveyList()
+    public void getMyPageSurveyList() {
+        loadMyPageSurveyList(true);
+    }
+
+    @Override
+    public void refreshMyPageSurveyList() {
+        loadMyPageSurveyList(false);
+    }
+
+    @Override
+    public void getUserName() {
+        view.showUserName(userRepository.getUserName());
+    }
+
+    private void loadMyPageSurveyList(boolean isFirstLoad) {
+        userRepository.getMySurveyList(isFirstLoad)
                 .observeOn(mainScheduler)
                 .subscribe(new MaybeObserver<List<MySurvey>>() {
                     @Override
@@ -52,22 +67,19 @@ public class MyPageSurveyDetailListPresenter implements MyPageSurveyDetailListCo
                     @Override
                     public void onSuccess(@NonNull List<MySurvey> mySurveys) {
                         view.showMyPageSurveyList(mySurveys);
+                        view.undoRefreshLoading();
                     }
 
                     @Override
                     public void onError(@NonNull Throwable e) {
                         view.showErrorMessage("목록을 불러올 수 없습니다.");
+                        view.undoRefreshLoading();
                     }
 
                     @Override
                     public void onComplete() {
-
+                        view.undoRefreshLoading();
                     }
                 });
-    }
-
-    @Override
-    public void loadUserName() {
-        view.showUserName(userRepository.getUserName());
     }
 }

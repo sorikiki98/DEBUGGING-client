@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.application.R;
 import com.example.application.data.MyReservation;
@@ -55,6 +56,7 @@ public class MyPageCompanyDetailListFragment extends Fragment implements MyPageC
         super.onViewCreated(view, savedInstanceState);
 
         initViews();
+        bindViews();
     }
 
     private void initViews() {
@@ -66,6 +68,10 @@ public class MyPageCompanyDetailListFragment extends Fragment implements MyPageC
         binding.recyclerView.setVisibility(View.GONE);
 
         presenter.subscribe();
+    }
+
+    private void bindViews() {
+        binding.swipeRefreshLayout.setOnRefreshListener(() -> presenter.refreshReservedCompanies());
     }
 
     @Override
@@ -95,6 +101,11 @@ public class MyPageCompanyDetailListFragment extends Fragment implements MyPageC
         binding.recyclerView.setVisibility(View.GONE);
         binding.errorMessage.setVisibility(View.VISIBLE);
         binding.progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void undoRefreshLoading() {
+        binding.swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override

@@ -19,7 +19,6 @@ import io.reactivex.rxjava3.core.Maybe;
 
 public class UserRepositoryImpl implements UserRepository {
     private User cachedUserInfo = null;
-    private boolean isCacheDirty = false;
 
     private final UserRemoteDataSource userRemoteDataSource;
 
@@ -52,15 +51,14 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public Maybe<User> loadUserInformation() {
-        if (cachedUserInfo != null && !isCacheDirty) {
+    public Maybe<User> loadUserInformation(boolean isFirstLoad) {
+        if (cachedUserInfo != null && isFirstLoad) {
             return Maybe.just(cachedUserInfo);
         }
 
         return userRemoteDataSource.getUserInformation()
                 .flatMap((User userInfo) -> {
                     refreshCache(userInfo);
-                    isCacheDirty = false;
                     return Maybe.just(userInfo);
                 });
     }
@@ -83,11 +81,6 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void refreshMyPage() {
-        isCacheDirty = true;
-    }
-
-    @Override
     public void refreshCache(User userInfo) {
         cachedUserInfo = userInfo;
     }
@@ -98,29 +91,22 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public Maybe<Integer> getAccumulatedNumOfUsages() {
-        isCacheDirty = true;
-        return loadUserInformation().flatMap((User user) -> Maybe.just(user.accumulatedNumOfUsages));
+    public Maybe<Integer> getAccumulatedNumOfUsages(boolean isFirstLoad) {
+        return loadUserInformation(isFirstLoad).flatMap((User user) -> Maybe.just(user.accumulatedNumOfUsages));
     }
 
     @Override
-    public Maybe<List<MySurvey>> getMySurveyList() {
-        return loadUserInformation().flatMap((User user) -> Maybe.just(user.surveyList));
+    public Maybe<List<MySurvey>> getMySurveyList(boolean isFirstLoad) {
+        return loadUserInformation(isFirstLoad).flatMap((User user) -> Maybe.just(user.surveyList));
     }
 
     @Override
-    public Maybe<List<MyReservation>> getMyReservationList() {
-        return loadUserInformation().flatMap((User user) -> Maybe.just(user.reservationList));
+    public Maybe<List<MyReservation>> getMyReservationList(boolean isFirstLoad) {
+        return loadUserInformation(isFirstLoad).flatMap((User user) -> Maybe.just(user.reservationList));
     }
 
     @Override
-    public Maybe<List<MyProduct>> getMyProductList() {
-        return loadUserInformation().flatMap((User user) -> Maybe.just(user.productList));
-    }
-
-
-    @Override
-    public String getAuthToken() {
-        return "Bearer " + preferencesManager.fetchAuthToken();
+    public Maybe<List<MyProduct>> getMyProductList(boolean isFirstLoad) {
+        return loadUserInformation(isFirstLoad).flatMap((User user) -> Maybe.just(user.productList));
     }
 }

@@ -52,6 +52,7 @@ public class MyPageSurveyDetailListFragment extends Fragment implements MyPageSu
         super.onViewCreated(view, savedInstanceState);
 
         initViews();
+        bindViews();
     }
 
     private void initViews() {
@@ -62,6 +63,10 @@ public class MyPageSurveyDetailListFragment extends Fragment implements MyPageSu
         binding.recyclerView.setVisibility(View.GONE);
 
         presenter.subscribe();
+    }
+
+    private void bindViews() {
+        binding.swipeRefreshLayout.setOnRefreshListener(() -> presenter.refreshMyPageSurveyList());
     }
 
     @Override
@@ -93,5 +98,10 @@ public class MyPageSurveyDetailListFragment extends Fragment implements MyPageSu
         binding.recyclerView.setVisibility(View.GONE);
 
         binding.errorMessage.setText(message);
+    }
+
+    @Override
+    public void undoRefreshLoading() {
+        binding.swipeRefreshLayout.setRefreshing(false);
     }
 }

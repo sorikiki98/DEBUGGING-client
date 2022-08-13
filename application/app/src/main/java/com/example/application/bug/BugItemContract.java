@@ -9,11 +9,11 @@ import java.util.List;
 public interface BugItemContract {
     interface Presenter extends BasePresenter {
         void setBugId(int bugId);
+
         void loadBugWithId(int bugId);
     }
 
     interface View extends BaseView {
-
         void showBug(Bug bug);
 
         void showErrorMessage(String message);

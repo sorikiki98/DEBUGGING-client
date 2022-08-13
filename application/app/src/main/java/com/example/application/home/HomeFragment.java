@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.application.bug.BugActivity;
+import com.example.application.company.CompanyActivity;
 import com.example.application.databinding.FragmentHomeBinding;
 import com.example.application.product.ProductActivity;
 
@@ -56,7 +57,7 @@ public class HomeFragment extends Fragment {
         });
 
         binding.reservationMenu.setOnClickListener(view -> {
-            Intent intent = new Intent(context, ProductActivity.class);
+            Intent intent = new Intent(context, CompanyActivity.class);
             startActivity(intent);
         });
     }

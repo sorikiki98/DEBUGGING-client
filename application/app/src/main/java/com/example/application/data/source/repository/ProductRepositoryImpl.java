@@ -29,8 +29,6 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     private boolean isCacheDirty = false;
 
-    private boolean isFirstLoad = true;
-
     @Inject
     public ProductRepositoryImpl(ProductRemoteDataSource productRemoteDataSource, ProductLocalDataSource productLocalDataSource) {
         this.productRemoteDataSource = productRemoteDataSource;
@@ -38,13 +36,13 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public Flowable<List<Product>> getProducts() {
-        if (!isCacheDirty && !cachedProducts.isEmpty()) {
+    public Flowable<List<Product>> getProducts(boolean isFirstLoad) {
+        if (!isCacheDirty && !cachedProducts.isEmpty() && isFirstLoad) {
             Log.d("ProductRepositoryImpl", "cache");
             return Flowable.just(new ArrayList<>(cachedProducts.values()));
         }
 
-        if (isCacheDirty && isFirstLoad) {
+        if (!isFirstLoad) {
             return getProductsFromRemoteDataSource();
         }
 
@@ -65,7 +63,6 @@ public class ProductRepositoryImpl implements ProductRepository {
     @Override
     public Completable addProductInterest(int productId) {
         isCacheDirty = true;
-        isFirstLoad = false;
         return productRemoteDataSource.addProductInterest(productId)
                 .andThen(productLocalDataSource.addProductInterest(productId));
     }
@@ -73,7 +70,6 @@ public class ProductRepositoryImpl implements ProductRepository {
     @Override
     public Completable removeProductInterest(int productId) {
         isCacheDirty = true;
-        isFirstLoad = false;
         return productRemoteDataSource.removeProductInterest(productId)
                 .andThen(productLocalDataSource.removeProductInterest(productId));
     }
@@ -85,13 +81,6 @@ public class ProductRepositoryImpl implements ProductRepository {
             return isProductInterested == 1;
         }
         return false;
-    }
-
-    @Override
-    public void refreshProducts() {
-        isCacheDirty = true;
-        isFirstLoad = true;
-        getProducts();
     }
 
     @Override
@@ -113,7 +102,6 @@ public class ProductRepositoryImpl implements ProductRepository {
                     refreshLocalDataSource(products);
                     refreshCache(products);
                     isCacheDirty = false;
-                    isFirstLoad = false;
                     return Flowable.just(products);
                 });
     }

@@ -10,13 +10,20 @@ import java.util.List;
 
 public interface MyPageCompanyDetailListContract {
     interface Presenter extends BasePresenter {
-        void loadReservedCompanies();
-        void loadUserName();
+        void getReservedCompanies();
+
+        void refreshReservedCompanies();
+
+        void getUserName();
     }
 
     interface View extends BaseView {
         void showReservedCompanies(List<MyReservation> reservation);
+
         void showUserName(String userName);
+
         void showErrorMessage(String message);
+
+        void undoRefreshLoading();
     }
 }

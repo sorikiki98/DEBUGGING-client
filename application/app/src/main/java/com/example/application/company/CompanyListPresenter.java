@@ -13,6 +13,7 @@ import javax.inject.Inject;
 
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.CompletableObserver;
+import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.FlowableSubscriber;
 import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -36,7 +37,7 @@ public class CompanyListPresenter implements CompanyListContract.Presenter {
 
     @Override
     public void subscribe() {
-        loadCompanies();
+        getCompanies();
     }
 
     @Override
@@ -46,10 +47,13 @@ public class CompanyListPresenter implements CompanyListContract.Presenter {
     }
 
     @Override
-    public void loadCompanies() {
-        companyRepository.getCompanies()
-                .observeOn(mainScheduler)
-                .subscribe(getCompanyListFlowableSubscriber());
+    public void getCompanies() {
+        loadCompanies(true);
+    }
+
+    @Override
+    public void refreshCompanies() {
+        loadCompanies(false);
     }
 
     @Override
@@ -87,28 +91,33 @@ public class CompanyListPresenter implements CompanyListContract.Presenter {
             }
         };
     }
-    private FlowableSubscriber<List<Company>> getCompanyListFlowableSubscriber() {
-        return new FlowableSubscriber<List<Company>>() {
-            @Override
-            public void onSubscribe(@NonNull Subscription s) {
-                s.request(Long.MAX_VALUE);
-                subscription = s;
-            }
 
-            @Override
-            public void onNext(List<Company> companies) {
-                view.showCompanies(companies);
-            }
+    private void loadCompanies(boolean isFirstLoad) {
+        companyRepository.getCompanies(isFirstLoad)
+                .observeOn(mainScheduler)
+                .subscribe(new FlowableSubscriber<List<Company>>() {
+                    @Override
+                    public void onSubscribe(@NonNull Subscription s) {
+                        s.request(Long.MAX_VALUE);
+                        subscription = s;
+                    }
 
-            @Override
-            public void onError(Throwable t) {
-                view.showErrorMessage("목록을 불러올 수 없습니다.");
-            }
+                    @Override
+                    public void onNext(List<Company> companies) {
+                        view.showCompanies(companies);
+                        view.undoRefreshLoading();
+                    }
 
-            @Override
-            public void onComplete() {
+                    @Override
+                    public void onError(Throwable t) {
+                        view.showErrorMessage("목록을 불러올 수 없습니다.");
+                        view.undoRefreshLoading();
+                    }
 
-            }
-        };
+                    @Override
+                    public void onComplete() {
+                        view.undoRefreshLoading();
+                    }
+                });
     }
 }

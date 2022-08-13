@@ -10,11 +10,13 @@ import java.util.List;
 public interface MyPageCompanyDetailItemContract {
     interface Presenter extends BasePresenter {
         void loadReservationInformation();
+
         void setReservationId(int reservationId);
     }
 
     interface View extends BaseView {
         void showReservationInformation(Reservation reservation);
+
         void showErrorMessage(String message);
     }
 }

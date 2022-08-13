@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.application.R;
 import com.example.application.company.CompanyDiffCallback;
@@ -62,6 +63,7 @@ public class ProductListFragment extends Fragment implements ProductListContract
         super.onViewCreated(view, savedInstanceState);
 
         initViews();
+        bindViews();
     }
 
     @Override
@@ -76,6 +78,12 @@ public class ProductListFragment extends Fragment implements ProductListContract
 
         binding.errorMessage.setVisibility(View.GONE);
         binding.progressBar.setVisibility(View.VISIBLE);
+    }
+
+    private void bindViews() {
+        binding.swipeRefreshLayout.setOnRefreshListener(() -> {
+            presenter.refreshProducts();
+        });
     }
 
     @Override
@@ -99,6 +107,11 @@ public class ProductListFragment extends Fragment implements ProductListContract
         binding.errorMessage.setVisibility(View.VISIBLE);
         binding.errorMessage.setText(message);
         binding.progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void undoRefreshLoading() {
+        binding.swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override

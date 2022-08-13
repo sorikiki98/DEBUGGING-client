@@ -14,6 +14,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.application.R;
 import com.example.application.data.Bug;
@@ -61,6 +62,7 @@ public class BugListFragment extends Fragment implements BugListContract.View {
         super.onViewCreated(view, savedInstanceState);
 
         initViews();
+        bindViews();
     }
 
     private void initViews() {
@@ -70,6 +72,10 @@ public class BugListFragment extends Fragment implements BugListContract.View {
 
         binding.errorMessage.setVisibility(View.GONE);
         binding.progressBar.setVisibility(View.VISIBLE);
+    }
+
+    private void bindViews() {
+        binding.swipeRefreshLayout.setOnRefreshListener(() -> presenter.refreshBugs());
     }
 
     @Override
@@ -93,6 +99,11 @@ public class BugListFragment extends Fragment implements BugListContract.View {
         Bundle bundle = new Bundle();
         bundle.putInt("bugId", bugId);
         navController.navigate(R.id.action_bugListFragment_to_bugItemFragment, bundle);
+    }
+
+    @Override
+    public void undoRefreshLoading() {
+        binding.swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override

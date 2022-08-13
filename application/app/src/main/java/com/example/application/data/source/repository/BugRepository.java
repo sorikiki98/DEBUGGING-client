@@ -8,11 +8,9 @@ import java.util.Optional;
 import io.reactivex.rxjava3.core.Flowable;
 
 public interface BugRepository {
-    Flowable<List<Bug>> getBugs();
+    Flowable<List<Bug>> getBugs(boolean isFirstLoad);
 
     Flowable<Optional<Bug>> getBug(int bugId);
-
-    void refreshBugs();
 
     void refreshCache(List<Bug> bugs);
 

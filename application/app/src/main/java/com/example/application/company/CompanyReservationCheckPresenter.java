@@ -126,7 +126,7 @@ public class CompanyReservationCheckPresenter implements CompanyReservationCheck
     }
 
     private Flowable<User> getUserInformation() {
-        return userRepository.loadUserInformation()
+        return userRepository.loadUserInformation(true)
                 .toFlowable();
     }
 

@@ -18,25 +18,21 @@ public interface UserRepository {
 
     Maybe<UserAuthentication> signup(RegistrationForm registrationForm);
 
-    Maybe<User> loadUserInformation();
+    Maybe<User> loadUserInformation(boolean isFirstLoad);
 
     Completable delete();
 
     Completable logout();
 
-    void refreshMyPage();
-
     void refreshCache(User userInfo);
 
     String getUserName();
 
-    Maybe<Integer> getAccumulatedNumOfUsages();
+    Maybe<Integer> getAccumulatedNumOfUsages(boolean isFirstLoad);
 
-    Maybe<List<MySurvey>> getMySurveyList();
+    Maybe<List<MySurvey>> getMySurveyList(boolean isFirstLoad);
 
-    Maybe<List<MyReservation>> getMyReservationList();
+    Maybe<List<MyReservation>> getMyReservationList(boolean isFirstLoad);
 
-    Maybe<List<MyProduct>> getMyProductList();
-
-    String getAuthToken();
+    Maybe<List<MyProduct>> getMyProductList(boolean isFirstLoad);
 }

@@ -56,7 +56,7 @@ public class ProductItemPresenter implements ProductItemContract.Presenter {
 
     @Override
     public void loadProduct() {
-        productRepository.getProducts()
+        productRepository.getProducts(true)
                 .observeOn(mainScheduler)
                 .subscribe(getProductListFlowableSubscriber());
     }

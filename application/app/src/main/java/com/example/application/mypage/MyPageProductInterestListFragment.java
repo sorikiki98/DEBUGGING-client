@@ -54,6 +54,7 @@ public class MyPageProductInterestListFragment extends Fragment implements MyPag
         super.onViewCreated(view, savedInstanceState);
 
         initViews();
+        bindViews();
     }
 
     private void initViews() {
@@ -64,6 +65,10 @@ public class MyPageProductInterestListFragment extends Fragment implements MyPag
         binding.errorMessage.setVisibility(View.GONE);
         binding.recyclerView.setVisibility(View.GONE);
         presenter.subscribe();
+    }
+
+    private void bindViews() {
+        binding.swipeRefreshLayout.setOnRefreshListener(() -> presenter.refreshMyPageProductInterest());
     }
 
     @Override
@@ -93,6 +98,11 @@ public class MyPageProductInterestListFragment extends Fragment implements MyPag
         binding.errorMessage.setVisibility(View.VISIBLE);
         binding.recyclerView.setVisibility(View.GONE);
         binding.errorMessage.setText(message);
+    }
+
+    @Override
+    public void undoRefreshLoading() {
+        binding.swipeRefreshLayout.setRefreshing(false);
     }
 }
 

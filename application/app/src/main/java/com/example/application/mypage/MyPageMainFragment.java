@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.application.R;
 import com.example.application.data.MyProduct;
@@ -91,6 +92,10 @@ public class MyPageMainFragment extends Fragment implements MyPageMainContract.V
 
         binding.tvMoreSurvey.setOnClickListener(view -> {
             navController.navigate(R.id.action_myPageMainFragment_to_myPageSurveyDetailListFragment);
+        });
+
+        binding.swipeRefreshLayout.setOnRefreshListener(() -> {
+            presenter.refreshUserInfo();
         });
     }
 
@@ -186,6 +191,10 @@ public class MyPageMainFragment extends Fragment implements MyPageMainContract.V
         binding.contentContainer.setVisibility(View.GONE);
         binding.progressBar.setVisibility(View.GONE);
         binding.errorMessage.setVisibility(View.VISIBLE);
+    }
 
+    @Override
+    public void undoRefreshLoading() {
+        binding.swipeRefreshLayout.setRefreshing(false);
     }
 }

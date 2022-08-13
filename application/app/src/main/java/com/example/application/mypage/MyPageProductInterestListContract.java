@@ -9,13 +9,20 @@ import java.util.List;
 
 public interface MyPageProductInterestListContract {
     interface Presenter extends BasePresenter {
-        void loadMyPageProductInterest();
-        void loadUserName();
+        void getMyPageProductInterest();
+
+        void refreshMyPageProductInterest();
+
+        void getUserName();
     }
 
     interface View extends BaseView {
         void showMyPageProductInterest(List<MyProduct> myProductList);
+
         void showUserName(String userName);
+
         void showErrorMessage(String message);
+
+        void undoRefreshLoading();
     }
 }

@@ -6,11 +6,16 @@ import com.example.application.data.User;
 
 public interface MyPageMainContract {
     interface Presenter extends BasePresenter {
-        void loadUserInfo();
+        void getUserInfo();
+
+        void refreshUserInfo();
     }
 
     interface View extends BaseView {
         void showUserInfo(User user);
+
         void showErrorMessage(String message);
+
+        void undoRefreshLoading();
     }
 }
