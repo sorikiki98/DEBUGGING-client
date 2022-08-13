@@ -110,9 +110,14 @@ public class MyPageCompanyDetailListFragment extends Fragment implements MyPageC
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+        presenter.unsubscribe();
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-        presenter.unsubscribe();
     }
 }

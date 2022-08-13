@@ -241,8 +241,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="4dp"
-                        android:src="@drawable/oval_r80"
-                        app:tint="@color/marigold" />
+                        android:background="@drawable/oval_r80"
+                        android:backgroundTint="@color/marigold"
+                        android:padding="14dp"
+                        android:src="@drawable/ic_mosquito" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -267,8 +269,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="4dp"
-                        android:src="@drawable/oval_r80"
-                        app:tint="@color/marigold" />
+                        android:background="@drawable/oval_r80"
+                        android:backgroundTint="@color/marigold"
+                        android:padding="16dp"
+                        android:src="@drawable/ic_bedbug" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -293,8 +297,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="4dp"
-                        android:src="@drawable/oval_r80"
-                        app:tint="@color/marigold" />
+                        android:background="@drawable/oval_r80"
+                        android:backgroundTint="@color/marigold"
+                        android:padding="12dp"
+                        android:src="@drawable/ic_dust"/>
 
                     <TextView
                         android:layout_width="wrap_content"

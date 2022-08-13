@@ -16,13 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/bugItemFragment"
-        android:name="com.example.application.bug.BugItemFragment" >
-        <action
-            android:id="@+id/action_bugItemFragment_to_bugListFragment"
-            app:destination="@id/bugListFragment"
-            app:popUpTo="@id/bugItemFragment"
-            app:popUpToInclusive="true" />
-    </fragment>
+        android:name="com.example.application.bug.BugItemFragment" />
     <fragment
         android:id="@+id/bugSearchFragment"
         android:name="com.example.application.bug.BugSearchFragment">

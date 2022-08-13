@@ -112,10 +112,15 @@ public class CompanyListFragment extends Fragment implements CompanyListContract
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+        presenter.unsubscribe();
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-        presenter.unsubscribe();
     }
 }
 

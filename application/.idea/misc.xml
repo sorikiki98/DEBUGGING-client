@@ -83,6 +83,7 @@
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_mypage_survey_list.xml" value="0.10520833333333333" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_product_item.xml" value="0.14285714285714285" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_product_list.xml" value="0.12083333333333333" />
+        <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_product_search.xml" value="0.12083333333333333" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_register.xml" value="0.12083333333333333" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_register_completed.xml" value="0.12083333333333333" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/fragment_survey.xml" value="0.12083333333333333" />
@@ -96,6 +97,7 @@
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/item_mypage_survey.xml" value="0.1" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/item_mypage_survey_detail.xml" value="0.12571428571428572" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/item_product.xml" value="0.1" />
+        <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/item_search_result.xml" value="0.10520833333333333" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/main_menu_header.xml" value="0.12083333333333333" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/layout/rectangle_r5_with_black_line.xml" value="0.11979166666666667" />
         <entry key="..\:/Users/user/projects/debugging/client/application/app/src/main/res/menu/main_menu.xml" value="0.13229166666666667" />

@@ -10,4 +10,7 @@ public abstract class BugFragmentsModule {
 
     @ContributesAndroidInjector(modules = BugItemModule.class)
     abstract BugItemFragment contributeBugsItemFragment();
+
+    @ContributesAndroidInjector(modules = BugSearchModule.class)
+    abstract BugSearchFragment contributeBugSearchFragment();
 }

@@ -13,9 +13,9 @@ public interface BugRepository {
 
     Flowable<Optional<Bug>> getBug(int bugId);
 
+    List<Bug> filterBugs(String keyword);
+
     void refreshCache(List<Bug> bugs);
 
     void refreshLocalDataSource(List<Bug> bugs);
-
-    void survey(int bugId);
 }

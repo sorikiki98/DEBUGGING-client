@@ -23,9 +23,6 @@ import dagger.android.support.AndroidSupportInjection;
 public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
 
-    @Inject
-    Context context;
-
     @Override
     public void onAttach(@NonNull Context context) {
         AndroidSupportInjection.inject(this);
@@ -47,17 +44,17 @@ public class HomeFragment extends Fragment {
 
     private void bindViews() {
         binding.bugMenuButton.setOnClickListener(view -> {
-            Intent intent = new Intent(context, BugActivity.class);
+            Intent intent = new Intent(requireActivity(), BugActivity.class);
             startActivity(intent);
         });
 
         binding.productMenu.setOnClickListener(view -> {
-            Intent intent = new Intent(context, ProductActivity.class);
+            Intent intent = new Intent(requireActivity(), ProductActivity.class);
             startActivity(intent);
         });
 
         binding.reservationMenu.setOnClickListener(view -> {
-            Intent intent = new Intent(context, CompanyActivity.class);
+            Intent intent = new Intent(requireActivity(), CompanyActivity.class);
             startActivity(intent);
         });
     }

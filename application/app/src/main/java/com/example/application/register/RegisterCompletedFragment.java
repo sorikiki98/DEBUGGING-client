@@ -23,9 +23,6 @@ import dagger.android.support.AndroidSupportInjection;
 public class RegisterCompletedFragment extends Fragment {
     private FragmentRegisterCompletedBinding binding;
 
-    @Inject
-    Context context;
-
     @Override
     public void onAttach(@NonNull Context context) {
         AndroidSupportInjection.inject(this);
@@ -49,8 +46,14 @@ public class RegisterCompletedFragment extends Fragment {
 
     private void bindViews() {
         binding.btnHome.setOnClickListener(view -> {
-            startActivity(new Intent(context, HomeActivity.class));
+            startActivity(new Intent(requireActivity(), HomeActivity.class));
             requireActivity().finish();
         });
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

@@ -26,9 +26,6 @@ public class ProductItemFragment extends Fragment implements ProductItemContract
     @Inject
     ProductItemContract.Presenter presenter;
 
-    @Inject
-    Context context;
-
     private FragmentProductItemBinding binding;
 
     private int productId;
@@ -82,7 +79,7 @@ public class ProductItemFragment extends Fragment implements ProductItemContract
 
     @Override
     public void showProduct(Product product) {
-        Glide.with(context)
+        Glide.with(requireActivity())
                 .load(product.thumbnail)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .thumbnail(0.25f)
@@ -91,13 +88,13 @@ public class ProductItemFragment extends Fragment implements ProductItemContract
         binding.tvProductTitle.setText(product.name);
 
         binding.tagContainer.removeAllViews();
-        AppCompatButton[] buttons = product.makeTagButton(context);
+        AppCompatButton[] buttons = product.makeTagButton(requireActivity());
         for (AppCompatButton button : buttons) {
             binding.tagContainer.addView(button);
         }
 
         binding.productDescriptionContainer.removeAllViews();
-        TextView[] descriptions = product.makeTextView(context);
+        TextView[] descriptions = product.makeTextView(requireActivity());
         for (TextView description : descriptions) {
             binding.productDescriptionContainer.addView(description);
         }
@@ -117,9 +114,15 @@ public class ProductItemFragment extends Fragment implements ProductItemContract
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+        presenter.unsubscribe();
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
-        presenter.unsubscribe();
+        binding = null;
     }
 }
 

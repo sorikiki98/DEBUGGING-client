@@ -33,9 +33,6 @@ public class CompanyReservationFragment extends Fragment implements CompanyReser
 
     FragmentCompanyReservationBinding binding;
 
-    @Inject
-    Context context;
-
     private int companyId;
 
     private int hasBugBeenShown;
@@ -110,7 +107,7 @@ public class CompanyReservationFragment extends Fragment implements CompanyReser
             String extraMessage = binding.etExtraMessage.getText().toString();
 
             if (bugName.isEmpty() || firstFoundDate.isEmpty() || firstFoundPlace.isEmpty()) {
-                Toast.makeText(context, "필수 입력 내용을 모두 작성해주세요", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireActivity(), "필수 입력 내용을 모두 작성해주세요", Toast.LENGTH_SHORT).show();
             } else {
                 presenter.storeReservationForm(new ReservationForm(
                         bugName,
@@ -152,9 +149,14 @@ public class CompanyReservationFragment extends Fragment implements CompanyReser
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+        presenter.unsubscribe();
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
-        presenter.unsubscribe();
         binding = null;
     }
 }

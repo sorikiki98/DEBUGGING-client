@@ -27,9 +27,6 @@ public class MyPageActivity extends AppCompatActivity implements HasAndroidInjec
     @Inject
     DispatchingAndroidInjector<Object> androidInjector;
 
-    @Inject
-    Context context;
-
     private ActivityMypageBinding binding;
 
     @Override
@@ -50,7 +47,7 @@ public class MyPageActivity extends AppCompatActivity implements HasAndroidInjec
 
     private void bindViews() {
         binding.toolBarHomeIcon.setOnClickListener(view -> {
-            Intent intent = new Intent(context, HomeActivity.class);
+            Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
             finish();
         });

@@ -13,6 +13,8 @@ public interface ProductRepository {
 
     Completable removeProductInterest(int productId);
 
+    List<Product> filterProducts(String keyword);
+
     boolean isProductInterested(int productId);
 
     void refreshCache(List<Product> products);

@@ -75,6 +75,18 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
+    public List<Product> filterProducts(String keyword) {
+        List<Product> products = new ArrayList<>(cachedProducts.values());
+        List<Product> filteredProducts = new ArrayList<>();
+        for (Product product: products) {
+            if (product.name.contains(keyword)) {
+                filteredProducts.add(product);
+            }
+        }
+        return filteredProducts;
+    }
+
+    @Override
     public boolean isProductInterested(int productId) {
         if (cachedProducts != null && cachedProducts.get(productId) != null) {
             int isProductInterested = Objects.requireNonNull(cachedProducts.get(productId)).isProductInterested;

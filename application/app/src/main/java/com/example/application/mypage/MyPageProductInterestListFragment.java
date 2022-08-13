@@ -105,4 +105,16 @@ public class MyPageProductInterestListFragment extends Fragment implements MyPag
     public void undoRefreshLoading() {
         binding.swipeRefreshLayout.setRefreshing(false);
     }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        presenter.unsubscribe();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 }

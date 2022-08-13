@@ -21,9 +21,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Inject
     LoginContract.Presenter presenter;
 
-    @Inject
-    Context context;
-
     private ActivityLoginBinding binding;
 
     @Override
@@ -46,7 +43,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
             } else presenter.login(new UserLogIn(userName, password));
         });
 
-        binding.btnRegister.setOnClickListener(view -> startActivity(new Intent(context, RegisterActivity.class)));
+        binding.btnRegister.setOnClickListener(view -> startActivity(new Intent(this, RegisterActivity.class)));
     }
 
     @Override
@@ -56,19 +53,19 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     @Override
     public void processLoginFail(String message) {
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void navigate(int id) {
-        Intent intent = new Intent(context, HomeActivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
         finish();
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onStop() {
+        super.onStop();
         presenter.unsubscribe();
     }
 }

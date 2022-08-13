@@ -18,4 +18,7 @@ public abstract class CompanyFragmentsModule {
 
     @ContributesAndroidInjector(modules = CompanyReservationCheckModule.class)
     abstract CompanyReservationCheckFragment contributeCompanyReservationCheckFragment();
+
+    @ContributesAndroidInjector(modules = CompanySearchModule.class)
+    abstract CompanySearchFragment contributeCompanySearchFragment();
 }

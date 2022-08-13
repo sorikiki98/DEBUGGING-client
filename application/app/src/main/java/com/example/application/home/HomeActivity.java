@@ -41,9 +41,6 @@ public class HomeActivity extends AppCompatActivity implements HasAndroidInjecto
     private ActivityHomeBinding binding;
 
     @Inject
-    Context context;
-
-    @Inject
     HomeContract.Presenter presenter;
 
     @Override
@@ -92,7 +89,7 @@ public class HomeActivity extends AppCompatActivity implements HasAndroidInjecto
         binding.navView.setNavigationItemSelectedListener(this::handleMenuItemClick);
         binding.tvLogOut.setOnClickListener((view) -> popUpLogOutWindow());
         binding.tvSignOut.setOnClickListener((view) -> presenter.signOut());
-        binding.myPageIcon.setOnClickListener((view) -> startActivity(new Intent(context, MyPageActivity.class)));
+        binding.myPageIcon.setOnClickListener((view) -> startActivity(new Intent(this, MyPageActivity.class)));
     }
 
     @Override
@@ -116,19 +113,19 @@ public class HomeActivity extends AppCompatActivity implements HasAndroidInjecto
     private boolean handleMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case (R.id.bugActivity):
-                startActivity(new Intent(context, BugActivity.class));
+                startActivity(new Intent(this, BugActivity.class));
                 finish();
                 return true;
             case (R.id.companyActivity):
-                startActivity(new Intent(context, CompanyActivity.class));
+                startActivity(new Intent(this, CompanyActivity.class));
                 finish();
                 return true;
             case (R.id.productActivity):
-                startActivity(new Intent(context, ProductActivity.class));
+                startActivity(new Intent(this, ProductActivity.class));
                 finish();
                 return true;
             case (R.id.myPageActivity):
-                startActivity(new Intent(context, MyPageActivity.class));
+                startActivity(new Intent(this, MyPageActivity.class));
                 return true;
             default:
                 return false;
@@ -152,14 +149,14 @@ public class HomeActivity extends AppCompatActivity implements HasAndroidInjecto
 
     @Override
     public void goBackToHomeScreen() {
-        Intent intent = new Intent(context, LoginActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onStop() {
+        super.onStop();
         presenter.unsubscribe();
     }
 

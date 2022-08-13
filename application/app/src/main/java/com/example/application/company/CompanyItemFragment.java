@@ -26,9 +26,6 @@ public class CompanyItemFragment extends Fragment implements CompanyItemContract
     @Inject
     CompanyItemContract.Presenter presenter;
 
-    @Inject
-    Context context;
-
     private FragmentCompanyItemBinding binding;
 
     private int companyId;
@@ -79,7 +76,7 @@ public class CompanyItemFragment extends Fragment implements CompanyItemContract
 
     @Override
     public void showCompany(Company company) {
-        Glide.with(context)
+        Glide.with(requireActivity())
                 .load(company.thumbnail)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(binding.ivCompanyThumb);
@@ -97,10 +94,15 @@ public class CompanyItemFragment extends Fragment implements CompanyItemContract
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+        presenter.unsubscribe();
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-        presenter.unsubscribe();
     }
 }
 

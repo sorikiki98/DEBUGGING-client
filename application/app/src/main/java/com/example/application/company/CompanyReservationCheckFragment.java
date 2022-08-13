@@ -35,9 +35,6 @@ public class CompanyReservationCheckFragment extends Fragment implements Company
     @Inject
     CompanyReservationCheckContract.Presenter presenter;
 
-    @Inject
-    Context context;
-
     private FragmentCompanyReservationCheckBinding binding;
 
     private int companyId;
@@ -144,13 +141,18 @@ public class CompanyReservationCheckFragment extends Fragment implements Company
 
     @Override
     public void toastReservationErrorMessage(String message) {
-        Toast.makeText(context, "예약에 실패하였습니다", Toast.LENGTH_LONG).show();
+        Toast.makeText(requireActivity(), "예약에 실패하였습니다", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        presenter.unsubscribe();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-        presenter.unsubscribe();
     }
 }

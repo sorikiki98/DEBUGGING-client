@@ -25,9 +25,6 @@ public class RegisterFragment extends Fragment implements RegisterContract.View 
     @Inject
     RegisterContract.Presenter presenter;
 
-    @Inject
-    Context context;
-
     private FragmentRegisterBinding binding;
 
     @Override
@@ -65,9 +62,9 @@ public class RegisterFragment extends Fragment implements RegisterContract.View 
             String numOfRooms = binding.etRoom.getText().toString();
 
             if (username.isEmpty() || name.isEmpty() || password.isEmpty() || passwordCheck.isEmpty() || contactNumbers.isEmpty() || email.isEmpty()) {
-                Toast.makeText(context, "필요한 정보를 모두 입력해주세요.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireActivity(), "필요한 정보를 모두 입력해주세요.", Toast.LENGTH_SHORT).show();
             } else if (!password.equals(passwordCheck)) {
-                Toast.makeText(context, "비밀 번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireActivity(), "비밀 번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
             } else {
                 presenter.register(new RegistrationForm(
                         username,
@@ -92,6 +89,18 @@ public class RegisterFragment extends Fragment implements RegisterContract.View 
 
     @Override
     public void toastErrorMessage(String message) {
-        Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+        Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        presenter.unsubscribe();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

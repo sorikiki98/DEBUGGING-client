@@ -23,9 +23,6 @@ public class MyPageCompanyDetailItemFragment extends Fragment implements MyPageC
     @Inject
     MyPageCompanyDetailItemContract.Presenter presenter;
 
-    @Inject
-    Context context;
-
     private FragmentMypageCompanyDetailItemBinding binding;
 
     private int reservationId;
@@ -144,5 +141,17 @@ public class MyPageCompanyDetailItemFragment extends Fragment implements MyPageC
         binding.errorMessage.setVisibility(View.VISIBLE);
         binding.progressBar.setVisibility(View.GONE);
         binding.errorMessage.setText(message);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        presenter.unsubscribe();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

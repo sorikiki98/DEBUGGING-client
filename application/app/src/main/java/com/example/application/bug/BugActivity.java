@@ -1,5 +1,6 @@
 package com.example.application.bug;
 
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDeepLinkBuilder;
 import androidx.navigation.NavHost;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
@@ -30,10 +32,9 @@ public class BugActivity extends AppCompatActivity implements HasAndroidInjector
     @Inject
     DispatchingAndroidInjector<Object> androidInjector;
 
-    @Inject
-    Context context;
-
     private ActivityBugBinding binding;
+
+    private NavController navController;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,7 +54,7 @@ public class BugActivity extends AppCompatActivity implements HasAndroidInjector
     private void setNavController() {
         Toolbar toolBar = binding.toolBar;
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_container);
-        NavController navController = navHostFragment.getNavController();
+        navController = navHostFragment.getNavController();
         AppBarConfiguration configuration = new AppBarConfiguration.Builder(navController.getGraph())
                 .setFallbackOnNavigateUpListener(this::onSupportNavigateUp)
                 .build();
@@ -62,9 +63,22 @@ public class BugActivity extends AppCompatActivity implements HasAndroidInjector
 
     private void bindViews() {
         binding.toolBarHomeIcon.setOnClickListener(view -> {
-            Intent intent = new Intent(context, HomeActivity.class);
+            Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
             finish();
+        });
+
+        binding.toolBarSearchIcon.setOnClickListener(view -> {
+            PendingIntent pendingIntent = new NavDeepLinkBuilder(this)
+                    .setGraph(R.navigation.navigation_bug)
+                    .setDestination(R.id.bugSearchFragment)
+                    .createPendingIntent();
+
+            try {
+                pendingIntent.send();
+            } catch (PendingIntent.CanceledException e) {
+                e.printStackTrace();
+            }
         });
     }
 

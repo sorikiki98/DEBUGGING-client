@@ -17,6 +17,8 @@ import com.example.application.R;
 import com.example.application.data.Bug;
 import com.example.application.databinding.FragmentBugItemBinding;
 
+import java.util.Objects;
+
 import javax.inject.Inject;
 
 import dagger.android.support.AndroidSupportInjection;
@@ -26,9 +28,6 @@ public class BugItemFragment extends Fragment implements BugItemContract.View{
 
     @Inject
     BugItemContract.Presenter presenter;
-
-    @Inject
-    Context context;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -84,10 +83,10 @@ public class BugItemFragment extends Fragment implements BugItemContract.View{
         binding.tvBugMovement.setText(bug.getMovement());
         binding.ivBugThumb.setImageResource(bug.convertToDrawable());
 
-        int padding = bug.convertToPadding(context);
+        int padding = bug.convertToPadding(requireActivity());
         binding.ivBugThumb.setPadding(padding, padding, padding, padding);
 
-        TextView[] traits = bug.convertToSurveyResultSentences(context);
+        TextView[] traits = bug.convertToSurveyResultSentences(requireActivity());
         for (TextView tv: traits) {
             binding.traitDescriptionScrollView.addView(tv);
         }
@@ -114,5 +113,6 @@ public class BugItemFragment extends Fragment implements BugItemContract.View{
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        binding = null;
     }
 }

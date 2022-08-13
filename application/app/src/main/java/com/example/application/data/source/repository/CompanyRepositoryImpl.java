@@ -2,6 +2,7 @@ package com.example.application.data.source.repository;
 
 import android.util.Log;
 
+import com.example.application.data.Bug;
 import com.example.application.data.Company;
 import com.example.application.data.Reservation;
 import com.example.application.data.ReservationForm;
@@ -98,6 +99,18 @@ public class CompanyRepositoryImpl implements CompanyRepository {
     @Override
     public Maybe<Reservation> getReservationInformation(int reservationId) {
         return companyRemoteDataSource.getReservationInformation(reservationId);
+    }
+
+    @Override
+    public List<Company> filterCompanies(String keyword) {
+        List<Company> companies = new ArrayList<>(cachedCompanies.values());
+        List<Company> filteredCompanies = new ArrayList<>();
+        for (Company company: companies) {
+            if (company.name.contains(keyword)) {
+                filteredCompanies.add(company);
+            }
+        }
+        return filteredCompanies;
     }
 
     @Override

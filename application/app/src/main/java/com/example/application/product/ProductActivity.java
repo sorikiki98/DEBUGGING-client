@@ -1,5 +1,6 @@
 package com.example.application.product;
 
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDeepLinkBuilder;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
@@ -26,9 +28,6 @@ import dagger.android.HasAndroidInjector;
 public class ProductActivity extends AppCompatActivity implements HasAndroidInjector {
     @Inject
     DispatchingAndroidInjector<Object> androidInjector;
-
-    @Inject
-    Context context;
 
     private ActivityProductBinding binding;
 
@@ -59,9 +58,22 @@ public class ProductActivity extends AppCompatActivity implements HasAndroidInje
 
     private void bindViews() {
         binding.toolBarHomeIcon.setOnClickListener(view -> {
-            Intent intent = new Intent(context, HomeActivity.class);
+            Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
             finish();
+        });
+
+        binding.toolBarSearchIcon.setOnClickListener(view -> {
+            PendingIntent pendingIntent = new NavDeepLinkBuilder(this)
+                    .setGraph(R.navigation.navigation_product)
+                    .setDestination(R.id.productSearchFragment)
+                    .createPendingIntent();
+
+            try {
+                pendingIntent.send();
+            } catch (PendingIntent.CanceledException e) {
+                e.printStackTrace();
+            }
         });
     }
 

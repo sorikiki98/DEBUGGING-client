@@ -3,21 +3,21 @@ package com.example.application.bug;
 
 import com.example.application.data.source.repository.BugRepository;
 
+import java.util.Collections;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 
-public class BugSearchPresenter implements BugListContract.Presenter {
-    @Named("bug_search")
-    @Inject
-    BugListContract.View view;
-
+public class BugSearchPresenter implements BugSearchContract.Presenter {
     private final BugRepository bugRepository;
 
-    @Inject
-    BugSearchPresenter(BugRepository bugRepository) {
-        this.bugRepository = bugRepository;
-    }
+    private final BugSearchContract.View view;
 
+    @Inject
+    BugSearchPresenter(BugRepository bugRepository, BugSearchContract.View view) {
+        this.bugRepository = bugRepository;
+        this.view = view;
+    }
 
     @Override
     public void subscribe() {
@@ -30,12 +30,7 @@ public class BugSearchPresenter implements BugListContract.Presenter {
     }
 
     @Override
-    public void getBugs() {
-
-    }
-
-    @Override
-    public void refreshBugs() {
-
+    public void filterBugs(String keyword) {
+        view.showFilteredBugs(bugRepository.filterBugs(keyword));
     }
 }

@@ -13,4 +13,7 @@ public abstract class ProductFragmentsModule {
 
     @ContributesAndroidInjector(modules = ProductItemModule.class)
     abstract ProductItemFragment contributeProductItemFragment();
+
+    @ContributesAndroidInjector(modules = ProductSearchModule.class)
+    abstract ProductSearchFragment contributeProductSearchFragment();
 }

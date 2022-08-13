@@ -197,4 +197,16 @@ public class MyPageMainFragment extends Fragment implements MyPageMainContract.V
     public void undoRefreshLoading() {
         binding.swipeRefreshLayout.setRefreshing(false);
     }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        presenter.unsubscribe();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 }

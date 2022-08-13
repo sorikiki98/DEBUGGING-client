@@ -37,4 +37,10 @@ public class CompanyReservationCompletedFragment extends Fragment {
             requireActivity().finish();
         });
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 }

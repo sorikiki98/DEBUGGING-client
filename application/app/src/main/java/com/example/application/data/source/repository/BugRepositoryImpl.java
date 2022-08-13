@@ -74,6 +74,18 @@ public class BugRepositoryImpl implements BugRepository {
     }
 
     @Override
+    public List<Bug> filterBugs(String keyword) {
+        List<Bug> bugs = new ArrayList<>(cachedBugs.values());
+        List<Bug> filteredBugs = new ArrayList<>();
+        for (Bug bug: bugs) {
+            if (bug.getName().contains(keyword)) {
+                filteredBugs.add(bug);
+            }
+        }
+        return filteredBugs;
+    }
+
+    @Override
     public void refreshCache(List<Bug> bugs) {
         cachedBugs = new LinkedHashMap<>();
         for (Bug bug : bugs) {
@@ -84,11 +96,6 @@ public class BugRepositoryImpl implements BugRepository {
     @Override
     public void refreshLocalDataSource(List<Bug> bugs) {
         bugLocalDataSource.insertBugs(bugs);
-    }
-
-    @Override
-    public void survey(int bugId) {
-
     }
 
     private Flowable<List<Bug>> getBugsFromRemoteDataSource() {

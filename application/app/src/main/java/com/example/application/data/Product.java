@@ -1,6 +1,7 @@
 package com.example.application.data;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.util.Log;
 import android.util.TypedValue;
 import android.widget.LinearLayout;
@@ -64,23 +65,25 @@ public class Product {
         String[] tagList = this.type.split(" \\+ ");
         AppCompatButton[] buttons = new AppCompatButton[tagList.length];
         int tagIndex = 0;
-        for (String tag: tagList) {
+        for (String tag : tagList) {
             AppCompatButton button = new AppCompatButton(context);
-            button.setText(tag); //
-            button.setTextSize(14F); //
+
+            button.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.rectangle_r6_with_green_line, null));
+
+            button.setText("#" +  tag); //
+            button.setTextSize(16F); //
             button.setTextColor(context.getResources().getColor(R.color.brown_grey, null)); //
 
-            int paddingHeight = convertDpToFx(context, 18F);
-            button.setPadding(0, paddingHeight, 0, paddingHeight); //
+            int paddingLength = convertDpToFx(context, 18F);
+            button.setPadding(paddingLength, 0, paddingLength, 0); //
 
-            int buttonHeight = convertDpToFx(context, 34F);
+            int buttonHeight = convertDpToFx(context, 38F);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, buttonHeight);
 
-            int margin = convertDpToFx(context, 12F);
-            params.setMargins(0, 0, margin, margin);
+            int margin = convertDpToFx(context, 10F);
+            params.setMargins(0, margin, margin, margin);
             button.setLayoutParams(params); //
 
-            button.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.rectangle_r6_with_green_line, null)); //
             buttons[tagIndex] = button;
             tagIndex++;
         }
@@ -92,7 +95,7 @@ public class Product {
         String[] descriptionList = this.description.split(" \\+ ");
         TextView[] textViews = new TextView[descriptionList.length];
         int descriptionIndex = 0;
-        for (String description: descriptionList) {
+        for (String description : descriptionList) {
             TextView textView = new TextView(context);
             textView.setText(description);
             textView.setTextSize(16F);

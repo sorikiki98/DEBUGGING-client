@@ -17,9 +17,9 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginHorizontal="13dp"
-            android:backgroundTint="@color/turquoise_green"
-            android:maxLines="1"
+            android:backgroundTint="@color/shamrock"
             android:hint="@string/please_enter_queries"
+            android:maxLines="1"
             android:textColor="@color/brown_grey"
             android:textColorHint="@color/pinkish_grey"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -34,16 +34,16 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/search_edit_text_view"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/turquoise_green" />
+            app:tint="@color/shamrock" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_company_list"
+        android:id="@+id/rv_filtered_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:listitem="@layout/item_company" />
+        tools:listitem="@layout/item_search_result" />
 
 </LinearLayout>

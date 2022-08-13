@@ -117,6 +117,5 @@ public class BugListFragment extends Fragment implements BugListContract.View {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-        presenter.unsubscribe();
     }
 }

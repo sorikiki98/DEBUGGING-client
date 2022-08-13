@@ -26,6 +26,8 @@ public interface CompanyRepository {
 
     ReservationForm getReservationForm();
 
+    List<Company> filterCompanies(String keyword);
+
     boolean isCompanyInterested(int companyId);
 
     void keepReservationForm(ReservationForm reservationForm);

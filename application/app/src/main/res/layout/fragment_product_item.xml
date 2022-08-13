@@ -93,7 +93,6 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:paddingBottom="12dp"
                 android:textColor="@color/brown_grey"
                 android:textSize="26sp"
                 android:textStyle="bold"
@@ -108,20 +107,21 @@
                 android:layout_height="wrap_content"
                 android:paddingVertical="6dp"
                 app:flexWrap="wrap"
+                app:layout_constraintBottom_toTopOf="@id/product_description_container"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_product_title"
-                app:layout_constraintBottom_toTopOf="@id/product_description_container">
+                app:layout_constraintTop_toBottomOf="@id/tv_product_title">
 
-<!--                                <androidx.appcompat.widget.AppCompatButton-->
-<!--                                    android:layout_width="wrap_content"-->
-<!--                                    android:layout_height="38dp"-->
-<!--                                    android:layout_marginEnd="12dp"-->
-<!--                                    android:layout_marginBottom="12dp"-->
-<!--                                    android:background="@drawable/rectangle_r6_with_green_line"-->
-<!--                                    android:paddingHorizontal="18dp"-->
-<!--                                    android:textColor="@color/brown_grey"-->
-<!--                                    android:textSize="16sp"-->
-<!--                                    tools:text="#찜 BEST" />-->
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/rectangle_r6_with_green_line"
+                    android:paddingHorizontal="18dp"
+                    android:textColor="@color/brown_grey"
+                    android:textSize="16sp"
+                    tools:text="#찜 BEST" />
 
 
             </com.google.android.flexbox.FlexboxLayout>
