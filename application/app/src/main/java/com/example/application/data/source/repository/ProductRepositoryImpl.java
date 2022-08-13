@@ -2,6 +2,9 @@ package com.example.application.data.source.repository;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.example.application.data.Bug;
 import com.example.application.data.Company;
 import com.example.application.data.Product;
@@ -10,16 +13,22 @@ import com.example.application.data.source.local.ProductLocalDataSource;
 import com.example.application.data.source.remote.ProductRemoteDataSource;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.inject.Inject;
+import javax.security.auth.callback.Callback;
 
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.FlowableEmitter;
+import io.reactivex.rxjava3.core.FlowableOnSubscribe;
 
 public class ProductRepositoryImpl implements ProductRepository {
     private final ProductRemoteDataSource productRemoteDataSource;
