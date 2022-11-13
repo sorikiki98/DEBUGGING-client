@@ -17,14 +17,14 @@ import retrofit2.http.Path;
 
 public interface ProductService {
     @GET("products")
-    Flowable<List<Product>> getProducts(@Header("Authorization") String token);
+    Flowable<List<Product>> getProducts();
 
     @GET("products/{product_id}")
-    Flowable<Optional<Product>> getProduct(@Path("product_id")int productId, @Header("Authorization") String token);
+    Flowable<Optional<Product>> getProduct(@Path("product_id")int productId);
 
     @POST("products/interest/{product_id}")
-    Completable addProductInterest(@Path("product_id") int productId, @Header("Authorization") String token);
+    Completable addProductInterest(@Path("product_id") int productId);
 
     @DELETE("products/interest/{product_id}")
-    Completable removeProductInterest(@Path("product_id") int productId, @Header("Authorization") String token);
+    Completable removeProductInterest(@Path("product_id") int productId);
 }

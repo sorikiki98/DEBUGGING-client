@@ -2,6 +2,7 @@ package com.example.application.data.source.local;
 
 import android.util.Log;
 
+import com.example.application.SchedulersFacade;
 import com.example.application.data.Product;
 import com.example.application.data.source.ProductDataSource;
 
@@ -19,9 +20,9 @@ public class ProductLocalDataSource implements ProductDataSource {
     private final Scheduler ioScheduler;
 
     @Inject
-    public ProductLocalDataSource(ProductDao productDao, Scheduler scheduler) {
+    public ProductLocalDataSource(ProductDao productDao, SchedulersFacade schedulersFacade) {
         this.productDao = productDao;
-        this.ioScheduler = scheduler;
+        this.ioScheduler = schedulersFacade.io();
     }
 
     @Override

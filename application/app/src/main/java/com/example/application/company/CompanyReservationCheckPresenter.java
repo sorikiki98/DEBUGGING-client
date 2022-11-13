@@ -1,10 +1,8 @@
 package com.example.application.company;
 
-import android.os.Bundle;
 import android.util.Log;
 
 import com.example.application.data.Company;
-import com.example.application.data.Reservation;
 import com.example.application.data.ReservationForm;
 import com.example.application.data.User;
 import com.example.application.data.source.repository.CompanyRepository;
@@ -18,14 +16,11 @@ import javax.inject.Inject;
 
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Flowable;
-import io.reactivex.rxjava3.core.FlowableOnSubscribe;
 import io.reactivex.rxjava3.core.FlowableSubscriber;
-import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.core.MaybeObserver;
 import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.functions.BiFunction;
 
 public class CompanyReservationCheckPresenter implements CompanyReservationCheckContract.Presenter {
     private final CompanyRepository companyRepository;

@@ -87,7 +87,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public String getUserName() {
-        return preferencesManager.fetchUserName();
+        return preferencesManager.getUserName();
     }
 
     @Override

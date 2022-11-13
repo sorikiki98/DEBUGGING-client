@@ -23,7 +23,6 @@ public class DebuggingApplication extends Application implements HasAndroidInjec
         DaggerAppComponent
                 .builder()
                 .application(this)
-                .storagesModule(new StoragesModule(this))
                 .build()
                 .inject(this);
     }

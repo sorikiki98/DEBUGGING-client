@@ -7,10 +7,14 @@ import androidx.room.Room;
 
 import com.example.application.DebuggingApplication;
 import com.example.application.PreferencesManager;
+import com.example.application.SchedulersFacade;
 import com.example.application.data.source.local.AppDatabase;
 import com.example.application.data.source.local.BugDao;
+import com.example.application.data.source.local.BugLocalDataSource;
 import com.example.application.data.source.local.CompanyDao;
+import com.example.application.data.source.local.CompanyLocalDataSource;
 import com.example.application.data.source.local.ProductDao;
+import com.example.application.data.source.local.ProductLocalDataSource;
 
 import javax.inject.Singleton;
 
@@ -19,12 +23,6 @@ import dagger.Provides;
 
 @Module
 public class StoragesModule {
-    private final DebuggingApplication application;
-
-    public StoragesModule(DebuggingApplication application) {
-        this.application = application;
-    }
-
     @Singleton
     @Provides
     Context provideContext(DebuggingApplication application) {
@@ -35,12 +33,6 @@ public class StoragesModule {
     @Provides
     SharedPreferences provideSharedPreferences(DebuggingApplication application) {
         return application.getSharedPreferences("authentication", Context.MODE_PRIVATE);
-    }
-
-    @Singleton
-    @Provides
-    PreferencesManager providePreferencesManager(SharedPreferences sharedPreferences) {
-        return new PreferencesManager(sharedPreferences);
     }
 
     @Singleton

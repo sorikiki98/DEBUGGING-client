@@ -2,9 +2,14 @@ package com.example.application.di;
 
 import com.example.application.AuthenticationInterceptor;
 import com.example.application.PreferencesManager;
+import com.example.application.SchedulersFacade;
+import com.example.application.data.source.remote.BugRemoteDataSource;
 import com.example.application.data.source.remote.BugService;
+import com.example.application.data.source.remote.CompanyRemoteDataSource;
 import com.example.application.data.source.remote.CompanyService;
+import com.example.application.data.source.remote.ProductRemoteDataSource;
 import com.example.application.data.source.remote.ProductService;
+import com.example.application.data.source.remote.UserRemoteDataSource;
 import com.example.application.data.source.remote.UserService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -27,12 +32,6 @@ public class NetworkModule {
     Gson provideGson() {
         GsonBuilder gsonBuilder = new GsonBuilder();
         return gsonBuilder.create();
-    }
-
-    @Provides
-    @Singleton
-    AuthenticationInterceptor provideAuthenticationInterceptor(PreferencesManager preferencesManager) {
-        return new AuthenticationInterceptor(preferencesManager);
     }
 
     @Provides

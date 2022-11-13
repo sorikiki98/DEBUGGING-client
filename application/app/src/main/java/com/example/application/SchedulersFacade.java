@@ -3,11 +3,13 @@ package com.example.application;
 import com.example.application.di.DaggerAppComponent;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
+@Singleton
 public class SchedulersFacade {
 
     @Inject

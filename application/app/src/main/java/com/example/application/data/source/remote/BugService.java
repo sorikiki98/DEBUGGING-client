@@ -14,11 +14,11 @@ import retrofit2.http.Path;
 
 public interface BugService {
     @GET("bugs")
-    Flowable<List<Bug>> getBugs(@Header("Authorization") String token);
+    Flowable<List<Bug>> getBugs();
 
     @GET("bugs/{bug_id}")
-    Flowable<Optional<Bug>> getBug(@Path("bug_id")int bugId, @Header("Authorization") String token);
+    Flowable<Optional<Bug>> getBug(@Path("bug_id")int bugId);
 
     @POST("bugs/survey/{bug_id}")
-    void survey(@Path("bug_id")int bugId, @Header("Authorization") String token);
+    void survey(@Path("bug_id")int bugId);
 }

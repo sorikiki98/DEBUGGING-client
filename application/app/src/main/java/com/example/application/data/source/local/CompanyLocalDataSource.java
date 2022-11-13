@@ -2,6 +2,7 @@ package com.example.application.data.source.local;
 
 import android.util.Log;
 
+import com.example.application.SchedulersFacade;
 import com.example.application.data.Company;
 import com.example.application.data.Reservation;
 import com.example.application.data.ReservationForm;
@@ -22,9 +23,9 @@ public class CompanyLocalDataSource implements CompanyDataSource {
     private final Scheduler ioScheduler;
 
     @Inject
-    public CompanyLocalDataSource(CompanyDao companyDao, Scheduler scheduler) {
+    public CompanyLocalDataSource(CompanyDao companyDao, SchedulersFacade schedulersFacade) {
         this.companyDao = companyDao;
-        this.ioScheduler = scheduler;
+        this.ioScheduler = schedulersFacade.io();
     }
 
     @Override
@@ -42,19 +43,13 @@ public class CompanyLocalDataSource implements CompanyDataSource {
     @Override
     public Completable addCompanyInterest(int companyId) {
         return companyDao.addCompanyInterest(companyId)
-                .subscribeOn(ioScheduler)
-                .doOnComplete(() -> {
-                   Log.d("CompanyLocalDataSource", "complete!");
-                });
+                .subscribeOn(ioScheduler);
     }
 
     @Override
     public Completable removeCompanyInterest(int companyId) {
         return companyDao.removeCompanyInterest(companyId)
-                .subscribeOn(ioScheduler)
-                .doOnComplete(() -> {
-                    Log.d("CompanyLocalDataSource", "complete!");
-                });
+                .subscribeOn(ioScheduler);
     }
 
     @Override
@@ -71,6 +66,4 @@ public class CompanyLocalDataSource implements CompanyDataSource {
     public void insertCompanies(List<Company> companies) {
         companyDao.insertCompanies(companies);
     }
-
-
 }

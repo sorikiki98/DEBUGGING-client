@@ -18,6 +18,8 @@ import com.example.application.R;
 import com.example.application.data.Product;
 import com.example.application.databinding.FragmentProductItemBinding;
 
+import java.util.Objects;
+
 import javax.inject.Inject;
 
 import dagger.android.support.AndroidSupportInjection;
@@ -79,6 +81,7 @@ public class ProductItemFragment extends Fragment implements ProductItemContract
 
     @Override
     public void showProduct(Product product) {
+        if (binding == null) return;
         Glide.with(requireActivity())
                 .load(product.thumbnail)
                 .transition(DrawableTransitionOptions.withCrossFade())

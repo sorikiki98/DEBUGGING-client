@@ -1,5 +1,6 @@
 package com.example.application.data.source.local;
 
+import com.example.application.SchedulersFacade;
 import com.example.application.data.Bug;
 import com.example.application.data.source.BugDataSource;
 
@@ -17,9 +18,9 @@ public class BugLocalDataSource implements BugDataSource {
     private final Scheduler ioScheduler;
 
     @Inject
-    public BugLocalDataSource(BugDao bugDao, Scheduler scheduler) {
+    public BugLocalDataSource(BugDao bugDao, SchedulersFacade schedulersFacade) {
         this.bugDao = bugDao;
-        this.ioScheduler = scheduler;
+        this.ioScheduler = schedulersFacade.io();
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.example.application.data.source.remote;
 
 import com.example.application.PreferencesManager;
+import com.example.application.SchedulersFacade;
 import com.example.application.data.Company;
 import com.example.application.data.Reservation;
 import com.example.application.data.ReservationForm;
@@ -19,18 +20,16 @@ import io.reactivex.rxjava3.core.Scheduler;
 public class CompanyRemoteDataSource implements CompanyDataSource {
     private final CompanyService companyService;
     private final Scheduler ioScheduler;
-    private final PreferencesManager preferencesManager;
 
     @Inject
-    public CompanyRemoteDataSource(CompanyService companyService, Scheduler scheduler, PreferencesManager preferencesManager) {
+    public CompanyRemoteDataSource(CompanyService companyService, SchedulersFacade schedulersFacade) {
         this.companyService = companyService;
-        this.ioScheduler = scheduler;
-        this.preferencesManager = preferencesManager;
+        this.ioScheduler = schedulersFacade.io();
     }
 
     @Override
     public Flowable<List<Company>> getCompanies() {
-        return companyService.getCompanies(getAuthToken())
+        return companyService.getCompanies()
                 .subscribeOn(ioScheduler);
     }
 
@@ -41,35 +40,30 @@ public class CompanyRemoteDataSource implements CompanyDataSource {
 
     @Override
     public Completable addCompanyInterest(int companyId) {
-        return companyService.addCompanyInterest(companyId, getAuthToken())
+        return companyService.addCompanyInterest(companyId)
                 .subscribeOn(ioScheduler);
     }
 
     @Override
     public Completable removeCompanyInterest(int companyId) {
-        return companyService.removeCompanyInterest(companyId, getAuthToken())
+        return companyService.removeCompanyInterest(companyId)
                 .subscribeOn(ioScheduler);
     }
 
     @Override
     public Maybe<Integer> reserveCompany(int companyId, ReservationForm reservationForm) {
-        return companyService.reserveCompany(companyId, reservationForm, getAuthToken())
+        return companyService.reserveCompany(companyId, reservationForm)
                 .subscribeOn(ioScheduler);
     }
 
     @Override
     public Maybe<Reservation> getReservationInformation(int reservationId) {
-        return companyService.getReservationInformation(reservationId, getAuthToken())
+        return companyService.getReservationInformation(reservationId)
                 .subscribeOn(ioScheduler);
     }
 
     @Override
     public void insertCompanies(List<Company> companies) {
 
-    }
-
-
-    private String getAuthToken() {
-        return "Bearer " + preferencesManager.fetchAuthToken();
     }
 }

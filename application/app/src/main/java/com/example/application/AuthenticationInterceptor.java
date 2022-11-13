@@ -24,7 +24,7 @@ public class AuthenticationInterceptor implements Interceptor {
     @Override
     public Response intercept(@NonNull Chain chain) throws IOException {
         Request.Builder requestBuilder = chain.request().newBuilder();
-        String token = preferencesManager.fetchAuthToken();
+        String token = preferencesManager.getAuthToken();
         if (token != null) {
             requestBuilder.addHeader("Authorization", "Bearer ".concat(token));
         }

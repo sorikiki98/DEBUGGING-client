@@ -74,7 +74,6 @@ public class CompanyListFragment extends Fragment implements CompanyListContract
     private void initViews() {
         binding.rvCompanyList.setAdapter(companyListAdapter);
         binding.rvCompanyList.setLayoutManager(new LinearLayoutManager(getContext()));
-
         binding.errorMessage.setVisibility(View.GONE);
         binding.progressBar.setVisibility(View.VISIBLE);
     }

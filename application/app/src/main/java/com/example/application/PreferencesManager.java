@@ -22,11 +22,11 @@ public class PreferencesManager {
         sharedPreferences.edit().putString("user_name", userName).apply();
     }
 
-    public String fetchAuthToken() {
+    public String getAuthToken() {
         return sharedPreferences.getString("token", null);
     }
 
-    public String fetchUserName() {
+    public String getUserName() {
         return sharedPreferences.getString("user_name", null);
     }
 

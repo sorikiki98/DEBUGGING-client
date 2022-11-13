@@ -154,5 +154,4 @@ public class CompanyRepositoryImpl implements CompanyRepository {
                     return Flowable.just(companies);
                 });
     }
-
 }

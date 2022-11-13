@@ -96,6 +96,7 @@ public class ProductListFragment extends Fragment implements ProductListContract
 
     @Override
     public void showProducts(List<Product> products) {
+        if (binding == null) return;
         if (!products.isEmpty()) {
             productListAdapter.submitList(products);
             binding.progressBar.setVisibility(View.GONE);
@@ -104,6 +105,7 @@ public class ProductListFragment extends Fragment implements ProductListContract
 
     @Override
     public void showErrorMessage(String message) {
+        if (binding == null) return;
         binding.errorMessage.setVisibility(View.VISIBLE);
         binding.errorMessage.setText(message);
         binding.progressBar.setVisibility(View.GONE);
@@ -111,6 +113,7 @@ public class ProductListFragment extends Fragment implements ProductListContract
 
     @Override
     public void undoRefreshLoading() {
+        if (binding == null) return;
         binding.swipeRefreshLayout.setRefreshing(false);
     }
 

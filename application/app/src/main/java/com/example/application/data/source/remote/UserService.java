@@ -21,8 +21,8 @@ public interface UserService {
     Maybe<UserAuthentication> signup(@Body RegistrationForm registrationForm);
 
     @DELETE("user")
-    Completable delete(@Header("Authorization") String token);
+    Completable delete();
 
     @GET("user/mypage")
-    Maybe<User> getUserInformation(@Header("Authorization") String token);
+    Maybe<User> getUserInformation();
 }

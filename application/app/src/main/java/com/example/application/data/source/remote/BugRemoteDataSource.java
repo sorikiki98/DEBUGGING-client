@@ -1,6 +1,7 @@
 package com.example.application.data.source.remote;
 
 import com.example.application.PreferencesManager;
+import com.example.application.SchedulersFacade;
 import com.example.application.data.Bug;
 import com.example.application.data.source.BugDataSource;
 
@@ -18,24 +19,21 @@ public class BugRemoteDataSource implements BugDataSource {
 
     private final Scheduler ioScheduler;
 
-    private final PreferencesManager preferencesManager;
-
     @Inject
-    public BugRemoteDataSource(BugService bugService, Scheduler scheduler, PreferencesManager preferencesManager) {
+    public BugRemoteDataSource(BugService bugService, SchedulersFacade schedulersFacade) {
         this.bugsApi = bugService;
-        this.ioScheduler = scheduler;
-        this.preferencesManager = preferencesManager;
+        this.ioScheduler = schedulersFacade.io();
     }
 
     @Override
     public Flowable<List<Bug>> getBugs() {
-        return bugsApi.getBugs(getAuthToken())
+        return bugsApi.getBugs()
                 .subscribeOn(ioScheduler);
     }
 
     @Override
     public Flowable<Optional<Bug>> getBug(int bugId) {
-        return bugsApi.getBug(bugId, getAuthToken())
+        return bugsApi.getBug(bugId)
                 .subscribeOn(ioScheduler);
     }
 
@@ -47,9 +45,5 @@ public class BugRemoteDataSource implements BugDataSource {
     @Override
     public void survey() {
 
-    }
-
-    private String getAuthToken() {
-        return "Bearer " + this.preferencesManager.fetchAuthToken();
     }
 }

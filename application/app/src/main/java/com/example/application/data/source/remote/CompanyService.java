@@ -18,17 +18,17 @@ import retrofit2.http.Path;
 
 public interface CompanyService {
     @GET("companies")
-    Flowable<List<Company>> getCompanies(@Header("Authorization") String token);
+    Flowable<List<Company>> getCompanies();
 
     @POST("companies/interest/{company_id}")
-    Completable addCompanyInterest(@Path("company_id") int companyId, @Header("Authorization") String token);
+    Completable addCompanyInterest(@Path("company_id") int companyId);
 
     @DELETE("companies/interest/{company_id}")
-    Completable removeCompanyInterest(@Path("company_id") int companyId, @Header("Authorization") String token);
+    Completable removeCompanyInterest(@Path("company_id") int companyId);
 
     @POST("companies/reservation/{company_id}")
-    Maybe<Integer> reserveCompany(@Path("company_id") int companyId, @Body ReservationForm reservationForm, @Header("Authorization") String token);
+    Maybe<Integer> reserveCompany(@Path("company_id") int companyId, @Body ReservationForm reservationForm);
 
     @GET("companies/reservation/{reservation_id}")
-    Maybe<Reservation> getReservationInformation(@Path("reservation_id") int reservationId, @Header("Authorization") String token);
+    Maybe<Reservation> getReservationInformation(@Path("reservation_id") int reservationId);
 }
